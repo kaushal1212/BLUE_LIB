@@ -1,11 +1,3 @@
-/******************************************************************************
- * Copyright (C) 2021 by Kaushal - BVM engineering college
- * Redistribution, modification or use of this software in source or binary
- * forms is permitted as long as the files maintain this copyright. Users are 
- * permitted to modify this and use it to learn about the field of embedded
- * software. . 
- *
- *****************************************************************************/
 /**
  * @file  <gpio.h>
  * @brief <header file for declaration & Documantation of functions and MACROs of gpio.c>
@@ -99,8 +91,9 @@ extern void GPIO_Set (GPIO_TypeDef *GPIOx , uint8_t pin);
 
  extern uint8_t GPIO_Read(GPIO_TypeDef *GPIOx , uint8_t pin);
 
+
  /**
- * @brief function to read GPIO input bit (IDR register bit)
+ * @brief function to Write GPIO output bit (ODR register bit)
  * 
  * @param GPIOx - Port of GPIO
  * @param pin   - pin of GPIO
@@ -109,7 +102,20 @@ extern void GPIO_Set (GPIO_TypeDef *GPIOx , uint8_t pin);
  * @return void
  */
 
-
  extern void GPIO_Write(GPIO_TypeDef *GPIOx , uint8_t pin, uint8_t value);
+
+
+  /**
+ * @brief function to  Toggle Output bit (ODR register bit)
+ * 
+ * @param GPIOx - Port of GPIO
+ * @param pin   - pin of GPIO
+ * 
+ * @return void
+ */
+
+ extern void GPIO_Toggle(GPIO_TypeDef *GPIOx , uint8_t pin);
+
+ 
 
 #endif
