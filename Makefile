@@ -19,16 +19,18 @@
 
 include source.mk
 
- TARGET = final
+ TARGET := 
  OS = Windows
+ 
 
- ifeq ($(OS),Windows)
+
+ifeq ($(OS),Windows)
  	Delete = del /f
- else
-	Delete = \rm -f
- endif
+else
+    Delete = \rm -f
+endif
 
- BINPATH = E:\BLUE_LIB_PRO\BLUE_LIB\$(TARGET).bin
+ BINPATH = E:\BLUE_LIB_PROJECT\BLUE_LIB\$(TARGET).bin
 # Architecture Specifications and flags
 
  MARCH = armv7-m
@@ -43,8 +45,8 @@ include source.mk
  SIZE = arm-none-eabi-size
  OBJCOPY = arm-none-eabi-objcopy
 
- CFLAGS = -mcpu=$(CPU) -march=$(MARCH) -mthumb -mfloat-abi=soft -std=c99 -Wall -O0 -g -MMD
- LDFLAGS = -Map=$(TARGET).map -T $(LINKERFILE) -o0
+ CFLAGS = -mcpu=$(CPU) -march=$(MARCH) -mthumb -mfloat-abi=soft -fsingle-precision-constant  -std=c99 -Wall -O0 -g -MMD
+ LDFLAGS = -Map=$(TARGET).map -T $(LINKERFILE) -o0  
  CPPFLAGS = -DSTM32F10X_MD $(INCLUDES)
 
  LOADER = ST-LINK_CLI
@@ -53,9 +55,10 @@ include source.mk
 
 #object files
 
- OBJS = $(SOURCES:.c=.o)
- ASMS = $(SOURCES:.c=.asm)
- PREPS = $(SOURCES:.c=.i)
+ OBJS = $(SOURCES:.c=.o) $(TARGET).o
+ ASMS = $(SOURCES:.c=.asm) $(TARGET).asm
+ PREPS = $(SOURCES:.c=.i) $(TARGET).i
+
 
 #rules of building process
 
@@ -69,7 +72,7 @@ include source.mk
 	$(CC) -E $^ $(CPPFLAGS) -o $@
 
 $(TARGET).elf:$(OBJS)
-	$(LD) $(LDFLAGS) $^ -o $@
+	$(LD) $(LDFLAGS)  $^ -o $@
 
 $(TARGET).bin:$(TARGET).elf
 	$(OBJCOPY) -O binary $^ $@
@@ -80,7 +83,7 @@ all: $(TARGET).elf $(TARGET).bin
 
 .PHONY: clean
 clean:
-	$(Delete) src\*.o   src\*.d   $(TARGET).bin $(TARGET).elf $(TARGET).map src\*.asm src\*.i
+	$(Delete) src\*.o   src\*.d   $(TARGET).bin $(TARGET).elf $(TARGET).map $(TARGET).o $(TARGET).d src\*.asm src\*.i
 
 .PHONY: erase
 erase:
