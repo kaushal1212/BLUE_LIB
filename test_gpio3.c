@@ -1,4 +1,15 @@
-
+/**
+ * @file   <test_gpio3.c>
+ * @brief  <test file for basic gpio and delay function>
+ * 	    
+ * 	    - reads the input from gpio and gives output
+ *          - push button testing
+ *   
+ * @author <Kaushal dekivadia>
+ * @date   <August 1 2021>
+ *
+ */
+ 
 #include "stm32f10x.h"
 #include "gpio.h"
 #include "delay.h"

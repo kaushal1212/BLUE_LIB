@@ -1,0 +1,515 @@
+make all --print-data-base --no-builtin-variables --no-builtin-rules --question
+# GNU Make 4.2.1
+# Built for x86_64-pc-linux-gnu
+# Copyright (C) 1988-2016 Free Software Foundation, Inc.
+# License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+# This is free software: you are free to change and redistribute it.
+# There is NO WARRANTY, to the extent permitted by law.
+
+# Make data base, printed on Thu Feb 17 23:06:35 2022
+
+# Variables
+
+# 'override' directive
+GNUMAKEFLAGS := 
+# automatic
+<D = $(patsubst %/,%,$(dir $<))
+# automatic
+?F = $(notdir $?)
+# environment
+DESKTOP_SESSION = ubuntu
+# default
+.SHELLFLAGS := -c
+# environment
+XDG_SESSION_CLASS = user
+# environment
+XDG_SESSION_TYPE = x11
+# environment
+VSCODE_LOG_NATIVE = false
+# makefile (from 'Makefile', line 22)
+TARGET := 
+# automatic
+?D = $(patsubst %/,%,$(dir $?))
+# environment
+IM_CONFIG_PHASE = 1
+# makefile (from 'source.mk', line 11)
+INCLUDES = -I ./include/CMSIS -I ./include/common -I ./include/stm32 -I ./include/standard
+# automatic
+@D = $(patsubst %/,%,$(dir $@))
+# environment
+XAUTHORITY = /run/user/1000/gdm/Xauthority
+# environment
+GDMSESSION = ubuntu
+# environment
+XMODIFIERS = @im=ibus
+# makefile
+CURDIR := /home/kaushal/Kaushal/BLUE_LIB_PROJECT/BLUE_LIB
+# makefile
+SHELL = /bin/sh
+# environment
+VSCODE_NLS_CONFIG = {"locale":"en-gb","availableLanguages":{},"_languagePackSupport":true}
+# environment
+_ = /usr/share/code/code
+# makefile (from 'Makefile', line 52)
+CFLAGS = -mcpu=$(CPU) -march=$(MARCH) -mthumb  -mfloat-abi=soft    -std=c99 -Wall -O0 -g -MMD
+# environment
+JOURNAL_STREAM = 8:50506
+# environment
+XDG_CONFIG_DIRS = /etc/xdg/xdg-ubuntu:/etc/xdg
+# makefile (from 'source.mk', line 1)
+MAKEFILE_LIST :=  Makefile source.mk
+# automatic
+@F = $(notdir $@)
+# environment
+GIO_LAUNCHED_DESKTOP_FILE = /usr/share/applications/code.desktop
+# environment
+USERNAME = kaushal
+# makefile (from 'source.mk', line 3)
+SOURCES = ./src/gpio.c ./src/delay.c ./src/system_stm32f10x.c ./src/startup_stm32f103.c ./src/lcd_16x2.c ./src/spi.c ./src/uart.c
+# environment
+XDG_DATA_DIRS = /usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop
+# environment
+DBUS_SESSION_BUS_ADDRESS = unix:path=/run/user/1000/bus
+# environment
+VSCODE_VERBOSE_LOGGING = true
+# makefile (from 'Makefile', line 41)
+LINKERFILE = stm32f103xx.lds
+# makefile (from 'Makefile', line 30)
+Delete = rm -f
+# makefile (from 'Makefile', line 63)
+ASMS = $(SOURCES:.c=.asm) $(TARGET).asm
+# makefile (from 'Makefile', line 62)
+OBJS = $(SOURCES:.c=.o) $(TARGET).o
+# makefile (from 'Makefile', line 54)
+CPPFLAGS = -DSTM32F10X_MD $(INCLUDES)
+# environment
+MANAGERPID = 2407
+# environment
+LESSOPEN = | /usr/bin/lesspipe %s
+# environment
+VSCODE_CWD = /home/kaushal
+# default
+MAKE_HOST := x86_64-pc-linux-gnu
+# environment
+PATH = /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:.
+# makefile (from 'Makefile', line 47)
+LD = arm-none-eabi-ld.bfd
+# environment
+GPG_AGENT_INFO = /run/user/1000/gnupg/S.gpg-agent:0:1
+# environment
+SESSION_MANAGER = local/kaushald-desktop:@/tmp/.ICE-unix/2629,unix/kaushald-desktop:/tmp/.ICE-unix/2629
+# environment
+XDG_RUNTIME_DIR = /run/user/1000
+# makefile (from 'Makefile', line 64)
+PREPS = $(SOURCES:.c=.i) $(TARGET).i
+# makefile (from 'Makefile', line 33)
+BINPATH = ~/Kaushal/BLUE_LIB_PROJECT/BLUE_LIB/$(TARGET).bin
+# environment
+XDG_MENU_PREFIX = gnome-
+# environment
+VSCODE_LOG_STACK = false
+# environment
+VSCODE_CRASH_REPORTER_START_OPTIONS = {"companyName":"Microsoft","productName":"VSCode","submitURL":"appcenter://code?aid=fba07a4d-84bd-4fc8-a125-9640fc8ce171&uid=23d44414-c9cf-4a9e-8f9e-b37cd37a661f&iid=23d44414-c9cf-4a9e-8f9e-b37cd37a661f&sid=23d44414-c9cf-4a9e-8f9e-b37cd37a661f","uploadToServer":true}
+# environment
+INVOCATION_ID = 9b60571f45a54d8b9011cb926c6d9d51
+# makefile (from 'Makefile', line 53)
+LDFLAGS = -Map=$(TARGET).map -T $(LINKERFILE) $(LIB_PATH) -lgcc  -o0 -lgcov   
+# default
+.FEATURES := target-specific order-only second-expansion else-if shortest-stem undefine oneshell archives jobserver output-sync check-symlink load
+# environment
+LS_COLORS = 
+# environment
+XDG_SESSION_DESKTOP = ubuntu
+# environment
+SSH_AUTH_SOCK = /run/user/1000/keyring/ssh
+# environment
+GIO_LAUNCHED_DESKTOP_FILE_PID = 9803
+# makefile (from 'Makefile', line 48)
+SIZE = arm-none-eabi-size
+# automatic
+%F = $(notdir $%)
+# environment
+DISPLAY = :0
+# environment
+VSCODE_PIPE_LOGGING = true
+# environment
+PWD = /home/kaushal/Kaushal/BLUE_LIB_PROJECT/BLUE_LIB
+# default
+.LOADED := 
+# environment
+SSH_AGENT_PID = 2586
+# environment
+ORIGINAL_XDG_CURRENT_DESKTOP = ubuntu:GNOME
+# environment
+GTK_MODULES = gail:atk-bridge
+# environment
+VSCODE_AMD_ENTRYPOINT = vs/workbench/services/extensions/node/extensionHostProcess
+# environment
+HOME = /home/kaushal
+# environment
+LESSCLOSE = /usr/bin/lesspipe %s %s
+# environment
+VSCODE_CODE_CACHE_PATH = /home/kaushal/.config/Code/CachedData/d6ee99e4c045a6716e5c653d7da8e9ae6f5a8b03
+# environment
+LOGNAME = kaushal
+# environment
+APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = 1
+# environment
+VSCODE_HANDLES_UNCAUGHT_ERRORS = true
+# environment
+GNOME_DESKTOP_SESSION_ID = this-is-deprecated
+# automatic
+^D = $(patsubst %/,%,$(dir $^))
+# environment
+MAKELEVEL := 0
+# default
+MAKE = $(MAKE_COMMAND)
+# default
+MAKECMDGOALS := all
+# environment
+QT_IM_MODULE = ibus
+# environment
+SHLVL = 0
+# makefile (from 'Makefile', line 46)
+CC = arm-none-eabi-gcc
+# environment
+GNOME_SHELL_SESSION_MODE = ubuntu
+# environment
+VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-c33d8be5-7d9f-4111-8f9f-eff0546750cd.sock
+# default
+MAKE_VERSION := 4.2.1
+# environment
+USER = kaushal
+# makefile
+.DEFAULT_GOAL := all
+# environment
+XDG_CURRENT_DESKTOP = Unity
+# automatic
+%D = $(patsubst %/,%,$(dir $%))
+# makefile (from 'Makefile', line 39)
+CPU = cortex-m3
+# default
+MAKE_COMMAND := make
+# default
+.VARIABLES := 
+# automatic
+*F = $(notdir $*)
+# environment
+LANGUAGE = en_IN:en
+# makefile (from 'Makefile', line 23)
+OS = Linux
+# environment
+VSCODE_IPC_HOOK = /run/user/1000/vscode-e869eb64-1.64.1-main.sock
+# makefile
+MAKEFLAGS = pqrR
+# makefile (from 'Makefile', line 35)
+LIB_PATH = -L /usr/lib/gcc/arm-none-eabi/9.2.1/thumb/v7e-m/nofp
+# environment
+MFLAGS = -pqrR
+# automatic
+*D = $(patsubst %/,%,$(dir $*))
+# environment
+BREAKPAD_DUMP_LOCATION = /home/kaushal/.config/Code/exthost Crash Reports
+# automatic
++D = $(patsubst %/,%,$(dir $+))
+# environment
+GDK_BACKEND = x11
+# automatic
++F = $(notdir $+)
+# environment
+QT_ACCESSIBILITY = 1
+# makefile (from 'Makefile', line 56)
+LOADER = ST-LINK_CLI
+# default
+MAKEFILES := 
+# automatic
+<F = $(notdir $<)
+# environment
+ELECTRON_RUN_AS_NODE = 1
+# environment
+LC_ALL = C
+# makefile (from 'Makefile', line 38)
+MARCH = armv7-m
+# environment
+GJS_DEBUG_TOPICS = JS ERROR;JS LOG
+# automatic
+^F = $(notdir $^)
+# makefile (from 'Makefile', line 49)
+OBJCOPY = arm-none-eabi-objcopy
+# default
+SUFFIXES := 
+# environment
+CHROME_DESKTOP = code-url-handler.desktop
+# environment
+WINDOWPATH = 2
+# default
+.INCLUDE_DIRS = /usr/include /usr/local/include /usr/include
+# environment
+GJS_DEBUG_OUTPUT = stderr
+# default
+.RECIPEPREFIX := 
+# environment
+LANG = C
+# environment
+VSCODE_PID = 9803
+# variable set hash-table stats:
+# Load=121/1024=12%, Rehash=0, Collisions=25/166=15%
+
+# Pattern-specific Variable Values
+
+# No pattern-specific variable values.
+
+# Directories
+
+# . (device 2052, inode 13631996): 21 files, no impossibilities.
+# src (device 2052, inode 14027854): 19 files, no impossibilities so far.
+
+# 40 files, no impossibilities in 2 directories.
+
+# Implicit Rules
+
+%.o: %.c
+#  recipe to execute (from 'Makefile', line 70):
+	$(CC) -c $^ $(CFLAGS) $(CPPFLAGS) -o $@
+
+%.asm: %.c
+#  recipe to execute (from 'Makefile', line 73):
+	$(CC) -S $^ $(CFLAGS) $(CPPFLAGS) -o $@
+
+%.i: %.c
+#  recipe to execute (from 'Makefile', line 76):
+	$(CC) -E $^ $(CPPFLAGS) -o $@
+
+# 3 implicit rules, 0 (0.0%) terminal.
+
+# Files
+
+# Not a target:
+source.mk:
+#  Implicit rule search has been done.
+#  Last modified 2021-09-29 18:57:44
+#  File has been updated.
+#  Successfully updated.
+
+src/delay.o: src/delay.c
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'src/delay'
+#  Last modified 2022-02-17 19:52:10.44021717
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 70):
+	$(CC) -c $^ $(CFLAGS) $(CPPFLAGS) -o $@
+
+src/lcd_16x2.o: src/lcd_16x2.c
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'src/lcd_16x2'
+#  Last modified 2022-02-17 19:52:10.496216502
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 70):
+	$(CC) -c $^ $(CFLAGS) $(CPPFLAGS) -o $@
+
+erase:
+#  Phony target (prerequisite of .PHONY).
+#  Implicit rule search has not been done.
+#  File does not exist.
+#  File has not been updated.
+#  recipe to execute (from 'Makefile', line 94):
+	$(LOADER) -ME
+
+src/startup_stm32f103.o: src/startup_stm32f103.c
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'src/startup_stm32f103'
+#  Last modified 2022-02-17 19:52:10.472216788
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 70):
+	$(CC) -c $^ $(CFLAGS) $(CPPFLAGS) -o $@
+
+all: .elf .bin
+#  Command line target.
+#  Implicit rule search has been done.
+#  File does not exist.
+#  File has been updated.
+#  Needs to be updated (-q is set).
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/9=0%
+
+# Not a target:
+.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+.PHONY: clean erase flash
+#  Implicit rule search has not been done.
+ 
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+src/spi.c:
+#  Implicit rule search has been done.
+#  Last modified 2022-01-24 16:53:16.828642758
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+Makefile:
+#  Implicit rule search has been done.
+#  Last modified 2022-02-17 19:52:03.860295541
+#  File has been updated.
+#  Successfully updated.
+
+.elf: src/gpio.o src/delay.o src/system_stm32f10x.o src/startup_stm32f103.o src/lcd_16x2.o src/spi.o src/uart.o .o
+#  Implicit rule search has not been done.
+#  File does not exist.
+#  File has been updated.
+#  Needs to be updated (-q is set).
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/9=0%
+#  recipe to execute (from 'Makefile', line 79):
+	$(LD) $(LDFLAGS)  $^ -o $@
+
+src/uart.o: src/uart.c
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'src/uart'
+#  Last modified 2022-02-17 19:52:10.540215978
+#  File has been updated.
+#  Needs to be updated (-q is set).
+# automatic
+# @ := src/uart.o
+# automatic
+# % := 
+# automatic
+# * := src/uart
+# automatic
+# + := src/uart.c
+# automatic
+# | := 
+# automatic
+# < := src/uart.c
+# automatic
+# ^ := src/uart.c
+# automatic
+# ? := src/uart.c
+# variable set hash-table stats:
+# Load=8/32=25%, Rehash=0, Collisions=1/19=5%
+#  recipe to execute (from 'Makefile', line 70):
+	$(CC) -c $^ $(CFLAGS) $(CPPFLAGS) -o $@
+
+.bin: .elf
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  recipe to execute (from 'Makefile', line 82):
+	$(OBJCOPY) -O binary $^ $@
+
+# Not a target:
+src/delay.c:
+#  Implicit rule search has been done.
+#  Last modified 2022-01-24 16:46:51.092579584
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+src/lcd_16x2.c:
+#  Implicit rule search has been done.
+#  Last modified 2022-01-24 16:46:55.700468466
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+src/startup_stm32f103.c:
+#  Implicit rule search has been done.
+#  Last modified 2022-01-24 16:46:58.556399899
+#  File has been updated.
+#  Successfully updated.
+
+src/gpio.o: src/gpio.c
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'src/gpio'
+#  Last modified 2022-02-17 19:52:10.420217409
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 70):
+	$(CC) -c $^ $(CFLAGS) $(CPPFLAGS) -o $@
+
+# Not a target:
+.DEFAULT:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+src/system_stm32f10x.o: src/system_stm32f10x.c
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'src/system_stm32f10x'
+#  Last modified 2022-02-17 19:52:10.460216932
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 70):
+	$(CC) -c $^ $(CFLAGS) $(CPPFLAGS) -o $@
+
+# Not a target:
+src/uart.c:
+#  Implicit rule search has been done.
+#  Last modified 2022-02-17 22:15:53.980954975
+#  File has been updated.
+#  Successfully updated.
+
+clean:
+#  Phony target (prerequisite of .PHONY).
+#  Implicit rule search has not been done.
+#  File does not exist.
+#  File has not been updated.
+#  recipe to execute (from 'Makefile', line 90):
+	$(Delete) src/*.o   src/*.d   $(TARGET).bin $(TARGET).elf $(TARGET).map $(TARGET).o $(TARGET).d src/*.asm src/*.i
+
+# Not a target:
+src/gpio.c:
+#  Implicit rule search has been done.
+#  Last modified 2022-01-24 16:52:47.961176052
+#  File has been updated.
+#  Successfully updated.
+
+flash:
+#  Phony target (prerequisite of .PHONY).
+#  Implicit rule search has not been done.
+#  File does not exist.
+#  File has not been updated.
+#  recipe to execute (from 'Makefile', line 98):
+	$(LOADER) -P $(BINPATH) 0x08000000 -V "after_programming" -Cksum $(BINPATH)
+
+src/spi.o: src/spi.c
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'src/spi'
+#  Last modified 2022-02-17 19:52:10.520216217
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 70):
+	$(CC) -c $^ $(CFLAGS) $(CPPFLAGS) -o $@
+
+# Not a target:
+src/system_stm32f10x.c:
+#  Implicit rule search has been done.
+#  Last modified 2016-06-01 00:07:38
+#  File has been updated.
+#  Successfully updated.
+
+# files hash-table stats:
+# Load=26/1024=3%, Rehash=0, Collisions=9/78=12%
+# VPATH Search Paths
+
+# No 'vpath' search paths.
+
+# No general ('VPATH' variable) search path.
+
+# strcache buffers: 1 (0) / strings = 75 / storage = 832 B / avg = 11 B
+# current buf: size = 8162 B / used = 832 B / count = 75 / avg = 11 B
+
+# strcache performance: lookups = 111 / hit rate = 32%
+# hash-table stats:
+# Load=75/8192=1%, Rehash=0, Collisions=4/111=4%
+# Finished Make data base on Thu Feb 17 23:06:35 2022
+
+ 

@@ -20,15 +20,15 @@ void SPI_Init(SPI_TypeDef *SPIx , uint8_t mode , uint8_t c_pol , uint8_t c_phase
 
     if(SPIx == SPI1){
       
-         // Enable clock for SPI1 and Alternate function IO 
+         /// Enable clock for SPI1 and Alternate function IO 
          RCC->APB2ENR |= (RCC_APB2ENR_SPI1EN | RCC_APB2ENR_AFIOEN);
          
-         // GPIO-Pin initialization for SPI1
-         GPIO_Init(GPIOA, 4, OUTPUT, PUSHPULL) ;    // NSS1 pin - A4- (Chip select)
+         /// GPIO-Pin initialization for SPI1
+         GPIO_Init(GPIOA, 4, OUTPUT, PUSHPULL) ;    /// NSS1 pin - A4- (Chip select)
          GPIO_Set(GPIOA,4);
-         GPIO_Init(GPIOA, 5, OUTPUT, AF_PUSHPULL);  // SCK1 pin - A5 - (seriel clk output)
-         GPIO_Init(GPIOA, 6, INPUT, PULL_UP);       // MISO pin - A6 - (Master in slave out)
-         GPIO_Init(GPIOA, 7, OUTPUT, AF_PUSHPULL);  // MOSI pin - A7 - (Master out slave in)
+         GPIO_Init(GPIOA, 5, OUTPUT, AF_PUSHPULL);  /// SCK1 pin - A5 - (seriel clk output)
+         GPIO_Init(GPIOA, 6, INPUT, PULL_UP);       /// MISO pin - A6 - (Master in slave out)
+         GPIO_Init(GPIOA, 7, OUTPUT, AF_PUSHPULL);  /// MOSI pin - A7 - (Master out slave in)
 
     }else{
 
@@ -96,10 +96,10 @@ void SPI_Init(SPI_TypeDef *SPIx , uint8_t mode , uint8_t c_pol , uint8_t c_phase
 void SPI_Set_Clk_Prescaler(SPI_TypeDef *SPIx,uint32_t prescaler)
 {
    if(prescaler == 2){
-      SPIx->CR1 &= ~(7<<3);
+      SPIx->CR1 &= ~(7<<3);             // sclk speed = Pclk/2 = 72 MHz / 2 = 36 MHz
 
    }else if(prescaler == 4){
-      SPIx->CR1 &= ~(6<<3);
+      SPIx->CR1 &= ~(6<<3);            
       SPIx->CR1 |= (1<<3);
 
    }else if(prescaler == 8){
@@ -132,16 +132,16 @@ void SPI_Set_Clk_Prescaler(SPI_TypeDef *SPIx,uint32_t prescaler)
 
 uint16_t SPI_SendByte(SPI_TypeDef *SPIx , uint16_t data){
 
-   while(!(SPIx->SR & (1<<1)));
+   while(!(SPIx->SR & (1<<1)));     // wait till Tx buffer is empty
       SPIx->DR = data;
 
-   while(!(SPIx->SR & (1<<0)));
+   while(!(SPIx->SR & (1<<0)));  // wait till Rx buffer gets full
       return SPIx->DR;
 }
 
 
 void SPI_WriteReg(SPI_TypeDef *SPIx,uint16_t address , uint16_t value){
-   SPI_NSS_ON(SPIx);
+   SPI_NSS_ON(SPIx);             
    SPI_SendByte(SPIx,address);
    SPI_SendByte(SPIx,value);
    SPI_NSS_OFF(SPIx);

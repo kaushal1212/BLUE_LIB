@@ -20,23 +20,26 @@
 include source.mk
 
  TARGET := 
- OS = Windows
+ OS = Linux
  
 
 
 ifeq ($(OS),Windows)
- 	Delete = del /f
+    Delete = del /f
 else
-    Delete = \rm -f
+    Delete = rm -f
 endif
 
- BINPATH = E:\BLUE_LIB_PROJECT\BLUE_LIB\$(TARGET).bin
+ BINPATH = ~/Kaushal/BLUE_LIB_PROJECT/BLUE_LIB/$(TARGET).bin
+
+ LIB_PATH = -L /usr/lib/gcc/arm-none-eabi/9.2.1/thumb/v7e-m/nofp
 # Architecture Specifications and flags
 
  MARCH = armv7-m
  CPU = cortex-m3
 
  LINKERFILE = stm32f103xx.lds
+
 
 #compilers flags and defines
 
@@ -45,8 +48,9 @@ endif
  SIZE = arm-none-eabi-size
  OBJCOPY = arm-none-eabi-objcopy
 
- CFLAGS = -mcpu=$(CPU) -march=$(MARCH) -mthumb -mfloat-abi=soft -fsingle-precision-constant  -std=c99 -Wall -O0 -g -MMD
- LDFLAGS = -Map=$(TARGET).map -T $(LINKERFILE) -o0  
+
+ CFLAGS = -mcpu=$(CPU) -march=$(MARCH) -mthumb  -mfloat-abi=soft    -std=c99 -Wall -O0 -g -MMD
+ LDFLAGS = -Map=$(TARGET).map -T $(LINKERFILE) $(LIB_PATH) -lgcc  -o0 -lgcov   
  CPPFLAGS = -DSTM32F10X_MD $(INCLUDES)
 
  LOADER = ST-LINK_CLI
@@ -83,7 +87,7 @@ all: $(TARGET).elf $(TARGET).bin
 
 .PHONY: clean
 clean:
-	$(Delete) src\*.o   src\*.d   $(TARGET).bin $(TARGET).elf $(TARGET).map $(TARGET).o $(TARGET).d src\*.asm src\*.i
+	$(Delete) src/*.o   src/*.d   $(TARGET).bin $(TARGET).elf $(TARGET).map $(TARGET).o $(TARGET).d src/*.asm src/*.i
 
 .PHONY: erase
 erase:

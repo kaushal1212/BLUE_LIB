@@ -28,14 +28,17 @@
 #define LCD_RS_PORT      GPIOB
 #define LCD_ENABLE_PORT  GPIOB
 
-#define LCD_D4_PIN 8   // data pins
+#define LCD_D4_PIN 8   /// data pins
 #define LCD_D5_PIN 9
 #define LCD_D6_PIN 10
 #define LCD_D7_PIN 11
 
-#define LCD_RS_PIN     6  // register select
-#define LCD_RW_PIN     7  // read-write mode (also can connect RW pin to -GND)
-#define LCD_ENABLE_PIN 8  // Enable
+/**
+* register select 
+*/
+#define LCD_RS_PIN     6  /// register select
+#define LCD_RW_PIN     7  /// read-write mode (also can connect RW pin to -GND)
+#define LCD_ENABLE_PIN 8  /// Enable
 
 
 
@@ -43,7 +46,7 @@
 /**
  * @brief function to Initialization process for 16x2
  * 
- * @param GPIOx - void
+ * @param void
  * 
  *This function initialize diffrent GPIOs for LCD as below
  * 

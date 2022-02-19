@@ -1,4 +1,13 @@
-
+/**
+ * @file   <test_gpio_intr.c>
+ * @brief  <test file for basic gpio and delay function>
+ * 	    
+ * 	    test gpio in interrupt mode
+ *
+ * @author <Kaushal dekivadia>
+ * @date   <August 4 2021>
+ *
+ */
 #include "stm32f10x.h"
 #include "gpio.h"
 #include "delay.h"

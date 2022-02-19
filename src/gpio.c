@@ -15,7 +15,7 @@
 #include "gpio.h"
 #include "stm32f10x.h"
 
-void GPIO_Initialize(GPIO_TypeDef *GPIOx , uint8_t pin , uint8_t GPIO_MODE , uint8_t GPIO_CNF ){
+void GPIO_Init(GPIO_TypeDef *GPIOx , uint8_t pin , uint8_t GPIO_MODE , uint8_t GPIO_CNF ){
 
     if (GPIOx == GPIOA)
             RCC->APB2ENR |= RCC_APB2ENR_IOPAEN ;
@@ -29,7 +29,7 @@ void GPIO_Initialize(GPIO_TypeDef *GPIOx , uint8_t pin , uint8_t GPIO_MODE , uin
     else if (GPIOx == GPIOD)
             RCC->APB2ENR |= RCC_APB2ENR_IOPDEN ;
 
-     //--- GPIO conf = pushpull output ---------------------------------------
+     ///--- GPIO conf = pushpull output ---------------------------------------
     if((pin <= 7)&&(GPIO_MODE == OUTPUT )&&(GPIO_CNF == PUSHPULL)){
          
          GPIOx->CRL |= (3<<(4*pin));
@@ -43,7 +43,7 @@ void GPIO_Initialize(GPIO_TypeDef *GPIOx , uint8_t pin , uint8_t GPIO_MODE , uin
          GPIOx->CRH &= ~(12<<(4*pin));
     }
 
-     //--- GPIO conf = opendrain output ---------------------------------------
+     ///--- GPIO conf = opendrain output ---------------------------------------
     else if((pin <= 7)&&(GPIO_MODE == OUTPUT )&&(GPIO_CNF == OPENDRAIN)){
 
          GPIOx->CRL |= (7<<(4*pin));
@@ -58,7 +58,7 @@ void GPIO_Initialize(GPIO_TypeDef *GPIOx , uint8_t pin , uint8_t GPIO_MODE , uin
     }
 
     
-     //--- GPIO conf = floating input ---------------------------------------
+     ///--- GPIO conf = floating input ---------------------------------------
     else if((pin <= 7)&&(GPIO_MODE == INPUT )&&(GPIO_CNF == FLOATING )){
 
         GPIOx->CRL |= (4<<(4*pin));
@@ -73,7 +73,7 @@ void GPIO_Initialize(GPIO_TypeDef *GPIOx , uint8_t pin , uint8_t GPIO_MODE , uin
     }
 
 
-     //--- GPIO conf = altenate function pushpull ---------------------------------------
+     ///--- GPIO conf = altenate function pushpull ---------------------------------------
 
     else if((pin <= 7)&&(GPIO_MODE == OUTPUT )&&(GPIO_CNF == AF_PUSHPULL )){
 
@@ -81,13 +81,13 @@ void GPIO_Initialize(GPIO_TypeDef *GPIOx , uint8_t pin , uint8_t GPIO_MODE , uin
         GPIOx->CRL &= ~(4<<(4*pin)); 
     }
     
-    else if((pin > 7)&&(GPIO_MODE == INPUT )&&(GPIO_CNF == AF_PUSHPULL )){
+    else if((pin > 7)&&(GPIO_MODE == OUTPUT )&&(GPIO_CNF == AF_PUSHPULL )){
 
         pin = pin - 8;
         GPIOx->CRH |= (11<<(4*pin));
         GPIOx->CRH &= ~(4<<(4*pin));  
     }
-     //--- GPIO conf = input pull-up ---------------------------------------
+     ///--- GPIO conf = input pull-up ---------------------------------------
 
     else if((pin <= 7)&&(GPIO_MODE == INPUT )&&(GPIO_CNF == PULL_UP)){
 
@@ -103,7 +103,7 @@ void GPIO_Initialize(GPIO_TypeDef *GPIOx , uint8_t pin , uint8_t GPIO_MODE , uin
         GPIOx->CRH &= ~(7<<(4*pin));
     }
 
-    //--- GPIO conf = input analog ---------------------------------------
+    ///--- GPIO conf = input analog ---------------------------------------
 
     else if((pin <= 7)&&(GPIO_MODE == INPUT )&&(GPIO_CNF == ANALOG)){
 
@@ -153,4 +153,36 @@ void GPIO_Write(GPIO_TypeDef *GPIOx , uint8_t pin, uint8_t value){
 void GPIO_Toggle(GPIO_TypeDef *GPIOx , uint8_t pin){
 
     GPIOx->ODR ^= (1<<pin);
+}
+
+void GPIO_EXTI_Init(GPIO_TypeDef *GPIOx,uint8_t pin){
+
+    GPIO_Init(GPIOx,pin,INPUT,FLOATING);
+
+    if((pin>=0) && (pin<=4)){
+         NVIC_EnableIRQ(pin + 6);
+         NVIC_SetPriority( pin+6 ,0);
+     }
+    else if((pin>=5) && (pin<=9)){
+        NVIC_EnableIRQ(23);
+        NVIC_SetPriority(23,0);
+    }
+    else{
+        NVIC_EnableIRQ(40);
+        NVIC_SetPriority(40,0);
+    }
+
+
+    EXTI->IMR |= (1<<pin);
+    EXTI->RTSR |= (1<<pin);
+
+    if(GPIOx == GPIOA){
+        AFIO->EXTICR[pin/4] |= (0<<(pin%4)*4);
+    }else if(GPIOx == GPIOB){
+        AFIO->EXTICR[pin/4] |= (1<<(pin%4)*4);
+    }else{
+        AFIO->EXTICR[pin/4] |= (2<<(pin%4)*4);
+    }
+
+
 }

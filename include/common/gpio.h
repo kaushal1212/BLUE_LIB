@@ -23,9 +23,10 @@
 
  #define PUSHPULL    0U
  #define OPENDRAIN   1U
+ #define AF_PUSHPULL 4U
+
  #define FLOATING    2U
  #define PULL_UP     3U
- #define AF_PUSHPULL 4U
  #define ANALOG      5U
 
 /**
@@ -48,7 +49,7 @@
  * @return void
  */
 
-extern void GPIO_Initialize (GPIO_TypeDef *GPIOx , uint8_t pin , uint8_t GPIO_MODE , uint8_t GPIO_CNF );
+extern void GPIO_Init(GPIO_TypeDef *GPIOx , uint8_t pin , uint8_t GPIO_MODE , uint8_t GPIO_CNF );
 
 
 
@@ -105,7 +106,7 @@ extern void GPIO_Set (GPIO_TypeDef *GPIOx , uint8_t pin);
  extern void GPIO_Write(GPIO_TypeDef *GPIOx , uint8_t pin, uint8_t value);
 
 
-  /**
+/**
  * @brief function to  Toggle Output bit (ODR register bit)
  * 
  * @param GPIOx - Port of GPIO
@@ -115,6 +116,9 @@ extern void GPIO_Set (GPIO_TypeDef *GPIOx , uint8_t pin);
  */
 
  extern void GPIO_Toggle(GPIO_TypeDef *GPIOx , uint8_t pin);
+
+
+ extern void GPIO_EXTI_Init(GPIO_TypeDef *GPIOx,uint8_t pin);
 
  
 

@@ -1,11 +1,11 @@
 /**
- * @file   <test_gpio1.c>
+ * @file   <test_gpio2.c>
  * @brief  <test file for basic gpio and delay function>
  * 	    
- * 	     OUTPUT-blinking led every 1s
+ * 	     OUTPUT-blinking led every 1s in opendrain mode
  *
  * @author <Kaushal dekivadia>
- * @date   <july 29 2021>
+ * @date   <july 30 2021>
  *
  */
  
@@ -16,7 +16,7 @@
 
  int main(){
 
-    Delay_Init(); // // Initialization of Delay (Systick (timer) configuration)
+    Delay_Init(); /// Initialization of Delay (Systick (timer) configuration)
     GPIO_Init(GPIOB,6,OUTPUT,OPENDRAIN); // //Initialization of GPIO - B6 for output opendrain mode
 
     while(1){

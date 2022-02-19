@@ -1,4 +1,3 @@
-
 /**
  * @file   <delay.c>
  * @brief  <Abstraction of SysTick_init , Delay_ms and Delay_us functions >
@@ -26,7 +25,7 @@ void SysTick_Handler()
     }
 }
 
-void DelayInit()
+void Delay_Init()
 {
     // Update SystemCoreClock value
     SystemCoreClockUpdate();
@@ -34,7 +33,7 @@ void DelayInit()
     SysTick_Config(SystemCoreClock / 1000000);
 }
 
-void delay_us(uint32_t us)
+void Delay_us(uint32_t us)
 {
     // Reload us value
     usTicks = us;
@@ -42,12 +41,12 @@ void delay_us(uint32_t us)
     while (usTicks);
 }
 
-void delay_ms(uint32_t ms)
+void Delay_ms(uint32_t ms)
 {
     // Wait until ms reach zero
     while (ms--)
     {
         // Delay 1ms
-        delay_us(1000);
+        Delay_us(1000);
     }
 }

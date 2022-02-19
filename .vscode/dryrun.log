@@ -1,0 +1,14 @@
+make --dry-run --always-make --keep-going --print-directory
+make: Entering directory '/home/kaushal/Kaushal/BLUE_LIB_PROJECT/BLUE_LIB'
+arm-none-eabi-gcc -c src/gpio.c -mcpu=cortex-m3 -march=armv7-m -mthumb  -mfloat-abi=soft    -std=c99 -Wall -O0 -g -MMD -DSTM32F10X_MD -I ./include/CMSIS -I ./include/common -I ./include/stm32 -I ./include/standard -o src/gpio.o
+arm-none-eabi-gcc -c src/delay.c -mcpu=cortex-m3 -march=armv7-m -mthumb  -mfloat-abi=soft    -std=c99 -Wall -O0 -g -MMD -DSTM32F10X_MD -I ./include/CMSIS -I ./include/common -I ./include/stm32 -I ./include/standard -o src/delay.o
+arm-none-eabi-gcc -c src/system_stm32f10x.c -mcpu=cortex-m3 -march=armv7-m -mthumb  -mfloat-abi=soft    -std=c99 -Wall -O0 -g -MMD -DSTM32F10X_MD -I ./include/CMSIS -I ./include/common -I ./include/stm32 -I ./include/standard -o src/system_stm32f10x.o
+arm-none-eabi-gcc -c src/startup_stm32f103.c -mcpu=cortex-m3 -march=armv7-m -mthumb  -mfloat-abi=soft    -std=c99 -Wall -O0 -g -MMD -DSTM32F10X_MD -I ./include/CMSIS -I ./include/common -I ./include/stm32 -I ./include/standard -o src/startup_stm32f103.o
+arm-none-eabi-gcc -c src/lcd_16x2.c -mcpu=cortex-m3 -march=armv7-m -mthumb  -mfloat-abi=soft    -std=c99 -Wall -O0 -g -MMD -DSTM32F10X_MD -I ./include/CMSIS -I ./include/common -I ./include/stm32 -I ./include/standard -o src/lcd_16x2.o
+arm-none-eabi-gcc -c src/spi.c -mcpu=cortex-m3 -march=armv7-m -mthumb  -mfloat-abi=soft    -std=c99 -Wall -O0 -g -MMD -DSTM32F10X_MD -I ./include/CMSIS -I ./include/common -I ./include/stm32 -I ./include/standard -o src/spi.o
+arm-none-eabi-gcc -c src/uart.c -mcpu=cortex-m3 -march=armv7-m -mthumb  -mfloat-abi=soft    -std=c99 -Wall -O0 -g -MMD -DSTM32F10X_MD -I ./include/CMSIS -I ./include/common -I ./include/stm32 -I ./include/standard -o src/uart.o
+arm-none-eabi-gcc -Map=.map -T stm32f103xx.lds -L /usr/lib/gcc/arm-none-eabi/9.2.1/thumb/v7e-m/nofp -lgcc  -o0 -lgcov        -o .o
+arm-none-eabi-ld.bfd -Map=.map -T stm32f103xx.lds -L /usr/lib/gcc/arm-none-eabi/9.2.1/thumb/v7e-m/nofp -lgcc  -o0 -lgcov     src/gpio.o src/delay.o src/system_stm32f10x.o src/startup_stm32f103.o src/lcd_16x2.o src/spi.o src/uart.o .o -o .elf
+arm-none-eabi-objcopy -O binary .elf .bin
+make: Leaving directory '/home/kaushal/Kaushal/BLUE_LIB_PROJECT/BLUE_LIB'
+ 

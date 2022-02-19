@@ -1,4 +1,13 @@
-
+/**
+ * @file   <test_spi.c>
+ * @brief  <test file for basic spi functions>
+ * 	    
+ * 	    - to test basic SPI HAL function and send few bytes of data to capture on logic analyzer
+ *
+ * @author <Kaushal dekivadia>
+ * @date   <september 1 2021>
+ *
+ */
 #include "stm32f10x.h"
 #include "gpio.h"
 #include "delay.h"
@@ -7,19 +16,20 @@
 int main(){
 
 	Delay_Init();
-	SPI_Init(SPI1,MASTER,0,0,MSB,8);
+	SPI_Init(SPI2,MASTER,0,0,MSB,8);
+	SPI_Set_Clk_Prescaler(SPI2,16);
 
 
 
 	while(1){
-		SPI_WriteReg(SPI1,0x33,0XAA);
+		SPI_WriteReg(SPI2,0x33,0XAA);
 		Delay_us(1);
 
 
-		SPI_WriteReg(SPI1,0x54,0X34);
+		SPI_WriteReg(SPI2,0x54,0X34);
 		Delay_us(1);
 			
-		SPI_WriteReg(SPI1,0x16,0X40);
+		SPI_WriteReg(SPI2,0x16,0X40);
 		Delay_us(1);
 	}
 
