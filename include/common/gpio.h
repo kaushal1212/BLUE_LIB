@@ -1,6 +1,6 @@
 /**
  * @file  <gpio.h>
- * @brief <header file for declaration & Documantation of functions and MACROs of gpio.c>
+ * @brief <header file for declaration & Documentation of functions and MACROs of gpio.c>
  *
  * This implementation file provides declaration   of initialization, set
  * reset and read GPIO functions for stm32f103xx platform.
@@ -17,17 +17,22 @@
 #include <stdint.h>
 #include "stm32f10x.h"
 
+#define INPUT  0U   
+#define OUTPUT 3U   
+#define OUTPUT_10 1U    
+#define OUTPUT_2 2U
+#define OUTPUT_50 3U 
 
- #define OUTPUT 1U
- #define INPUT  0U
 
- #define PUSHPULL    0U
- #define OPENDRAIN   1U
- #define AF_PUSHPULL 4U
+#define PUSHPULL    0U
+#define OPENDRAIN   1U
+#define AF_PUSHPULL 2U
+#define AF_OPENDRAIN 3U
 
- #define FLOATING    2U
- #define PULL_UP     3U
- #define ANALOG      5U
+#define ANALOG      0U
+#define FLOATING    1U
+#define PULL_UP     2U
+
 
 /**
  * @brief function to initialize GPIO MODES.
@@ -98,7 +103,7 @@ extern void GPIO_Set (GPIO_TypeDef *GPIOx , uint8_t pin);
  * 
  * @param GPIOx - Port of GPIO
  * @param pin   - pin of GPIO
- * @param value - value of bit to be wriiten ( 0 or 1)
+ * @param value - value of bit to be written ( 0 or 1)
  * 
  * @return void
  */

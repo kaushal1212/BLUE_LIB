@@ -22,8 +22,6 @@ include source.mk
  TARGET := 
  OS = Linux
  
-
-
 ifeq ($(OS),Windows)
     Delete = del /f
 else
@@ -53,7 +51,7 @@ endif
  LDFLAGS = -Map=$(TARGET).map -T $(LINKERFILE) $(LIB_PATH) -lgcc  -o0 -lgcov   
  CPPFLAGS = -DSTM32F10X_MD $(INCLUDES)
 
- LOADER = ST-LINK_CLI
+ LOADER = st-flash
 
 
 
@@ -91,9 +89,8 @@ clean:
 
 .PHONY: erase
 erase:
-	$(LOADER) -ME
+	$(LOADER)  erase
 
 .PHONY: flash
 flash:
-	$(LOADER) -P $(BINPATH) 0x08000000 -V "after_programming" -Cksum $(BINPATH)
-
+	$(LOADER) write  $(BINPATH) 0x08000000 

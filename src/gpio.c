@@ -26,95 +26,21 @@ void GPIO_Init(GPIO_TypeDef *GPIOx , uint8_t pin , uint8_t GPIO_MODE , uint8_t G
     else if (GPIOx == GPIOC)
             RCC->APB2ENR |= RCC_APB2ENR_IOPCEN ;
 
-    else if (GPIOx == GPIOD)
+    else 
             RCC->APB2ENR |= RCC_APB2ENR_IOPDEN ;
 
-     ///--- GPIO conf = pushpull output ---------------------------------------
-    if((pin <= 7)&&(GPIO_MODE == OUTPUT )&&(GPIO_CNF == PUSHPULL)){
-         
-         GPIOx->CRL |= (3<<(4*pin));
-         GPIOx->CRL &= ~(12<<(4*pin));
-    }
 
-    else if((pin > 7)&&(GPIO_MODE == OUTPUT )&&(GPIO_CNF == PUSHPULL)){ 
 
-         pin = pin - 8;
-         GPIOx->CRH |= (3<<(4*pin));
-         GPIOx->CRH &= ~(12<<(4*pin));
-    }
-
-     ///--- GPIO conf = opendrain output ---------------------------------------
-    else if((pin <= 7)&&(GPIO_MODE == OUTPUT )&&(GPIO_CNF == OPENDRAIN)){
-
-         GPIOx->CRL |= (7<<(4*pin));
-         GPIOx->CRL &= ~(8<<(4*pin));
-    }
-    
-    else if((pin > 7)&&(GPIO_MODE == OUTPUT )&&(GPIO_CNF == OPENDRAIN)){
-
-         pin = pin -8 ;      
-         GPIOx->CRH |= (7<<(4*pin));
-         GPIOx->CRH &= ~(8<<(4*pin));
-    }
-
-    
-     ///--- GPIO conf = floating input ---------------------------------------
-    else if((pin <= 7)&&(GPIO_MODE == INPUT )&&(GPIO_CNF == FLOATING )){
-
-        GPIOx->CRL |= (4<<(4*pin));
-        GPIOx->CRL &= ~(8<<(4*pin)); 
-    }
-    
-    else if((pin > 7)&&(GPIO_MODE == INPUT )&&(GPIO_CNF == FLOATING )){
-
+    if(pin > 7){
         pin = pin - 8;
-        GPIOx->CRH |= (4<<(4*pin));
-        GPIOx->CRH &= ~(8<<(4*pin)); 
+        GPIOx->CRH &= ~(0xF<<pin*4);
+
+        GPIOx->CRH |= (GPIO_MODE<<pin*4) | (GPIO_CNF << (pin*4 + 2));
     }
+    else{
 
-
-     ///--- GPIO conf = altenate function pushpull ---------------------------------------
-
-    else if((pin <= 7)&&(GPIO_MODE == OUTPUT )&&(GPIO_CNF == AF_PUSHPULL )){
-
-        GPIOx->CRL |= (11<<(4*pin));
-        GPIOx->CRL &= ~(4<<(4*pin)); 
-    }
-    
-    else if((pin > 7)&&(GPIO_MODE == OUTPUT )&&(GPIO_CNF == AF_PUSHPULL )){
-
-        pin = pin - 8;
-        GPIOx->CRH |= (11<<(4*pin));
-        GPIOx->CRH &= ~(4<<(4*pin));  
-    }
-     ///--- GPIO conf = input pull-up ---------------------------------------
-
-    else if((pin <= 7)&&(GPIO_MODE == INPUT )&&(GPIO_CNF == PULL_UP)){
-
-        GPIOx->CRL |= (8<<(4*pin));
-        GPIOx->CRL &= ~(7<<(4*pin));
-    }
-
-    
-    else if((pin > 7)&&(GPIO_MODE == INPUT )&&(GPIO_CNF == PULL_UP)){
-
-        pin = pin - 8;
-        GPIOx->CRH |= (8<<(4*pin));
-        GPIOx->CRH &= ~(7<<(4*pin));
-    }
-
-    ///--- GPIO conf = input analog ---------------------------------------
-
-    else if((pin <= 7)&&(GPIO_MODE == INPUT )&&(GPIO_CNF == ANALOG)){
-
-        GPIOx->CRL &= ~(15<<(4*pin));
-    }
-
-    
-    else if((pin > 7)&&(GPIO_MODE == INPUT )&&(GPIO_CNF == ANALOG)){
-       
-        pin = pin - 8;
-        GPIOx->CRH &= ~(15<<(4*pin));
+        GPIOx->CRL &= ~(0xF<<pin*4);
+        GPIOx->CRL |= (GPIO_MODE<<pin*4) | (GPIO_CNF << (pin*4 + 2));
     }
 
 }
