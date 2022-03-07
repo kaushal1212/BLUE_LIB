@@ -1,7 +1,7 @@
 #-----------------------------------------------------------------------------
-#Simple make file to support two build platforms
+# Simple make file to support build and flash of executables
 #
-# Use: make [TARGET] [PLATFORM-OVERRIDES]
+# Use: make [TARGET] [EXECUTABLE_NAME]
 #
 # Build Targets:
 #      <FILE>.o - Builds a <FILE>.o object file
@@ -10,8 +10,8 @@
 #      flash - Flash binary file into target platform
 #      erase - Performs Full chip erase
 #
-# Platform Overrides:
-#     STM32F103C8T6 - Target cross-compiled platform
+# executable name:
+#     Ex.  make all TARGET=test_gpio
 #
 # Author: kaushal dekivadia
 # Date:   july 28, 2021
@@ -19,8 +19,8 @@
 
 include source.mk
 
- TARGET := 
- OS = Linux
+TARGET := 
+OS = Linux
  
 ifeq ($(OS),Windows)
     Delete = del /f
@@ -28,38 +28,39 @@ else
     Delete = rm -f
 endif
 
- BINPATH = ~/Kaushal/BLUE_LIB_PROJECT/BLUE_LIB/$(TARGET).bin
+BINPATH = ~/BLUE_LIB_PROJECT/BLUE_LIB/$(TARGET).bin
 
- LIB_PATH = -L /usr/lib/gcc/arm-none-eabi/9.2.1/thumb/v7e-m/nofp
+LIB_PATH = -L /usr/lib/gcc/arm-none-eabi/9.2.1/thumb/v7e-m/nofp
 # Architecture Specifications and flags
 
- MARCH = armv7-m
- CPU = cortex-m3
+MARCH = armv7-m
+CPU = cortex-m3
 
- LINKERFILE = stm32f103xx.lds
+LINKERFILE = stm32f103xx.lds
 
 
 #compilers flags and defines
 
- CC = arm-none-eabi-gcc
- LD = arm-none-eabi-ld.bfd
- SIZE = arm-none-eabi-size
- OBJCOPY = arm-none-eabi-objcopy
+CC = arm-none-eabi-gcc
+LD = arm-none-eabi-ld.bfd
+SIZE = arm-none-eabi-size
+OBJCOPY = arm-none-eabi-objcopy
 
 
- CFLAGS = -mcpu=$(CPU) -march=$(MARCH) -mthumb  -mfloat-abi=soft    -std=c99 -Wall -O0 -g -MMD
- LDFLAGS = -Map=$(TARGET).map -T $(LINKERFILE) $(LIB_PATH) -lgcc  -o0 -lgcov   
- CPPFLAGS = -DSTM32F10X_MD $(INCLUDES)
+CFLAGS = -mcpu=$(CPU) -march=$(MARCH) -mthumb  -mfloat-abi=soft    -std=c99 -Wall -O0 -g -MMD
 
- LOADER = st-flash
+LDFLAGS = -Map=$(TARGET).map -T $(LINKERFILE) $(LIB_PATH) -lgcc  -o0 -lgcov   
+CPPFLAGS = -DSTM32F10X_MD $(INCLUDES)
+
+LOADER = st-flash
 
 
 
 #object files
 
- OBJS = $(SOURCES:.c=.o) $(TARGET).o
- ASMS = $(SOURCES:.c=.asm) $(TARGET).asm
- PREPS = $(SOURCES:.c=.i) $(TARGET).i
+OBJS = $(SOURCES:.c=.o) $(TARGET).o
+ASMS = $(SOURCES:.c=.asm) $(TARGET).asm
+PREPS = $(SOURCES:.c=.i) $(TARGET).i
 
 
 #rules of building process

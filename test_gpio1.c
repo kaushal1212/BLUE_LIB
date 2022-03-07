@@ -11,11 +11,10 @@
 
 #include "stm32f10x.h"
 #include "gpio.h"
-#include "delay.h"
+#include "timer_delay.h"
 
 int main(){
 
-	 /// Initialization of Delay (Systick (timer) configuration)
 	GPIO_Init(GPIOC,13,OUTPUT,PUSHPULL); //Initialization of GPIO - C13 for output pushpull mode
 
 	// infinite loop..
@@ -23,11 +22,10 @@ int main(){
 	while(1){
 
 		GPIO_Set(GPIOC,13);  // set C13 GPIO value to HIGH
-		Delay_ms(100);	// delay of 1s
+		TDelay_ms(1000);	// delay of 1s
 		GPIO_Reset(GPIOC,13);  // set C13 GPIO value to LOW
-		Delay_ms(100);	// delay of 1s
+		TDelay_ms(1000);	// delay of 1s
 	}
-
 
 	return 0;
 }

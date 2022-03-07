@@ -5,7 +5,9 @@
             "includePath": [
                 "${workspaceFolder}/**",
                 "${workspaceFolder}/include/common/",
-                "${workspaceFolder}/include/stm32"
+                "${workspaceFolder}/include/stm32",
+                "${workspaceFolder}/include/stm32",
+                "${workspaceFolder}/include/common"
             ],
             "defines": [],
             "compilerPath": "/usr/bin/gcc",
