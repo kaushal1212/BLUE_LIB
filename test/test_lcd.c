@@ -8,11 +8,13 @@
  * @date   <August 10 2021>
  *
  */
+
+#include <stdio.h>
+
 #include "stm32f10x.h"
 #include "gpio.h"
 #include "delay.h"
 #include "lcd_16x2.h"
-#include <stdio.h>
 
 
 int main(){

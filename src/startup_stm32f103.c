@@ -210,7 +210,7 @@
     (uint32_t)DMA2_Channel3_IRQHandler,
     (uint32_t)DMA2_Channel4_5_IRQHandler,
 
-  };
+  }; 
 
 
 /* default Handler for other IRQHandlers with weak priority */

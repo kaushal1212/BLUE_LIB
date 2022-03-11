@@ -16,7 +16,7 @@ int main(){
 
         for(int i = 0;i<=1000;i++){
 
-            GPIO_PWM(GPIOA,3,1000,i);
+            GPIO_PWM(GPIOA,3,1000,i); 
             Delay_ms(5);
         }
 

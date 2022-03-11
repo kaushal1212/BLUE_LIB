@@ -17,17 +17,15 @@ int main(){
 
 	Delay_Init();
 
-    UART_Init(USART1,8,1,9600); /// dataframe size - 8 , baudrate - 9600 , 1 stop bit
+  UART_Init(USART2,8,1,9600); /// dataframe size - 8 , baudrate - 9600 , 1 stop bit
 	
-
-
   while(1){
 	
-    UART_SendString(USART1," SUBJECT :4EL31 \n");
+    UART_SendString(USART2," SUBJECT :4EL31 \n");
     Delay_ms(10);
-    UART_SendString(USART1," PROJECT TITLE : BLUE-LIB \n");
+    UART_SendString(USART2," PROJECT TITLE : BLUE-LIB \n");
     Delay_ms(10);
-    UART_SendString(USART1," TEST : UART APIS \n ");
+    UART_SendString(USART2," TEST : UART APIS \n ");
     Delay_ms(10);
 
   }

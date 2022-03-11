@@ -1,17 +1,18 @@
 make --dry-run --always-make --keep-going --print-directory
 make: Entering directory '/home/kaushal/BLUE_LIB_PROJECT/BLUE_LIB'
-arm-none-eabi-gcc -c src/servo_motor.c -mcpu=cortex-m3 -march=armv7-m -mthumb  -mfloat-abi=soft    -std=c99 -Wall -O0 -g -MMD -DSTM32F10X_MD -I ./include/CMSIS -I ./include/common -I ./include/stm32  -o src/servo_motor.o
-arm-none-eabi-gcc -c src/uart.c -mcpu=cortex-m3 -march=armv7-m -mthumb  -mfloat-abi=soft    -std=c99 -Wall -O0 -g -MMD -DSTM32F10X_MD -I ./include/CMSIS -I ./include/common -I ./include/stm32  -o src/uart.o
-arm-none-eabi-gcc -c src/startup_stm32f103.c -mcpu=cortex-m3 -march=armv7-m -mthumb  -mfloat-abi=soft    -std=c99 -Wall -O0 -g -MMD -DSTM32F10X_MD -I ./include/CMSIS -I ./include/common -I ./include/stm32  -o src/startup_stm32f103.o
-arm-none-eabi-gcc -c src/pwm.c -mcpu=cortex-m3 -march=armv7-m -mthumb  -mfloat-abi=soft    -std=c99 -Wall -O0 -g -MMD -DSTM32F10X_MD -I ./include/CMSIS -I ./include/common -I ./include/stm32  -o src/pwm.o
-arm-none-eabi-gcc -c src/spi.c -mcpu=cortex-m3 -march=armv7-m -mthumb  -mfloat-abi=soft    -std=c99 -Wall -O0 -g -MMD -DSTM32F10X_MD -I ./include/CMSIS -I ./include/common -I ./include/stm32  -o src/spi.o
-arm-none-eabi-gcc -c src/lcd_16x2.c -mcpu=cortex-m3 -march=armv7-m -mthumb  -mfloat-abi=soft    -std=c99 -Wall -O0 -g -MMD -DSTM32F10X_MD -I ./include/CMSIS -I ./include/common -I ./include/stm32  -o src/lcd_16x2.o
-arm-none-eabi-gcc -c src/gpio.c -mcpu=cortex-m3 -march=armv7-m -mthumb  -mfloat-abi=soft    -std=c99 -Wall -O0 -g -MMD -DSTM32F10X_MD -I ./include/CMSIS -I ./include/common -I ./include/stm32  -o src/gpio.o
-arm-none-eabi-gcc -c src/delay.c -mcpu=cortex-m3 -march=armv7-m -mthumb  -mfloat-abi=soft    -std=c99 -Wall -O0 -g -MMD -DSTM32F10X_MD -I ./include/CMSIS -I ./include/common -I ./include/stm32  -o src/delay.o
-arm-none-eabi-gcc -c src/system_stm32f10x.c -mcpu=cortex-m3 -march=armv7-m -mthumb  -mfloat-abi=soft    -std=c99 -Wall -O0 -g -MMD -DSTM32F10X_MD -I ./include/CMSIS -I ./include/common -I ./include/stm32  -o src/system_stm32f10x.o
-arm-none-eabi-gcc -c src/i2c.c -mcpu=cortex-m3 -march=armv7-m -mthumb  -mfloat-abi=soft    -std=c99 -Wall -O0 -g -MMD -DSTM32F10X_MD -I ./include/CMSIS -I ./include/common -I ./include/stm32  -o src/i2c.o
-arm-none-eabi-gcc -Map=.map -T stm32f103xx.lds -L /usr/lib/gcc/arm-none-eabi/9.2.1/thumb/v7e-m/nofp -lgcc  -o0 -lgcov        -o .o
-arm-none-eabi-ld.bfd -Map=.map -T stm32f103xx.lds -L /usr/lib/gcc/arm-none-eabi/9.2.1/thumb/v7e-m/nofp -lgcc  -o0 -lgcov     src/servo_motor.o src/uart.o src/startup_stm32f103.o src/pwm.o src/spi.o src/lcd_16x2.o src/gpio.o src/delay.o src/system_stm32f10x.o src/i2c.o .o -o .elf
-arm-none-eabi-objcopy -O binary .elf .bin
+arm-none-eabi-gcc -c src/servo_motor.c -mcpu=cortex-m3 -march=armv7-m -mthumb  -mfloat-abi=soft -std=c99 -Wall -O0 -g -MMD -fdata-sections -ffunction-sections -DSTM32F10X_MD -I ./include/CMSIS -I ./include/common -I ./include/stm32   -o src/servo_motor.o
+arm-none-eabi-gcc -c src/uart.c -mcpu=cortex-m3 -march=armv7-m -mthumb  -mfloat-abi=soft -std=c99 -Wall -O0 -g -MMD -fdata-sections -ffunction-sections -DSTM32F10X_MD -I ./include/CMSIS -I ./include/common -I ./include/stm32   -o src/uart.o
+arm-none-eabi-gcc -c src/startup_stm32f103.c -mcpu=cortex-m3 -march=armv7-m -mthumb  -mfloat-abi=soft -std=c99 -Wall -O0 -g -MMD -fdata-sections -ffunction-sections -DSTM32F10X_MD -I ./include/CMSIS -I ./include/common -I ./include/stm32   -o src/startup_stm32f103.o
+arm-none-eabi-gcc -c src/pwm.c -mcpu=cortex-m3 -march=armv7-m -mthumb  -mfloat-abi=soft -std=c99 -Wall -O0 -g -MMD -fdata-sections -ffunction-sections -DSTM32F10X_MD -I ./include/CMSIS -I ./include/common -I ./include/stm32   -o src/pwm.o
+arm-none-eabi-gcc -c src/timer_delay.c -mcpu=cortex-m3 -march=armv7-m -mthumb  -mfloat-abi=soft -std=c99 -Wall -O0 -g -MMD -fdata-sections -ffunction-sections -DSTM32F10X_MD -I ./include/CMSIS -I ./include/common -I ./include/stm32   -o src/timer_delay.o
+arm-none-eabi-gcc -c src/spi.c -mcpu=cortex-m3 -march=armv7-m -mthumb  -mfloat-abi=soft -std=c99 -Wall -O0 -g -MMD -fdata-sections -ffunction-sections -DSTM32F10X_MD -I ./include/CMSIS -I ./include/common -I ./include/stm32   -o src/spi.o
+arm-none-eabi-gcc -c src/lcd_16x2.c -mcpu=cortex-m3 -march=armv7-m -mthumb  -mfloat-abi=soft -std=c99 -Wall -O0 -g -MMD -fdata-sections -ffunction-sections -DSTM32F10X_MD -I ./include/CMSIS -I ./include/common -I ./include/stm32   -o src/lcd_16x2.o
+arm-none-eabi-gcc -c src/gpio.c -mcpu=cortex-m3 -march=armv7-m -mthumb  -mfloat-abi=soft -std=c99 -Wall -O0 -g -MMD -fdata-sections -ffunction-sections -DSTM32F10X_MD -I ./include/CMSIS -I ./include/common -I ./include/stm32   -o src/gpio.o
+arm-none-eabi-gcc -c src/delay.c -mcpu=cortex-m3 -march=armv7-m -mthumb  -mfloat-abi=soft -std=c99 -Wall -O0 -g -MMD -fdata-sections -ffunction-sections -DSTM32F10X_MD -I ./include/CMSIS -I ./include/common -I ./include/stm32   -o src/delay.o
+arm-none-eabi-gcc -c src/system_stm32f10x.c -mcpu=cortex-m3 -march=armv7-m -mthumb  -mfloat-abi=soft -std=c99 -Wall -O0 -g -MMD -fdata-sections -ffunction-sections -DSTM32F10X_MD -I ./include/CMSIS -I ./include/common -I ./include/stm32   -o src/system_stm32f10x.o
+arm-none-eabi-gcc -c src/i2c_lcd.c -mcpu=cortex-m3 -march=armv7-m -mthumb  -mfloat-abi=soft -std=c99 -Wall -O0 -g -MMD -fdata-sections -ffunction-sections -DSTM32F10X_MD -I ./include/CMSIS -I ./include/common -I ./include/stm32   -o src/i2c_lcd.o
+arm-none-eabi-gcc -c src/i2c.c -mcpu=cortex-m3 -march=armv7-m -mthumb  -mfloat-abi=soft -std=c99 -Wall -O0 -g -MMD -fdata-sections -ffunction-sections -DSTM32F10X_MD -I ./include/CMSIS -I ./include/common -I ./include/stm32   -o src/i2c.o
 make: Leaving directory '/home/kaushal/BLUE_LIB_PROJECT/BLUE_LIB'
+ 
+make: *** No rule to make target 'test/.o', needed by 'test/.elf'.
  

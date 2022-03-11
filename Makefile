@@ -23,14 +23,16 @@ TARGET :=
 OS = Linux
  
 ifeq ($(OS),Windows)
-    Delete = del /f
+    DELETE = del /f
 else
-    Delete = rm -f
+    DELETE = rm -f
 endif
 
-BINPATH = ~/BLUE_LIB_PROJECT/BLUE_LIB/$(TARGET).bin
+BINPATH = ./$(TARGET).bin
 
 LIB_PATH = -L /usr/lib/gcc/arm-none-eabi/9.2.1/thumb/v7e-m/nofp
+
+TEST_PATH = test/
 # Architecture Specifications and flags
 
 MARCH = armv7-m
@@ -47,10 +49,11 @@ SIZE = arm-none-eabi-size
 OBJCOPY = arm-none-eabi-objcopy
 
 
-CFLAGS = -mcpu=$(CPU) -march=$(MARCH) -mthumb  -mfloat-abi=soft    -std=c99 -Wall -O0 -g -MMD
+CFLAGS = -mcpu=$(CPU) -march=$(MARCH) -mthumb  -mfloat-abi=soft -std=c99 -Wall -O0 -g -MMD -fdata-sections -ffunction-sections
 
-LDFLAGS = -Map=$(TARGET).map -T $(LINKERFILE) $(LIB_PATH) -lgcc  -o0 -lgcov   
-CPPFLAGS = -DSTM32F10X_MD $(INCLUDES)
+
+LDFLAGS = -Map=$(TARGET).map -T $(LINKERFILE) $(LIB_PATH) -lgcc  -o0 -lgcov --gc-sections
+CPPFLAGS = -DSTM32F10X_MD $(INCLUDES) 
 
 LOADER = st-flash
 
@@ -58,9 +61,9 @@ LOADER = st-flash
 
 #object files
 
-OBJS = $(SOURCES:.c=.o) $(TARGET).o
-ASMS = $(SOURCES:.c=.asm) $(TARGET).asm
-PREPS = $(SOURCES:.c=.i) $(TARGET).i
+OBJS = $(SOURCES:.c=.o)    $(TEST_PATH)$(TARGET).o
+ASMS = $(SOURCES:.c=.asm)  $(TEST_PATH)$(TARGET).asm
+PREPS = $(SOURCES:.c=.i)   $(TEST_PATH)$(TARGET).i
 
 
 #rules of building process
@@ -74,19 +77,19 @@ PREPS = $(SOURCES:.c=.i) $(TARGET).i
 %.i:%.c
 	$(CC) -E $^ $(CPPFLAGS) -o $@
 
-$(TARGET).elf:$(OBJS)
+$(TEST_PATH)$(TARGET).elf:$(OBJS)
 	$(LD) $(LDFLAGS)  $^ -o $@
 
-$(TARGET).bin:$(TARGET).elf
+$(TARGET).bin:$(TEST_PATH)$(TARGET).elf
 	$(OBJCOPY) -O binary $^ $@
 
 #build commands for makefile
 
-all: $(TARGET).elf $(TARGET).bin
+all: $(TEST_PATH)$(TARGET).elf $(TARGET).bin
 
 .PHONY: clean
 clean:
-	$(Delete) src/*.o   src/*.d   $(TARGET).bin $(TARGET).elf $(TARGET).map $(TARGET).o $(TARGET).d src/*.asm src/*.i
+	$(DELETE) src/*.o   src/*.d   $(TARGET).bin $(TEST_PATH)$(TARGET).elf $(TARGET).map $(TEST_PATH)*.o $(TEST_PATH)*.d src/*.asm src/*.i
 
 .PHONY: erase
 erase:

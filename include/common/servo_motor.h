@@ -1,3 +1,15 @@
+/**
+ * @file servo_motor.h
+ * @author Kaushal Dekivadia (dekivadiakaushal1212@gmail.com)
+ * 
+ * @brief - header file for declaration & Documentation of functions and MACROs of  *          servo_motor.h
+ * 
+ * @version 0.1
+ * @date 2022-03-11
+ * 
+ * @copyright Copyright (c) 2022
+ * 
+ */
 #ifndef __SERVO_H
 #define __SERVO_H
 

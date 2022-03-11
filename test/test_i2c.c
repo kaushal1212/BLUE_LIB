@@ -1,3 +1,4 @@
+
 #include "stm32f10x.h"
 #include "gpio.h"
 #include "delay.h"
@@ -12,7 +13,7 @@ int main(){
     while(1){
         
         I2C_Start(I2C1);
-        I2C_SendAddress(I2C1,0x11<<1);
+        I2C_SendAddress(I2C1,0x27<<1);
         I2C_Write(I2C1,0x33);
         I2C_Stop(I2C1);
 
