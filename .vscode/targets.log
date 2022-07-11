@@ -6,7 +6,7 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Fri Mar 11 15:18:49 2022
+# Make data base, printed on Fri Mar 11 17:44:49 2022
 
 # Variables
 
@@ -123,7 +123,7 @@ XDG_SESSION_DESKTOP = ubuntu
 # environment
 SSH_AUTH_SOCK = /run/user/1000/keyring/ssh
 # environment
-GIO_LAUNCHED_DESKTOP_FILE_PID = 10496
+GIO_LAUNCHED_DESKTOP_FILE_PID = 31298
 # makefile (from 'Makefile', line 48)
 SIZE = arm-none-eabi-size
 # automatic
@@ -149,7 +149,7 @@ HOME = /home/kaushal
 # environment
 LESSCLOSE = /usr/bin/lesspipe %s %s
 # environment
-VSCODE_CODE_CACHE_PATH = /home/kaushal/.config/Code/CachedData/8908a9ca0f221f36507231afb39d2d8d1e182702
+VSCODE_CODE_CACHE_PATH = /home/kaushal/.config/Code/CachedData/c722ca6c7eed3d7987c0d5c3df5c45f6b15e77d1
 # environment
 LOGNAME = kaushal
 # environment
@@ -175,7 +175,7 @@ CC = arm-none-eabi-gcc
 # environment
 GNOME_SHELL_SESSION_MODE = ubuntu
 # environment
-VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-71a13de0-ca70-4f77-9b61-416985c6a2df.sock
+VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-737ea05c-8569-489e-a987-3377f4770680.sock
 # default
 MAKE_VERSION := 4.2.1
 # environment
@@ -199,10 +199,9 @@ LANGUAGE = en_IN:en
 # makefile (from 'Makefile', line 23)
 OS = Linux
 # environment
-VSCODE_IPC_HOOK = /run/user/1000/vscode-e869eb64-1.65.1-main.sock
+VSCODE_IPC_HOOK = /run/user/1000/vscode-e869eb64-1.65.2-main.sock
 # makefile
 MAKEFLAGS = pqrR
- 
 # makefile (from 'Makefile', line 33)
 LIB_PATH = -L /usr/lib/gcc/arm-none-eabi/9.2.1/thumb/v7e-m/nofp
 # environment
@@ -250,7 +249,7 @@ GJS_DEBUG_OUTPUT = stderr
 # environment
 LANG = C
 # environment
-VSCODE_PID = 10496
+VSCODE_PID = 31298
 # variable set hash-table stats:
 # Load=120/1024=12%, Rehash=0, Collisions=23/169=14%
 
@@ -260,11 +259,11 @@ VSCODE_PID = 10496
 
 # Directories
 
-# . (device 2052, inode 15335497): 11 files, no impossibilities.
+# . (device 2052, inode 15335497): 12 files, no impossibilities.
 # ./src (device 2052, inode 15337885): 14 files, no impossibilities.
 # src (device 2052, inode 15337885): 14 files, no impossibilities.
 
-# 39 files, no impossibilities in 3 directories.
+# 40 files, no impossibilities in 3 directories.
 
 # Implicit Rules
 
@@ -308,6 +307,7 @@ erase:
 #  Implicit rule search has not been done.
 #  File does not exist.
 #  File has not been updated.
+ 
 #  recipe to execute (from 'Makefile', line 96):
 	$(LOADER)  erase
 
@@ -367,7 +367,7 @@ src/i2c_lcd.o:
 # Not a target:
 Makefile:
 #  Implicit rule search has been done.
-#  Last modified 2022-03-11 13:03:20.673616633
+#  Last modified 2022-03-11 17:07:05.973372563
 #  File has been updated.
 #  Successfully updated.
 
@@ -473,12 +473,12 @@ src/spi.o:
 
 # No general ('VPATH' variable) search path.
 
-# strcache buffers: 1 (0) / strings = 54 / storage = 550 B / avg = 10 B
-# current buf: size = 8162 B / used = 550 B / count = 54 / avg = 10 B
+# strcache buffers: 1 (0) / strings = 55 / storage = 557 B / avg = 10 B
+# current buf: size = 8162 B / used = 557 B / count = 55 / avg = 10 B
 
-# strcache performance: lookups = 84 / hit rate = 35%
+# strcache performance: lookups = 85 / hit rate = 35%
 # hash-table stats:
-# Load=54/8192=1%, Rehash=0, Collisions=2/84=2%
-# Finished Make data base on Fri Mar 11 15:18:49 2022
+# Load=55/8192=1%, Rehash=0, Collisions=2/85=2%
+# Finished Make data base on Fri Mar 11 17:44:49 2022
 
  

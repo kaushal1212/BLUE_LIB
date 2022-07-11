@@ -20,19 +20,20 @@
 include source.mk
 
 TARGET := 
-OS = Linux
+OS = Windows
  
 ifeq ($(OS),Windows)
     DELETE = del /f
 else
-    DELETE = rm -f
+    DELETE = rm -
 endif
 
-BINPATH = ./$(TARGET).bin
+BINPATH = $(shell  cd)\$(TARGET).bin
 
-LIB_PATH = -L /usr/lib/gcc/arm-none-eabi/9.2.1/thumb/v7e-m/nofp
 
 TEST_PATH = test/
+
+LIB_PATH = lib/
 # Architecture Specifications and flags
 
 MARCH = armv7-m
@@ -49,19 +50,19 @@ SIZE = arm-none-eabi-size
 OBJCOPY = arm-none-eabi-objcopy
 
 
-CFLAGS = -mcpu=$(CPU) -march=$(MARCH) -mthumb  -mfloat-abi=soft -std=c99 -Wall -O0 -g -MMD -fdata-sections -ffunction-sections
+CFLAGS = -mcpu=$(CPU) -march=$(MARCH) -mthumb -std=c99 -Wall -O0 -g -MMD -fdata-sections -ffunction-sections
 
 
-LDFLAGS = -Map=$(TARGET).map -T $(LINKERFILE) $(LIB_PATH) -lgcc  -o0 -lgcov --gc-sections
+LDFLAGS = -Map=$(TARGET).map -T $(LINKERFILE) -o0  --gc-sections $(LIB_PATH)libqfp.a
 CPPFLAGS = -DSTM32F10X_MD $(INCLUDES) 
 
-LOADER = st-flash
+LOADER = ST-LINK_CLI
 
-
+#The --ffunction-sections option has ensured that each function is compiled in a separate section, which allows the linker (via -Wl,--gc-sections) to later remove any functions that are not called from the final executable.
 
 #object files
 
-OBJS = $(SOURCES:.c=.o)    $(TEST_PATH)$(TARGET).o
+OBJS = $(SOURCES:.c=.o)    $(TEST_PATH)$(TARGET).o 
 ASMS = $(SOURCES:.c=.asm)  $(TEST_PATH)$(TARGET).asm
 PREPS = $(SOURCES:.c=.i)   $(TEST_PATH)$(TARGET).i
 
@@ -77,8 +78,8 @@ PREPS = $(SOURCES:.c=.i)   $(TEST_PATH)$(TARGET).i
 %.i:%.c
 	$(CC) -E $^ $(CPPFLAGS) -o $@
 
-$(TEST_PATH)$(TARGET).elf:$(OBJS)
-	$(LD) $(LDFLAGS)  $^ -o $@
+$(TEST_PATH)$(TARGET).elf:$(OBJS) $(LIB_PATH)$(LIBS)
+	$(LD) $^ $(LDFLAGS) -o $@
 
 $(TARGET).bin:$(TEST_PATH)$(TARGET).elf
 	$(OBJCOPY) -O binary $^ $@
@@ -89,7 +90,7 @@ all: $(TEST_PATH)$(TARGET).elf $(TARGET).bin
 
 .PHONY: clean
 clean:
-	$(DELETE) src/*.o   src/*.d   $(TARGET).bin $(TEST_PATH)$(TARGET).elf $(TARGET).map $(TEST_PATH)*.o $(TEST_PATH)*.d src/*.asm src/*.i
+	$(DELETE) src\*.o   src\*.d  $(TARGET).bin test\$(TARGET).elf $(TARGET).map test\*.o test\*.d src\*.asm src\*.i
 
 .PHONY: erase
 erase:
@@ -97,4 +98,4 @@ erase:
 
 .PHONY: flash
 flash:
-	$(LOADER) write  $(BINPATH) 0x08000000 
+	$(LOADER) -P $(BINPATH) 0x08000000 -V "after_programming" -Cksum $(BINPATH)

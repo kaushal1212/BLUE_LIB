@@ -6,11 +6,17 @@
 #include "i2c_lcd.h"
 #include <stdio.h>
 
+#include "qfpio.h"
+#include "qfplib.h"
+
 
 /* #define I2C_module I2C1 */
 /* #define I2C_LCD_ADD (0x27 << 1) */
 
 int main(){
+ 	float a = 37.28;
+    char str[7];
+    qfp_float2str(a,str,FMT_D);
 
     I2C_LCD_Init();
     I2C_LCD_Clear();
@@ -19,7 +25,7 @@ int main(){
 	while(1){
 
 			I2C_LCD_Clear();
-			I2C_LCD_Print_Line("SUBJECT :4EL33");
+			I2C_LCD_Print_Line(str);
 			Delay_ms(3000);
 
 			I2C_LCD_Clear();

@@ -1,5 +1,9 @@
+
+
 /**
  * @file i2c_lcd.c
+ * 
+ * 
  * @author Parth Varsani 
  * 
  * @brief - Abstraction of I2C_LCD Initialization,Send data ,command and strings

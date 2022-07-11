@@ -254,7 +254,7 @@
      }
 
    SystemInit();
-	Delay_Init();
-	main();
+	 Delay_Init();
+	 main();
 
  }

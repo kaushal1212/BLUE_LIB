@@ -6,6 +6,7 @@
 
 int main(){
 
+   
     Delay_Init();
     I2C_Init(I2C1,I2C_SM);
 

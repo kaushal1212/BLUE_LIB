@@ -1,13 +1,5 @@
-/**
- * @file   <test_gpio2.c>
- * @brief  <test file for basic gpio and delay function>
- * 	    
- * 	     OUTPUT-blinking led every 1s in opendrain mode
- *
- * @author <Kaushal dekivadia>
- * @date   <july 30 2021>
- *
- */
+
+
  
  #include "stm32f10x.h"
  #include "gpio.h"

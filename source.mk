@@ -4,4 +4,7 @@ SOURCES = $(wildcard ./src/*.c )
   
 INCLUDES = -I ./include/CMSIS \
            -I ./include/common \
-           -I ./include/stm32 
+           -I ./include/stm32 \
+           -I ./include/qfp
+
+LIBS = libqfp.a
