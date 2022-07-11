@@ -1,0 +1,143 @@
+\hypertarget{i2c__lcd_8h}{}\doxysection{BLUE\+\_\+\+LIB/include/common/i2c\+\_\+lcd.h File Reference}
+\label{i2c__lcd_8h}\index{BLUE\_LIB/include/common/i2c\_lcd.h@{BLUE\_LIB/include/common/i2c\_lcd.h}}
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}stm32f10x.\+h\char`\"{}}\newline
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{i2c__lcd_8h_abe02e9754f69a9b448ecee55364a2d52}{I2\+C\+\_\+module}}~I2\+C1
+\item 
+\#define \mbox{\hyperlink{i2c__lcd_8h_a097dfe77a8e6d63dbbcc5db0815516d9}{I2\+C\+\_\+\+LCD\+\_\+\+ADD}}~(0x27 $<$$<$ 1)
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{i2c__lcd_8h_a5510dbce2fff6103a8018005fd59ce54}{I2\+C\+\_\+\+LCD\+\_\+\+Instruction}} (uint8\+\_\+t cmd)
+\item 
+void \mbox{\hyperlink{i2c__lcd_8h_ae3dbee6b061501623fe75f76f0c73bd6}{I2\+C\+\_\+\+LCD\+\_\+\+Data}} (uint8\+\_\+t data)
+\item 
+void \mbox{\hyperlink{i2c__lcd_8h_a230a31f3ccff8fec21a45b62b4c8f08d}{I2\+C\+\_\+\+LCD\+\_\+\+Init}} ()
+\item 
+uint8\+\_\+t \mbox{\hyperlink{i2c__lcd_8h_a9bc20b8dfcfb8fc143da8dff095f80b0}{LCD\+\_\+\+Print\+\_\+\+Line}} (char $\ast$str)
+\item 
+void \mbox{\hyperlink{i2c__lcd_8h_a56a5b0709593ce8390cb991e424c5f2c}{I2\+C\+\_\+\+LCD\+\_\+\+Setcursor}} (uint8\+\_\+t x, uint8\+\_\+t y)
+\item 
+void \mbox{\hyperlink{i2c__lcd_8h_a7bc7bf0e772b4015e180199f6046cdfe}{I2\+C\+\_\+\+LCD\+\_\+\+Clear}} (void)
+\item 
+void \mbox{\hyperlink{i2c__lcd_8h_af9ddbd258b42ce2f1cb72267e9629d4e}{I2\+C\+\_\+\+LCD\+\_\+\+Send}} (\mbox{\hyperlink{structI2C__TypeDef}{I2\+C\+\_\+\+Type\+Def}} $\ast$I2\+Cx, uint8\+\_\+t address, uint8\+\_\+t $\ast$data, uint8\+\_\+t n\+\_\+bytes)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyAuthor}{Author}
+Parth Varsani 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+0.\+1 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2022-\/03-\/09
+\end{DoxyDate}
+\begin{DoxyCopyright}{Copyright}
+Copyright (c) 2022 
+\end{DoxyCopyright}
+
+
+Definition in file \mbox{\hyperlink{i2c__lcd_8h_source}{i2c\+\_\+lcd.\+h}}.
+
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{i2c__lcd_8h_a097dfe77a8e6d63dbbcc5db0815516d9}\label{i2c__lcd_8h_a097dfe77a8e6d63dbbcc5db0815516d9}} 
+\index{i2c\_lcd.h@{i2c\_lcd.h}!I2C\_LCD\_ADD@{I2C\_LCD\_ADD}}
+\index{I2C\_LCD\_ADD@{I2C\_LCD\_ADD}!i2c\_lcd.h@{i2c\_lcd.h}}
+\doxysubsubsection{\texorpdfstring{I2C\_LCD\_ADD}{I2C\_LCD\_ADD}}
+{\footnotesize\ttfamily \#define I2\+C\+\_\+\+LCD\+\_\+\+ADD~(0x27 $<$$<$ 1)}
+
+
+
+Definition at line \mbox{\hyperlink{i2c__lcd_8h_source_l00019}{19}} of file \mbox{\hyperlink{i2c__lcd_8h_source}{i2c\+\_\+lcd.\+h}}.
+
+\mbox{\Hypertarget{i2c__lcd_8h_abe02e9754f69a9b448ecee55364a2d52}\label{i2c__lcd_8h_abe02e9754f69a9b448ecee55364a2d52}} 
+\index{i2c\_lcd.h@{i2c\_lcd.h}!I2C\_module@{I2C\_module}}
+\index{I2C\_module@{I2C\_module}!i2c\_lcd.h@{i2c\_lcd.h}}
+\doxysubsubsection{\texorpdfstring{I2C\_module}{I2C\_module}}
+{\footnotesize\ttfamily \#define I2\+C\+\_\+module~I2\+C1}
+
+
+
+Definition at line \mbox{\hyperlink{i2c__lcd_8h_source_l00018}{18}} of file \mbox{\hyperlink{i2c__lcd_8h_source}{i2c\+\_\+lcd.\+h}}.
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{i2c__lcd_8h_a7bc7bf0e772b4015e180199f6046cdfe}\label{i2c__lcd_8h_a7bc7bf0e772b4015e180199f6046cdfe}} 
+\index{i2c\_lcd.h@{i2c\_lcd.h}!I2C\_LCD\_Clear@{I2C\_LCD\_Clear}}
+\index{I2C\_LCD\_Clear@{I2C\_LCD\_Clear}!i2c\_lcd.h@{i2c\_lcd.h}}
+\doxysubsubsection{\texorpdfstring{I2C\_LCD\_Clear()}{I2C\_LCD\_Clear()}}
+{\footnotesize\ttfamily void I2\+C\+\_\+\+LCD\+\_\+\+Clear (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{i2c__lcd_8c_source_l00101}{101}} of file \mbox{\hyperlink{i2c__lcd_8c_source}{i2c\+\_\+lcd.\+c}}.
+
+\mbox{\Hypertarget{i2c__lcd_8h_ae3dbee6b061501623fe75f76f0c73bd6}\label{i2c__lcd_8h_ae3dbee6b061501623fe75f76f0c73bd6}} 
+\index{i2c\_lcd.h@{i2c\_lcd.h}!I2C\_LCD\_Data@{I2C\_LCD\_Data}}
+\index{I2C\_LCD\_Data@{I2C\_LCD\_Data}!i2c\_lcd.h@{i2c\_lcd.h}}
+\doxysubsubsection{\texorpdfstring{I2C\_LCD\_Data()}{I2C\_LCD\_Data()}}
+{\footnotesize\ttfamily void I2\+C\+\_\+\+LCD\+\_\+\+Data (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{data }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{i2c__lcd_8c_source_l00041}{41}} of file \mbox{\hyperlink{i2c__lcd_8c_source}{i2c\+\_\+lcd.\+c}}.
+
+\mbox{\Hypertarget{i2c__lcd_8h_a230a31f3ccff8fec21a45b62b4c8f08d}\label{i2c__lcd_8h_a230a31f3ccff8fec21a45b62b4c8f08d}} 
+\index{i2c\_lcd.h@{i2c\_lcd.h}!I2C\_LCD\_Init@{I2C\_LCD\_Init}}
+\index{I2C\_LCD\_Init@{I2C\_LCD\_Init}!i2c\_lcd.h@{i2c\_lcd.h}}
+\doxysubsubsection{\texorpdfstring{I2C\_LCD\_Init()}{I2C\_LCD\_Init()}}
+{\footnotesize\ttfamily void I2\+C\+\_\+\+LCD\+\_\+\+Init (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{i2c__lcd_8c_source_l00060}{60}} of file \mbox{\hyperlink{i2c__lcd_8c_source}{i2c\+\_\+lcd.\+c}}.
+
+\mbox{\Hypertarget{i2c__lcd_8h_a5510dbce2fff6103a8018005fd59ce54}\label{i2c__lcd_8h_a5510dbce2fff6103a8018005fd59ce54}} 
+\index{i2c\_lcd.h@{i2c\_lcd.h}!I2C\_LCD\_Instruction@{I2C\_LCD\_Instruction}}
+\index{I2C\_LCD\_Instruction@{I2C\_LCD\_Instruction}!i2c\_lcd.h@{i2c\_lcd.h}}
+\doxysubsubsection{\texorpdfstring{I2C\_LCD\_Instruction()}{I2C\_LCD\_Instruction()}}
+{\footnotesize\ttfamily void I2\+C\+\_\+\+LCD\+\_\+\+Instruction (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{cmd }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{i2c__lcd_8c_source_l00022}{22}} of file \mbox{\hyperlink{i2c__lcd_8c_source}{i2c\+\_\+lcd.\+c}}.
+
+\mbox{\Hypertarget{i2c__lcd_8h_af9ddbd258b42ce2f1cb72267e9629d4e}\label{i2c__lcd_8h_af9ddbd258b42ce2f1cb72267e9629d4e}} 
+\index{i2c\_lcd.h@{i2c\_lcd.h}!I2C\_LCD\_Send@{I2C\_LCD\_Send}}
+\index{I2C\_LCD\_Send@{I2C\_LCD\_Send}!i2c\_lcd.h@{i2c\_lcd.h}}
+\doxysubsubsection{\texorpdfstring{I2C\_LCD\_Send()}{I2C\_LCD\_Send()}}
+{\footnotesize\ttfamily void I2\+C\+\_\+\+LCD\+\_\+\+Send (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structI2C__TypeDef}{I2\+C\+\_\+\+Type\+Def}} $\ast$}]{I2\+Cx,  }\item[{uint8\+\_\+t}]{address,  }\item[{uint8\+\_\+t $\ast$}]{data,  }\item[{uint8\+\_\+t}]{n\+\_\+bytes }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{i2c__lcd_8c_source_l00109}{109}} of file \mbox{\hyperlink{i2c__lcd_8c_source}{i2c\+\_\+lcd.\+c}}.
+
+\mbox{\Hypertarget{i2c__lcd_8h_a56a5b0709593ce8390cb991e424c5f2c}\label{i2c__lcd_8h_a56a5b0709593ce8390cb991e424c5f2c}} 
+\index{i2c\_lcd.h@{i2c\_lcd.h}!I2C\_LCD\_Setcursor@{I2C\_LCD\_Setcursor}}
+\index{I2C\_LCD\_Setcursor@{I2C\_LCD\_Setcursor}!i2c\_lcd.h@{i2c\_lcd.h}}
+\doxysubsubsection{\texorpdfstring{I2C\_LCD\_Setcursor()}{I2C\_LCD\_Setcursor()}}
+{\footnotesize\ttfamily void I2\+C\+\_\+\+LCD\+\_\+\+Setcursor (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{x,  }\item[{uint8\+\_\+t}]{y }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{i2c__lcd_8c_source_l00094}{94}} of file \mbox{\hyperlink{i2c__lcd_8c_source}{i2c\+\_\+lcd.\+c}}.
+
+\mbox{\Hypertarget{i2c__lcd_8h_a9bc20b8dfcfb8fc143da8dff095f80b0}\label{i2c__lcd_8h_a9bc20b8dfcfb8fc143da8dff095f80b0}} 
+\index{i2c\_lcd.h@{i2c\_lcd.h}!LCD\_Print\_Line@{LCD\_Print\_Line}}
+\index{LCD\_Print\_Line@{LCD\_Print\_Line}!i2c\_lcd.h@{i2c\_lcd.h}}
+\doxysubsubsection{\texorpdfstring{LCD\_Print\_Line()}{LCD\_Print\_Line()}}
+{\footnotesize\ttfamily uint8\+\_\+t LCD\+\_\+\+Print\+\_\+\+Line (\begin{DoxyParamCaption}\item[{char $\ast$}]{str }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{lcd__16x2_8c_source_l00109}{109}} of file \mbox{\hyperlink{lcd__16x2_8c_source}{lcd\+\_\+16x2.\+c}}.
+

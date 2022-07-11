@@ -1,0 +1,266 @@
+\hypertarget{startup__stm32f103_8c_source}{}\doxysection{startup\+\_\+stm32f103.\+c}
+\label{startup__stm32f103_8c_source}\index{BLUE\_LIB/src/startup\_stm32f103.c@{BLUE\_LIB/src/startup\_stm32f103.c}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00001}00001 \textcolor{comment}{/*****************************************************************************}}
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00002}00002 \textcolor{comment}{* @file     stm32f103\_startup.c}}
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00003}00003 \textcolor{comment}{* @brief    cortex-\/m3 device specific startup code}}
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00004}00004 \textcolor{comment}{* @date     15 August , 2020}}
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00005}00005 \textcolor{comment}{*}}
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00006}00006 \textcolor{comment}{* @note     View configuration instructions embedded in comments}}
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00007}00007 \textcolor{comment}{*}}
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00008}00008 \textcolor{comment}{******************************************************************************/}}
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00009}00009 \textcolor{comment}{//*****************************************************************************}}
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00010}00010 \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00011}00011 \textcolor{comment}{// Copyright (C) 2020 -\/ kaushal dekivdia}}
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00012}00012 \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00013}00013 \textcolor{comment}{// Redistribution and use in source and binary forms, with or without}}
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00014}00014 \textcolor{comment}{// modification, are permitted provided that the following conditions}}
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00015}00015 \textcolor{comment}{// are met:}}
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00016}00016 \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00017}00017 \textcolor{comment}{//  Redistributions of source code must retain the above copyright}}
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00018}00018 \textcolor{comment}{//  notice, this list of conditions and the following disclaimer.}}
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00019}00019 \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00020}00020 \textcolor{comment}{//  Redistributions in binary form must reproduce the above copyright}}
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00021}00021 \textcolor{comment}{//  notice, this list of conditions and the following disclaimer in the}}
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00022}00022 \textcolor{comment}{//  documentation and/or other materials provided with the}}
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00023}00023 \textcolor{comment}{//  distribution.}}
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00024}00024 \textcolor{comment}{//*****************************************************************************}}
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00025}00025 }
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00026}00026 \textcolor{preprocessor}{\#include<stdint.h>}}
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00027}00027 }
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00028}00028 \textcolor{preprocessor}{\#define SRAM\_START 0x20000000U }\textcolor{comment}{// starting address of device sram}}
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00029}00029 \textcolor{preprocessor}{\#define SRAM\_SIZE (20U * 1024U) }\textcolor{comment}{// 20KB}}
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00030}00030 \textcolor{preprocessor}{\#define SRAM\_END  ((SRAM\_START) + (SRAM\_SIZE))}}
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00031}00031 }
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00032}00032 \textcolor{preprocessor}{\#define STACK\_START  SRAM\_END}}
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00033}00033 }
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00034}00034 \textcolor{comment}{/*location counter variables declared in linker script */}}
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00035}00035 }
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00036}00036  \textcolor{keyword}{extern} uint32\_t \_etext;}
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00037}00037  \textcolor{keyword}{extern} uint32\_t \_la\_data;}
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00038}00038  \textcolor{keyword}{extern} uint32\_t \_sdata;}
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00039}00039  \textcolor{keyword}{extern} uint32\_t \_edata;}
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00040}00040  \textcolor{keyword}{extern} uint32\_t \_sbss;}
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00041}00041  \textcolor{keyword}{extern} uint32\_t \_ebss;}
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00042}00042 }
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00043}00043  \textcolor{comment}{/* prototype declaration of main function */}}
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00044}00044 }
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00045}00045   \textcolor{keywordtype}{void} main(\textcolor{keywordtype}{void});  }
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00046}00046 }
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00047}00047  \textcolor{comment}{/* function prototypes of STM32F407x system exception and IRQ handlers */}}
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00048}00048 }
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00049}00049      \textcolor{keywordtype}{void} Reset\_Handler(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00050}00050 }
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00051}00051      \textcolor{keywordtype}{void} NMI\_Handler                   (\textcolor{keywordtype}{void})\_\_attribute\_\_((weak, alias(\textcolor{stringliteral}{"{}Default\_Handler"{}})));}
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00052}00052      \textcolor{keywordtype}{void} HardFault\_Handler             (\textcolor{keywordtype}{void})\_\_attribute\_\_((weak, alias(\textcolor{stringliteral}{"{}Default\_Handler"{}})));}
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00053}00053      \textcolor{keywordtype}{void} MemManage\_Handler             (\textcolor{keywordtype}{void})\_\_attribute\_\_((weak, alias(\textcolor{stringliteral}{"{}Default\_Handler"{}})));}
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00054}00054      \textcolor{keywordtype}{void} BusFault\_Handler              (\textcolor{keywordtype}{void})\_\_attribute\_\_((weak, alias(\textcolor{stringliteral}{"{}Default\_Handler"{}})));}
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00055}00055      \textcolor{keywordtype}{void} UsageFault\_Handler            (\textcolor{keywordtype}{void})\_\_attribute\_\_((weak, alias(\textcolor{stringliteral}{"{}Default\_Handler"{}})));}
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00056}00056      \textcolor{keywordtype}{void} SVC\_Handler                   (\textcolor{keywordtype}{void})\_\_attribute\_\_((weak, alias(\textcolor{stringliteral}{"{}Default\_Handler"{}})));}
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00057}00057      \textcolor{keywordtype}{void} DebugMon\_Handler              (\textcolor{keywordtype}{void})\_\_attribute\_\_((weak, alias(\textcolor{stringliteral}{"{}Default\_Handler"{}})));}
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00058}00058      \textcolor{keywordtype}{void} PendSV\_Handler                (\textcolor{keywordtype}{void})\_\_attribute\_\_((weak, alias(\textcolor{stringliteral}{"{}Default\_Handler"{}})));}
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00059}00059     \textcolor{keywordtype}{void} SysTick\_Handler               (\textcolor{keywordtype}{void})\_\_attribute\_\_((weak, alias(\textcolor{stringliteral}{"{}Default\_Handler"{}})));}
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00060}00060      \textcolor{keywordtype}{void} WWDG\_Handler                  (\textcolor{keywordtype}{void})\_\_attribute\_\_((weak, alias(\textcolor{stringliteral}{"{}Default\_Handler"{}})));}
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00061}00061      \textcolor{keywordtype}{void} PVD\_IRQHandler                (\textcolor{keywordtype}{void})\_\_attribute\_\_((weak, alias(\textcolor{stringliteral}{"{}Default\_Handler"{}})));}
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00062}00062      \textcolor{keywordtype}{void} TAMPER\_IRQHandler             (\textcolor{keywordtype}{void})\_\_attribute\_\_((weak, alias(\textcolor{stringliteral}{"{}Default\_Handler"{}})));}
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00063}00063      \textcolor{keywordtype}{void} RTC\_IRQHandler                (\textcolor{keywordtype}{void})\_\_attribute\_\_((weak, alias(\textcolor{stringliteral}{"{}Default\_Handler"{}})));}
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00064}00064      \textcolor{keywordtype}{void} FLASH\_IRQHandler              (\textcolor{keywordtype}{void})\_\_attribute\_\_((weak, alias(\textcolor{stringliteral}{"{}Default\_Handler"{}})));}
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00065}00065      \textcolor{keywordtype}{void} RCC\_IRQHandler                (\textcolor{keywordtype}{void})\_\_attribute\_\_((weak, alias(\textcolor{stringliteral}{"{}Default\_Handler"{}})));}
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00066}00066      \textcolor{keywordtype}{void} EXTI0\_IRQHandler              (\textcolor{keywordtype}{void})\_\_attribute\_\_((weak, alias(\textcolor{stringliteral}{"{}Default\_Handler"{}})));}
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00067}00067      \textcolor{keywordtype}{void} EXTI1\_IRQHandler              (\textcolor{keywordtype}{void})\_\_attribute\_\_((weak, alias(\textcolor{stringliteral}{"{}Default\_Handler"{}})));}
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00068}00068      \textcolor{keywordtype}{void} EXTI2\_IRQHandler              (\textcolor{keywordtype}{void})\_\_attribute\_\_((weak, alias(\textcolor{stringliteral}{"{}Default\_Handler"{}})));}
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00069}00069      \textcolor{keywordtype}{void} EXTI3\_IRQHandler              (\textcolor{keywordtype}{void})\_\_attribute\_\_((weak, alias(\textcolor{stringliteral}{"{}Default\_Handler"{}})));}
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00070}00070      \textcolor{keywordtype}{void} EXTI4\_IRQHandler              (\textcolor{keywordtype}{void})\_\_attribute\_\_((weak, alias(\textcolor{stringliteral}{"{}Default\_Handler"{}})));}
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00071}00071      \textcolor{keywordtype}{void} DMA1\_Channel1\_IRQHandler      (\textcolor{keywordtype}{void})\_\_attribute\_\_((weak, alias(\textcolor{stringliteral}{"{}Default\_Handler"{}})));}
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00072}00072      \textcolor{keywordtype}{void} DMA1\_Channel2\_IRQHandler      (\textcolor{keywordtype}{void})\_\_attribute\_\_((weak, alias(\textcolor{stringliteral}{"{}Default\_Handler"{}})));}
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00073}00073      \textcolor{keywordtype}{void} DMA1\_Channel3\_IRQHandler      (\textcolor{keywordtype}{void})\_\_attribute\_\_((weak, alias(\textcolor{stringliteral}{"{}Default\_Handler"{}})));}
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00074}00074      \textcolor{keywordtype}{void} DMA1\_Channel4\_IRQHandler      (\textcolor{keywordtype}{void})\_\_attribute\_\_((weak, alias(\textcolor{stringliteral}{"{}Default\_Handler"{}})));}
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00075}00075      \textcolor{keywordtype}{void} DMA1\_Channel5\_IRQHandler      (\textcolor{keywordtype}{void})\_\_attribute\_\_((weak, alias(\textcolor{stringliteral}{"{}Default\_Handler"{}})));}
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00076}00076      \textcolor{keywordtype}{void} DMA1\_Channel6\_IRQHandler      (\textcolor{keywordtype}{void})\_\_attribute\_\_((weak, alias(\textcolor{stringliteral}{"{}Default\_Handler"{}})));}
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00077}00077      \textcolor{keywordtype}{void} DMA1\_Channel7\_IRQHandler      (\textcolor{keywordtype}{void})\_\_attribute\_\_((weak, alias(\textcolor{stringliteral}{"{}Default\_Handler"{}})));}
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00078}00078      \textcolor{keywordtype}{void} ADC1\_2\_IRQHandler             (\textcolor{keywordtype}{void})\_\_attribute\_\_((weak, alias(\textcolor{stringliteral}{"{}Default\_Handler"{}})));}
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00079}00079      \textcolor{keywordtype}{void} USB\_HP\_CAN\_TX\_IRQHandler      (\textcolor{keywordtype}{void})\_\_attribute\_\_((weak, alias(\textcolor{stringliteral}{"{}Default\_Handler"{}})));}
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00080}00080      \textcolor{keywordtype}{void} USB\_LP\_CAN\_RX0\_IRQHandler     (\textcolor{keywordtype}{void})\_\_attribute\_\_((weak, alias(\textcolor{stringliteral}{"{}Default\_Handler"{}})));}
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00081}00081      \textcolor{keywordtype}{void} CAN\_RX1\_IRQHandler            (\textcolor{keywordtype}{void})\_\_attribute\_\_((weak, alias(\textcolor{stringliteral}{"{}Default\_Handler"{}})));}
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00082}00082      \textcolor{keywordtype}{void} CAN\_SCE\_IRQHandler            (\textcolor{keywordtype}{void})\_\_attribute\_\_((weak, alias(\textcolor{stringliteral}{"{}Default\_Handler"{}})));}
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00083}00083      \textcolor{keywordtype}{void} EXTI9\_5\_IRQHandler            (\textcolor{keywordtype}{void})\_\_attribute\_\_((weak, alias(\textcolor{stringliteral}{"{}Default\_Handler"{}})));}
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00084}00084      \textcolor{keywordtype}{void} TIM1\_BRK\_IRQHandler           (\textcolor{keywordtype}{void})\_\_attribute\_\_((weak, alias(\textcolor{stringliteral}{"{}Default\_Handler"{}})));}
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00085}00085      \textcolor{keywordtype}{void} TIM1\_UP\_IRQHandler            (\textcolor{keywordtype}{void})\_\_attribute\_\_((weak, alias(\textcolor{stringliteral}{"{}Default\_Handler"{}})));}
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00086}00086      \textcolor{keywordtype}{void} TIM1\_TRG\_COM\_IRQHandler       (\textcolor{keywordtype}{void})\_\_attribute\_\_((weak, alias(\textcolor{stringliteral}{"{}Default\_Handler"{}})));}
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00087}00087      \textcolor{keywordtype}{void} TIM1\_CC\_IRQHandler            (\textcolor{keywordtype}{void})\_\_attribute\_\_((weak, alias(\textcolor{stringliteral}{"{}Default\_Handler"{}})));}
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00088}00088      \textcolor{keywordtype}{void} TIM2\_IRQHandler               (\textcolor{keywordtype}{void})\_\_attribute\_\_((weak, alias(\textcolor{stringliteral}{"{}Default\_Handler"{}})));}
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00089}00089      \textcolor{keywordtype}{void} TIM3\_IRQHandler               (\textcolor{keywordtype}{void})\_\_attribute\_\_((weak, alias(\textcolor{stringliteral}{"{}Default\_Handler"{}})));}
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00090}00090      \textcolor{keywordtype}{void} TIM4\_IRQHandler               (\textcolor{keywordtype}{void})\_\_attribute\_\_((weak, alias(\textcolor{stringliteral}{"{}Default\_Handler"{}})));  }
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00091}00091      \textcolor{keywordtype}{void} I2C1\_EV\_IRQHandler            (\textcolor{keywordtype}{void})\_\_attribute\_\_((weak, alias(\textcolor{stringliteral}{"{}Default\_Handler"{}})));}
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00092}00092      \textcolor{keywordtype}{void} I2C1\_ER\_IRQHandler            (\textcolor{keywordtype}{void})\_\_attribute\_\_((weak, alias(\textcolor{stringliteral}{"{}Default\_Handler"{}})));}
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00093}00093      \textcolor{keywordtype}{void} I2C2\_EV\_IRQHandler            (\textcolor{keywordtype}{void})\_\_attribute\_\_((weak, alias(\textcolor{stringliteral}{"{}Default\_Handler"{}})));}
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00094}00094      \textcolor{keywordtype}{void} I2C2\_ER\_IRQHandler            (\textcolor{keywordtype}{void})\_\_attribute\_\_((weak, alias(\textcolor{stringliteral}{"{}Default\_Handler"{}})));}
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00095}00095      \textcolor{keywordtype}{void} SPI1\_IRQHandler               (\textcolor{keywordtype}{void})\_\_attribute\_\_((weak, alias(\textcolor{stringliteral}{"{}Default\_Handler"{}})));}
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00096}00096      \textcolor{keywordtype}{void} SPI2\_IRQHandler               (\textcolor{keywordtype}{void})\_\_attribute\_\_((weak, alias(\textcolor{stringliteral}{"{}Default\_Handler"{}})));}
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00097}00097      \textcolor{keywordtype}{void} USART1\_IRQHandler             (\textcolor{keywordtype}{void})\_\_attribute\_\_((weak, alias(\textcolor{stringliteral}{"{}Default\_Handler"{}})));  }
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00098}00098      \textcolor{keywordtype}{void} USART2\_IRQHandler             (\textcolor{keywordtype}{void})\_\_attribute\_\_((weak, alias(\textcolor{stringliteral}{"{}Default\_Handler"{}})));}
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00099}00099      \textcolor{keywordtype}{void} USART3\_IRQHandler             (\textcolor{keywordtype}{void})\_\_attribute\_\_((weak, alias(\textcolor{stringliteral}{"{}Default\_Handler"{}})));}
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00100}00100      \textcolor{keywordtype}{void} EXTI15\_10\_IRQHandler          (\textcolor{keywordtype}{void})\_\_attribute\_\_((weak, alias(\textcolor{stringliteral}{"{}Default\_Handler"{}})));}
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00101}00101      \textcolor{keywordtype}{void} RTCAlarm\_IRQHandler           (\textcolor{keywordtype}{void})\_\_attribute\_\_((weak, alias(\textcolor{stringliteral}{"{}Default\_Handler"{}})));}
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00102}00102      \textcolor{keywordtype}{void} USBWakeup\_IRQHandler          (\textcolor{keywordtype}{void})\_\_attribute\_\_((weak, alias(\textcolor{stringliteral}{"{}Default\_Handler"{}})));}
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00103}00103      \textcolor{keywordtype}{void} TIM8\_BRK\_IRQHandler           (\textcolor{keywordtype}{void})\_\_attribute\_\_((weak, alias(\textcolor{stringliteral}{"{}Default\_Handler"{}})));}
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00104}00104      \textcolor{keywordtype}{void} TIM8\_UP\_IRQHandler            (\textcolor{keywordtype}{void})\_\_attribute\_\_((weak, alias(\textcolor{stringliteral}{"{}Default\_Handler"{}})));}
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00105}00105      \textcolor{keywordtype}{void} TIM8\_TRG\_COM\_IRQHandler       (\textcolor{keywordtype}{void})\_\_attribute\_\_((weak, alias(\textcolor{stringliteral}{"{}Default\_Handler"{}})));}
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00106}00106      \textcolor{keywordtype}{void} TIM8\_CC\_IRQHandler            (\textcolor{keywordtype}{void})\_\_attribute\_\_((weak, alias(\textcolor{stringliteral}{"{}Default\_Handler"{}})));}
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00107}00107      \textcolor{keywordtype}{void} ADC3\_IRQHandler               (\textcolor{keywordtype}{void})\_\_attribute\_\_((weak, alias(\textcolor{stringliteral}{"{}Default\_Handler"{}})));}
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00108}00108      \textcolor{keywordtype}{void} FSMC\_IRQHandler               (\textcolor{keywordtype}{void})\_\_attribute\_\_((weak, alias(\textcolor{stringliteral}{"{}Default\_Handler"{}})));}
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00109}00109      \textcolor{keywordtype}{void} SDIO\_IRQHandler               (\textcolor{keywordtype}{void})\_\_attribute\_\_((weak, alias(\textcolor{stringliteral}{"{}Default\_Handler"{}})));}
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00110}00110      \textcolor{keywordtype}{void} TIM5\_IRQHandler               (\textcolor{keywordtype}{void})\_\_attribute\_\_((weak, alias(\textcolor{stringliteral}{"{}Default\_Handler"{}})));}
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00111}00111      \textcolor{keywordtype}{void} SPI3\_IRQHandler               (\textcolor{keywordtype}{void})\_\_attribute\_\_((weak, alias(\textcolor{stringliteral}{"{}Default\_Handler"{}})));}
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00112}00112      \textcolor{keywordtype}{void} UART4\_IRQHandler              (\textcolor{keywordtype}{void})\_\_attribute\_\_((weak, alias(\textcolor{stringliteral}{"{}Default\_Handler"{}})));}
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00113}00113      \textcolor{keywordtype}{void} UART5\_IRQHandler              (\textcolor{keywordtype}{void})\_\_attribute\_\_((weak, alias(\textcolor{stringliteral}{"{}Default\_Handler"{}})));}
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00114}00114      \textcolor{keywordtype}{void} TIM6\_IRQHandler               (\textcolor{keywordtype}{void})\_\_attribute\_\_((weak, alias(\textcolor{stringliteral}{"{}Default\_Handler"{}})));}
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00115}00115      \textcolor{keywordtype}{void} TIM7\_IRQHandler               (\textcolor{keywordtype}{void})\_\_attribute\_\_((weak, alias(\textcolor{stringliteral}{"{}Default\_Handler"{}})));}
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00116}00116      \textcolor{keywordtype}{void} DMA2\_Channel1\_IRQHandler      (\textcolor{keywordtype}{void})\_\_attribute\_\_((weak, alias(\textcolor{stringliteral}{"{}Default\_Handler"{}})));}
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00117}00117      \textcolor{keywordtype}{void} DMA2\_Channel2\_IRQHandler      (\textcolor{keywordtype}{void})\_\_attribute\_\_((weak, alias(\textcolor{stringliteral}{"{}Default\_Handler"{}})));}
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00118}00118      \textcolor{keywordtype}{void} DMA2\_Channel3\_IRQHandler      (\textcolor{keywordtype}{void})\_\_attribute\_\_((weak, alias(\textcolor{stringliteral}{"{}Default\_Handler"{}})));}
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00119}00119      \textcolor{keywordtype}{void} DMA2\_Channel4\_5\_IRQHandler    (\textcolor{keywordtype}{void})\_\_attribute\_\_((weak, alias(\textcolor{stringliteral}{"{}Default\_Handler"{}})));}
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00120}00120    }
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00121}00121 }
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00122}00122 }
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00123}00123 }
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00124}00124 }
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00125}00125 }
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00126}00126 }
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00127}00127 }
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00128}00128 }
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00129}00129 }
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00130}00130 \textcolor{comment}{/* mcu specific vector table declaration */}}
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00131}00131 }
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00132}00132 }
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00133}00133 }
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00134}00134  uint32\_t vectors[] \_\_attribute\_\_((section(\textcolor{stringliteral}{"{}.isr\_vector"{}}))) = \{}
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00135}00135 }
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00136}00136     STACK\_START,}
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00137}00137     (uint32\_t)Reset\_Handler,}
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00138}00138     (uint32\_t)NMI\_Handler,}
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00139}00139     (uint32\_t)HardFault\_Handler,}
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00140}00140     (uint32\_t)MemManage\_Handler,}
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00141}00141     (uint32\_t)BusFault\_Handler,}
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00142}00142     (uint32\_t)UsageFault\_Handler,}
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00143}00143     0,}
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00144}00144     0,}
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00145}00145     0,}
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00146}00146     0,}
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00147}00147     (uint32\_t)SVC\_Handler,}
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00148}00148     (uint32\_t)DebugMon\_Handler,}
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00149}00149     0,}
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00150}00150     (uint32\_t)PendSV\_Handler,}
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00151}00151     (uint32\_t)SysTick\_Handler,}
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00152}00152     (uint32\_t)WWDG\_Handler,}
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00153}00153     (uint32\_t)PVD\_IRQHandler,         }
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00154}00154     (uint32\_t)TAMPER\_IRQHandler,  }
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00155}00155     (uint32\_t)RTC\_IRQHandler,}
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00156}00156     (uint32\_t)FLASH\_IRQHandler,}
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00157}00157     (uint32\_t)RCC\_IRQHandler,}
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00158}00158     (uint32\_t)EXTI0\_IRQHandler,       }
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00159}00159     (uint32\_t)EXTI1\_IRQHandler,       }
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00160}00160     (uint32\_t)EXTI2\_IRQHandler,       }
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00161}00161     (uint32\_t)EXTI3\_IRQHandler,       }
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00162}00162     (uint32\_t)EXTI4\_IRQHandler,}
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00163}00163     (uint32\_t)DMA1\_Channel1\_IRQHandler,}
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00164}00164     (uint32\_t)DMA1\_Channel2\_IRQHandler,}
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00165}00165     (uint32\_t)DMA1\_Channel3\_IRQHandler,}
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00166}00166     (uint32\_t)DMA1\_Channel4\_IRQHandler,}
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00167}00167     (uint32\_t)DMA1\_Channel5\_IRQHandler,}
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00168}00168     (uint32\_t)DMA1\_Channel6\_IRQHandler,}
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00169}00169     (uint32\_t)DMA1\_Channel7\_IRQHandler,}
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00170}00170     (uint32\_t)ADC1\_2\_IRQHandler,}
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00171}00171     (uint32\_t)USB\_HP\_CAN\_TX\_IRQHandler,}
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00172}00172     (uint32\_t)USB\_LP\_CAN\_RX0\_IRQHandler,}
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00173}00173     (uint32\_t)CAN\_RX1\_IRQHandler,}
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00174}00174     (uint32\_t)CAN\_SCE\_IRQHandler,}
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00175}00175     (uint32\_t)EXTI9\_5\_IRQHandler,}
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00176}00176     (uint32\_t)TIM1\_BRK\_IRQHandler,}
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00177}00177     (uint32\_t)TIM1\_UP\_IRQHandler,}
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00178}00178     (uint32\_t)TIM1\_TRG\_COM\_IRQHandler,}
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00179}00179     (uint32\_t)TIM1\_CC\_IRQHandler,}
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00180}00180     (uint32\_t)TIM2\_IRQHandler,}
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00181}00181     (uint32\_t)TIM3\_IRQHandler,}
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00182}00182     (uint32\_t)TIM4\_IRQHandler,}
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00183}00183     (uint32\_t)I2C1\_EV\_IRQHandler,}
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00184}00184     (uint32\_t)I2C1\_ER\_IRQHandler,}
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00185}00185     (uint32\_t)I2C2\_EV\_IRQHandler,}
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00186}00186     (uint32\_t)I2C2\_ER\_IRQHandler,}
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00187}00187     (uint32\_t)SPI1\_IRQHandler,}
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00188}00188     (uint32\_t)SPI2\_IRQHandler,}
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00189}00189     (uint32\_t)USART1\_IRQHandler,}
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00190}00190     (uint32\_t)USART2\_IRQHandler,}
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00191}00191     (uint32\_t)USART3\_IRQHandler,}
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00192}00192     (uint32\_t)EXTI15\_10\_IRQHandler,}
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00193}00193     (uint32\_t)RTCAlarm\_IRQHandler,}
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00194}00194     (uint32\_t)USBWakeup\_IRQHandler,}
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00195}00195     (uint32\_t)TIM8\_BRK\_IRQHandler,}
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00196}00196     (uint32\_t)TIM8\_UP\_IRQHandler,}
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00197}00197     (uint32\_t)TIM8\_TRG\_COM\_IRQHandler,}
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00198}00198     (uint32\_t)TIM8\_CC\_IRQHandler,}
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00199}00199     (uint32\_t)ADC3\_IRQHandler,}
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00200}00200     (uint32\_t)FSMC\_IRQHandler,}
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00201}00201     (uint32\_t)SDIO\_IRQHandler,}
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00202}00202     (uint32\_t)TIM5\_IRQHandler,}
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00203}00203     (uint32\_t)SPI3\_IRQHandler,}
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00204}00204     (uint32\_t)UART4\_IRQHandler,}
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00205}00205     (uint32\_t)UART5\_IRQHandler,}
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00206}00206     (uint32\_t)TIM6\_IRQHandler,}
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00207}00207     (uint32\_t)TIM7\_IRQHandler,}
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00208}00208     (uint32\_t)DMA2\_Channel1\_IRQHandler,}
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00209}00209     (uint32\_t)DMA2\_Channel2\_IRQHandler,}
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00210}00210     (uint32\_t)DMA2\_Channel3\_IRQHandler,}
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00211}00211     (uint32\_t)DMA2\_Channel4\_5\_IRQHandler,}
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00212}00212 }
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00213}00213   \}; }
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00214}00214 }
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00215}00215 }
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00216}00216 \textcolor{comment}{/* default Handler for other IRQHandlers with weak priority */}}
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00217}00217 }
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00218}00218 }
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00219}00219 }
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00220}00220  \textcolor{keywordtype}{void} Default\_Handler(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00221}00221  \{}
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00222}00222     \textcolor{keywordflow}{while}(1);}
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00223}00223  \}}
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00224}00224 }
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00225}00225  }
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00226}00226  \textcolor{comment}{/* Reset Handler defination */}}
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00227}00227 }
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00228}00228  \textcolor{keywordtype}{void} Reset\_Handler(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00229}00229  \{}
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00230}00230     \textcolor{comment}{/* initialization(Loading) of data section in SRAM from FLASH */}}
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00231}00231 }
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00232}00232     uint32\_t size = (uint32\_t)\&\_edata -\/ (uint32\_t)\&\_sdata ;}
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00233}00233 }
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00234}00234     uint32\_t *pDST = (uint32\_t*)\&\_sdata ; }
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00235}00235  }
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00236}00236     uint32\_t *pSRC = (uint32\_t*)\&\_la\_data ;}
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00237}00237 }
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00238}00238 }
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00239}00239     \textcolor{keywordflow}{for}(uint32\_t i = 0; i < size ;i++ )}
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00240}00240     \{}
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00241}00241         *pDST++ = *pSRC++ ;}
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00242}00242 }
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00243}00243     \}}
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00244}00244 }
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00245}00245     \textcolor{comment}{/* initialization of bss sagment to zero */}}
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00246}00246 }
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00247}00247      size = (uint32\_t)\&\_ebss -\/ (uint32\_t)\&\_sbss ;}
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00248}00248 }
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00249}00249      pDST = (uint32\_t *)\&\_sbss;}
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00250}00250 }
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00251}00251      \textcolor{keywordflow}{for}(uint32\_t i=0; i < size ; i++ )}
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00252}00252      \{}
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00253}00253         *pDST = 0;}
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00254}00254      \}}
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00255}00255 }
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00256}00256    \mbox{\hyperlink{group__STM32F10x__System__Exported__Functions_ga93f514700ccf00d08dbdcff7f1224eb2}{SystemInit}}();}
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00257}00257     \mbox{\hyperlink{delay_8h_a77828a2535be7e55685300de6a0ace8d}{Delay\_Init}}();}
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00258}00258     main();}
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00259}00259 }
+\DoxyCodeLine{\Hypertarget{startup__stm32f103_8c_source_l00260}00260  \}}
+
+\end{DoxyCode}

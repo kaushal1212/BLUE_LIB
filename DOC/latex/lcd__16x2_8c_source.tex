@@ -1,0 +1,131 @@
+\hypertarget{lcd__16x2_8c_source}{}\doxysection{lcd\+\_\+16x2.\+c}
+\label{lcd__16x2_8c_source}\index{BLUE\_LIB/src/lcd\_16x2.c@{BLUE\_LIB/src/lcd\_16x2.c}}
+\mbox{\hyperlink{lcd__16x2_8c}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{lcd__16x2_8c_source_l00001}00001 }
+\DoxyCodeLine{\Hypertarget{lcd__16x2_8c_source_l00013}00013 \textcolor{preprocessor}{\#include <stdint.h>}}
+\DoxyCodeLine{\Hypertarget{lcd__16x2_8c_source_l00014}00014 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{delay_8h}{delay.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{lcd__16x2_8c_source_l00015}00015 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{gpio_8h}{gpio.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{lcd__16x2_8c_source_l00016}00016 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{lcd__16x2_8h}{lcd\_16x2.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{lcd__16x2_8c_source_l00017}00017 }
+\DoxyCodeLine{\Hypertarget{lcd__16x2_8c_source_l00018}\mbox{\hyperlink{lcd__16x2_8h_ad484cc22a9a6bec640097f26d9b35722}{00018}} \textcolor{keywordtype}{void} \mbox{\hyperlink{lcd__16x2_8c_ad484cc22a9a6bec640097f26d9b35722}{LCD\_Init}}()}
+\DoxyCodeLine{\Hypertarget{lcd__16x2_8c_source_l00019}00019 \{}
+\DoxyCodeLine{\Hypertarget{lcd__16x2_8c_source_l00020}00020 }
+\DoxyCodeLine{\Hypertarget{lcd__16x2_8c_source_l00021}00021     \mbox{\hyperlink{gpio_8h_a7cad1c2a86a985e18d1224fd980b504c}{GPIO\_Init}}(\mbox{\hyperlink{lcd__16x2_8h_a077def6ebb43bf9aee4e7cad468ed726}{LCD\_DATA\_PORT}}, LCD\_D4\_PIN, OUTPUT, PUSHPULL);}
+\DoxyCodeLine{\Hypertarget{lcd__16x2_8c_source_l00022}00022     \mbox{\hyperlink{gpio_8h_a7cad1c2a86a985e18d1224fd980b504c}{GPIO\_Init}}(\mbox{\hyperlink{lcd__16x2_8h_a077def6ebb43bf9aee4e7cad468ed726}{LCD\_DATA\_PORT}}, LCD\_D5\_PIN, OUTPUT, PUSHPULL);}
+\DoxyCodeLine{\Hypertarget{lcd__16x2_8c_source_l00023}00023     \mbox{\hyperlink{gpio_8h_a7cad1c2a86a985e18d1224fd980b504c}{GPIO\_Init}}(\mbox{\hyperlink{lcd__16x2_8h_a077def6ebb43bf9aee4e7cad468ed726}{LCD\_DATA\_PORT}}, LCD\_D6\_PIN, OUTPUT, PUSHPULL);}
+\DoxyCodeLine{\Hypertarget{lcd__16x2_8c_source_l00024}00024     \mbox{\hyperlink{gpio_8h_a7cad1c2a86a985e18d1224fd980b504c}{GPIO\_Init}}(\mbox{\hyperlink{lcd__16x2_8h_a077def6ebb43bf9aee4e7cad468ed726}{LCD\_DATA\_PORT}}, LCD\_D7\_PIN, OUTPUT, PUSHPULL);}
+\DoxyCodeLine{\Hypertarget{lcd__16x2_8c_source_l00025}00025 }
+\DoxyCodeLine{\Hypertarget{lcd__16x2_8c_source_l00026}00026     \mbox{\hyperlink{gpio_8h_a7cad1c2a86a985e18d1224fd980b504c}{GPIO\_Init}}(LCD\_RW\_PORT,     LCD\_RW\_PIN,     OUTPUT, PUSHPULL);}
+\DoxyCodeLine{\Hypertarget{lcd__16x2_8c_source_l00027}00027     \mbox{\hyperlink{gpio_8h_a7cad1c2a86a985e18d1224fd980b504c}{GPIO\_Init}}(LCD\_RS\_PORT,     \mbox{\hyperlink{lcd__16x2_8h_ae5c0a0a5750f3aaea06083e3a4a31f5d}{LCD\_RS\_PIN}},     OUTPUT, PUSHPULL);}
+\DoxyCodeLine{\Hypertarget{lcd__16x2_8c_source_l00028}00028     \mbox{\hyperlink{gpio_8h_a7cad1c2a86a985e18d1224fd980b504c}{GPIO\_Init}}(LCD\_ENABLE\_PORT, LCD\_ENABLE\_PIN, OUTPUT, PUSHPULL);}
+\DoxyCodeLine{\Hypertarget{lcd__16x2_8c_source_l00029}00029 }
+\DoxyCodeLine{\Hypertarget{lcd__16x2_8c_source_l00030}00030     \mbox{\hyperlink{gpio_8h_aa86a255e26c42b0abdcf8fda9d883d34}{GPIO\_Write}}(LCD\_ENABLE\_PORT,LCD\_ENABLE\_PIN , 0 );}
+\DoxyCodeLine{\Hypertarget{lcd__16x2_8c_source_l00031}00031 }
+\DoxyCodeLine{\Hypertarget{lcd__16x2_8c_source_l00032}00032     \mbox{\hyperlink{delay_8h_a1d3146414c54513a72a7596c2f884c07}{Delay\_ms}}(10); \textcolor{comment}{//power-\/up rise time}}
+\DoxyCodeLine{\Hypertarget{lcd__16x2_8c_source_l00033}00033     }
+\DoxyCodeLine{\Hypertarget{lcd__16x2_8c_source_l00034}00034     \mbox{\hyperlink{lcd__16x2_8c_acc9b108b9752b7c842aa23eb3a963582}{LCD\_Instruction}}(0x33);  \textcolor{comment}{// for 4-\/bit mode}}
+\DoxyCodeLine{\Hypertarget{lcd__16x2_8c_source_l00035}00035     \mbox{\hyperlink{lcd__16x2_8c_acc9b108b9752b7c842aa23eb3a963582}{LCD\_Instruction}}(0x32);}
+\DoxyCodeLine{\Hypertarget{lcd__16x2_8c_source_l00036}00036     \mbox{\hyperlink{lcd__16x2_8c_acc9b108b9752b7c842aa23eb3a963582}{LCD\_Instruction}}(0x28);}
+\DoxyCodeLine{\Hypertarget{lcd__16x2_8c_source_l00037}00037 }
+\DoxyCodeLine{\Hypertarget{lcd__16x2_8c_source_l00038}00038     \mbox{\hyperlink{lcd__16x2_8c_acc9b108b9752b7c842aa23eb3a963582}{LCD\_Instruction}}(0x0e); \textcolor{comment}{// display on ,cursor on}}
+\DoxyCodeLine{\Hypertarget{lcd__16x2_8c_source_l00039}00039 }
+\DoxyCodeLine{\Hypertarget{lcd__16x2_8c_source_l00040}00040     \mbox{\hyperlink{lcd__16x2_8c_acc9b108b9752b7c842aa23eb3a963582}{LCD\_Instruction}}(0x01); \textcolor{comment}{// clear LCD}}
+\DoxyCodeLine{\Hypertarget{lcd__16x2_8c_source_l00041}00041     \mbox{\hyperlink{lcd__16x2_8c_acc9b108b9752b7c842aa23eb3a963582}{LCD\_Instruction}}(0x06); \textcolor{comment}{// shift cursor right}}
+\DoxyCodeLine{\Hypertarget{lcd__16x2_8c_source_l00042}00042 }
+\DoxyCodeLine{\Hypertarget{lcd__16x2_8c_source_l00043}00043 \}}
+\DoxyCodeLine{\Hypertarget{lcd__16x2_8c_source_l00044}00044 }
+\DoxyCodeLine{\Hypertarget{lcd__16x2_8c_source_l00045}\mbox{\hyperlink{lcd__16x2_8h_acc9b108b9752b7c842aa23eb3a963582}{00045}} \textcolor{keywordtype}{void} \mbox{\hyperlink{lcd__16x2_8c_acc9b108b9752b7c842aa23eb3a963582}{LCD\_Instruction}}(uint8\_t cmd)}
+\DoxyCodeLine{\Hypertarget{lcd__16x2_8c_source_l00046}00046 \{}
+\DoxyCodeLine{\Hypertarget{lcd__16x2_8c_source_l00047}00047     \textcolor{comment}{// most significant nibble}}
+\DoxyCodeLine{\Hypertarget{lcd__16x2_8c_source_l00048}00048     \mbox{\hyperlink{gpio_8h_aa86a255e26c42b0abdcf8fda9d883d34}{GPIO\_Write}}(\mbox{\hyperlink{lcd__16x2_8h_a077def6ebb43bf9aee4e7cad468ed726}{LCD\_DATA\_PORT}},LCD\_D4\_PIN, (0x10 \& cmd)\&\&1 );}
+\DoxyCodeLine{\Hypertarget{lcd__16x2_8c_source_l00049}00049     \mbox{\hyperlink{gpio_8h_aa86a255e26c42b0abdcf8fda9d883d34}{GPIO\_Write}}(\mbox{\hyperlink{lcd__16x2_8h_a077def6ebb43bf9aee4e7cad468ed726}{LCD\_DATA\_PORT}},LCD\_D5\_PIN, (0x20 \& cmd)\&\&1 );}
+\DoxyCodeLine{\Hypertarget{lcd__16x2_8c_source_l00050}00050     \mbox{\hyperlink{gpio_8h_aa86a255e26c42b0abdcf8fda9d883d34}{GPIO\_Write}}(\mbox{\hyperlink{lcd__16x2_8h_a077def6ebb43bf9aee4e7cad468ed726}{LCD\_DATA\_PORT}},LCD\_D6\_PIN, (0x40 \& cmd)\&\&1 );}
+\DoxyCodeLine{\Hypertarget{lcd__16x2_8c_source_l00051}00051     \mbox{\hyperlink{gpio_8h_aa86a255e26c42b0abdcf8fda9d883d34}{GPIO\_Write}}(\mbox{\hyperlink{lcd__16x2_8h_a077def6ebb43bf9aee4e7cad468ed726}{LCD\_DATA\_PORT}},LCD\_D7\_PIN, (0x80 \& cmd)\&\&1 );}
+\DoxyCodeLine{\Hypertarget{lcd__16x2_8c_source_l00052}00052 }
+\DoxyCodeLine{\Hypertarget{lcd__16x2_8c_source_l00053}00053     \mbox{\hyperlink{gpio_8h_aa86a255e26c42b0abdcf8fda9d883d34}{GPIO\_Write}}(LCD\_RS\_PORT, \mbox{\hyperlink{lcd__16x2_8h_ae5c0a0a5750f3aaea06083e3a4a31f5d}{LCD\_RS\_PIN}}, 0 );}
+\DoxyCodeLine{\Hypertarget{lcd__16x2_8c_source_l00054}00054     \mbox{\hyperlink{gpio_8h_aa86a255e26c42b0abdcf8fda9d883d34}{GPIO\_Write}}(LCD\_RW\_PORT, LCD\_RW\_PIN, 0 );}
+\DoxyCodeLine{\Hypertarget{lcd__16x2_8c_source_l00055}00055 }
+\DoxyCodeLine{\Hypertarget{lcd__16x2_8c_source_l00056}00056     \mbox{\hyperlink{delay_8h_a0e816b30894e177b44f464a4065cd0cd}{Delay\_us}}(1);}
+\DoxyCodeLine{\Hypertarget{lcd__16x2_8c_source_l00057}00057     \mbox{\hyperlink{gpio_8h_aa86a255e26c42b0abdcf8fda9d883d34}{GPIO\_Write}}(LCD\_ENABLE\_PORT, LCD\_ENABLE\_PIN, 1);}
+\DoxyCodeLine{\Hypertarget{lcd__16x2_8c_source_l00058}00058     \mbox{\hyperlink{delay_8h_a0e816b30894e177b44f464a4065cd0cd}{Delay\_us}}(10);}
+\DoxyCodeLine{\Hypertarget{lcd__16x2_8c_source_l00059}00059     \mbox{\hyperlink{gpio_8h_aa86a255e26c42b0abdcf8fda9d883d34}{GPIO\_Write}}(LCD\_ENABLE\_PORT, LCD\_ENABLE\_PIN, 0);}
+\DoxyCodeLine{\Hypertarget{lcd__16x2_8c_source_l00060}00060 }
+\DoxyCodeLine{\Hypertarget{lcd__16x2_8c_source_l00061}00061     \mbox{\hyperlink{delay_8h_a0e816b30894e177b44f464a4065cd0cd}{Delay\_us}}(20);}
+\DoxyCodeLine{\Hypertarget{lcd__16x2_8c_source_l00062}00062     \textcolor{comment}{// Least significant nibble}}
+\DoxyCodeLine{\Hypertarget{lcd__16x2_8c_source_l00063}00063     \mbox{\hyperlink{gpio_8h_aa86a255e26c42b0abdcf8fda9d883d34}{GPIO\_Write}}(\mbox{\hyperlink{lcd__16x2_8h_a077def6ebb43bf9aee4e7cad468ed726}{LCD\_DATA\_PORT}},LCD\_D4\_PIN, (0x01 \& cmd)\&\&1 );}
+\DoxyCodeLine{\Hypertarget{lcd__16x2_8c_source_l00064}00064     \mbox{\hyperlink{gpio_8h_aa86a255e26c42b0abdcf8fda9d883d34}{GPIO\_Write}}(\mbox{\hyperlink{lcd__16x2_8h_a077def6ebb43bf9aee4e7cad468ed726}{LCD\_DATA\_PORT}},LCD\_D5\_PIN, (0x02 \& cmd)\&\&1 );}
+\DoxyCodeLine{\Hypertarget{lcd__16x2_8c_source_l00065}00065     \mbox{\hyperlink{gpio_8h_aa86a255e26c42b0abdcf8fda9d883d34}{GPIO\_Write}}(\mbox{\hyperlink{lcd__16x2_8h_a077def6ebb43bf9aee4e7cad468ed726}{LCD\_DATA\_PORT}},LCD\_D6\_PIN, (0x04 \& cmd)\&\&1 );}
+\DoxyCodeLine{\Hypertarget{lcd__16x2_8c_source_l00066}00066     \mbox{\hyperlink{gpio_8h_aa86a255e26c42b0abdcf8fda9d883d34}{GPIO\_Write}}(\mbox{\hyperlink{lcd__16x2_8h_a077def6ebb43bf9aee4e7cad468ed726}{LCD\_DATA\_PORT}},LCD\_D7\_PIN, (0x08 \& cmd)\&\&1 );}
+\DoxyCodeLine{\Hypertarget{lcd__16x2_8c_source_l00067}00067 }
+\DoxyCodeLine{\Hypertarget{lcd__16x2_8c_source_l00068}00068     \mbox{\hyperlink{delay_8h_a0e816b30894e177b44f464a4065cd0cd}{Delay\_us}}(1);}
+\DoxyCodeLine{\Hypertarget{lcd__16x2_8c_source_l00069}00069     \mbox{\hyperlink{gpio_8h_aa86a255e26c42b0abdcf8fda9d883d34}{GPIO\_Write}}(LCD\_ENABLE\_PORT, LCD\_ENABLE\_PIN, 1);}
+\DoxyCodeLine{\Hypertarget{lcd__16x2_8c_source_l00070}00070     \mbox{\hyperlink{delay_8h_a0e816b30894e177b44f464a4065cd0cd}{Delay\_us}}(1);}
+\DoxyCodeLine{\Hypertarget{lcd__16x2_8c_source_l00071}00071     \mbox{\hyperlink{gpio_8h_aa86a255e26c42b0abdcf8fda9d883d34}{GPIO\_Write}}(LCD\_ENABLE\_PORT, LCD\_ENABLE\_PIN, 0);}
+\DoxyCodeLine{\Hypertarget{lcd__16x2_8c_source_l00072}00072 }
+\DoxyCodeLine{\Hypertarget{lcd__16x2_8c_source_l00073}00073     \mbox{\hyperlink{delay_8h_a0e816b30894e177b44f464a4065cd0cd}{Delay\_us}}(100); \textcolor{comment}{// delay before starting new cycle}}
+\DoxyCodeLine{\Hypertarget{lcd__16x2_8c_source_l00074}00074 \}}
+\DoxyCodeLine{\Hypertarget{lcd__16x2_8c_source_l00075}00075 }
+\DoxyCodeLine{\Hypertarget{lcd__16x2_8c_source_l00076}00076 }
+\DoxyCodeLine{\Hypertarget{lcd__16x2_8c_source_l00077}00077 }
+\DoxyCodeLine{\Hypertarget{lcd__16x2_8c_source_l00078}\mbox{\hyperlink{lcd__16x2_8h_a58b2986f539a45c50e2f99649ad2dd86}{00078}} \textcolor{keywordtype}{void} \mbox{\hyperlink{lcd__16x2_8c_a58b2986f539a45c50e2f99649ad2dd86}{LCD\_Data}}(uint8\_t data)}
+\DoxyCodeLine{\Hypertarget{lcd__16x2_8c_source_l00079}00079 \{   \textcolor{comment}{// most significant nibble}}
+\DoxyCodeLine{\Hypertarget{lcd__16x2_8c_source_l00080}00080     \mbox{\hyperlink{gpio_8h_aa86a255e26c42b0abdcf8fda9d883d34}{GPIO\_Write}}(\mbox{\hyperlink{lcd__16x2_8h_a077def6ebb43bf9aee4e7cad468ed726}{LCD\_DATA\_PORT}},LCD\_D4\_PIN, (0x10 \& data)\&\&1 );}
+\DoxyCodeLine{\Hypertarget{lcd__16x2_8c_source_l00081}00081     \mbox{\hyperlink{gpio_8h_aa86a255e26c42b0abdcf8fda9d883d34}{GPIO\_Write}}(\mbox{\hyperlink{lcd__16x2_8h_a077def6ebb43bf9aee4e7cad468ed726}{LCD\_DATA\_PORT}},LCD\_D5\_PIN, (0x20 \& data)\&\&1 );}
+\DoxyCodeLine{\Hypertarget{lcd__16x2_8c_source_l00082}00082     \mbox{\hyperlink{gpio_8h_aa86a255e26c42b0abdcf8fda9d883d34}{GPIO\_Write}}(\mbox{\hyperlink{lcd__16x2_8h_a077def6ebb43bf9aee4e7cad468ed726}{LCD\_DATA\_PORT}},LCD\_D6\_PIN, (0x40 \& data)\&\&1 );}
+\DoxyCodeLine{\Hypertarget{lcd__16x2_8c_source_l00083}00083     \mbox{\hyperlink{gpio_8h_aa86a255e26c42b0abdcf8fda9d883d34}{GPIO\_Write}}(\mbox{\hyperlink{lcd__16x2_8h_a077def6ebb43bf9aee4e7cad468ed726}{LCD\_DATA\_PORT}},LCD\_D7\_PIN, (0x80 \& data)\&\&1 );}
+\DoxyCodeLine{\Hypertarget{lcd__16x2_8c_source_l00084}00084 }
+\DoxyCodeLine{\Hypertarget{lcd__16x2_8c_source_l00085}00085     \mbox{\hyperlink{gpio_8h_aa86a255e26c42b0abdcf8fda9d883d34}{GPIO\_Write}}(LCD\_RS\_PORT, \mbox{\hyperlink{lcd__16x2_8h_ae5c0a0a5750f3aaea06083e3a4a31f5d}{LCD\_RS\_PIN}}, 1);}
+\DoxyCodeLine{\Hypertarget{lcd__16x2_8c_source_l00086}00086     \mbox{\hyperlink{gpio_8h_aa86a255e26c42b0abdcf8fda9d883d34}{GPIO\_Write}}(LCD\_RW\_PORT, LCD\_RW\_PIN, 0 );}
+\DoxyCodeLine{\Hypertarget{lcd__16x2_8c_source_l00087}00087     }
+\DoxyCodeLine{\Hypertarget{lcd__16x2_8c_source_l00088}00088     \mbox{\hyperlink{delay_8h_a0e816b30894e177b44f464a4065cd0cd}{Delay\_us}}(1);}
+\DoxyCodeLine{\Hypertarget{lcd__16x2_8c_source_l00089}00089     \mbox{\hyperlink{gpio_8h_aa86a255e26c42b0abdcf8fda9d883d34}{GPIO\_Write}}(LCD\_ENABLE\_PORT, LCD\_ENABLE\_PIN, 1);}
+\DoxyCodeLine{\Hypertarget{lcd__16x2_8c_source_l00090}00090     \mbox{\hyperlink{delay_8h_a0e816b30894e177b44f464a4065cd0cd}{Delay\_us}}(10);}
+\DoxyCodeLine{\Hypertarget{lcd__16x2_8c_source_l00091}00091     \mbox{\hyperlink{gpio_8h_aa86a255e26c42b0abdcf8fda9d883d34}{GPIO\_Write}}(LCD\_ENABLE\_PORT, LCD\_ENABLE\_PIN, 0);}
+\DoxyCodeLine{\Hypertarget{lcd__16x2_8c_source_l00092}00092 }
+\DoxyCodeLine{\Hypertarget{lcd__16x2_8c_source_l00093}00093     \mbox{\hyperlink{delay_8h_a0e816b30894e177b44f464a4065cd0cd}{Delay\_us}}(20);}
+\DoxyCodeLine{\Hypertarget{lcd__16x2_8c_source_l00094}00094   \textcolor{comment}{// least significant nibble}}
+\DoxyCodeLine{\Hypertarget{lcd__16x2_8c_source_l00095}00095     \mbox{\hyperlink{gpio_8h_aa86a255e26c42b0abdcf8fda9d883d34}{GPIO\_Write}}(\mbox{\hyperlink{lcd__16x2_8h_a077def6ebb43bf9aee4e7cad468ed726}{LCD\_DATA\_PORT}},LCD\_D4\_PIN, (0x01 \& data)\&\&1 );}
+\DoxyCodeLine{\Hypertarget{lcd__16x2_8c_source_l00096}00096     \mbox{\hyperlink{gpio_8h_aa86a255e26c42b0abdcf8fda9d883d34}{GPIO\_Write}}(\mbox{\hyperlink{lcd__16x2_8h_a077def6ebb43bf9aee4e7cad468ed726}{LCD\_DATA\_PORT}},LCD\_D5\_PIN, (0x02 \& data)\&\&1 );}
+\DoxyCodeLine{\Hypertarget{lcd__16x2_8c_source_l00097}00097     \mbox{\hyperlink{gpio_8h_aa86a255e26c42b0abdcf8fda9d883d34}{GPIO\_Write}}(\mbox{\hyperlink{lcd__16x2_8h_a077def6ebb43bf9aee4e7cad468ed726}{LCD\_DATA\_PORT}},LCD\_D6\_PIN, (0x04 \& data)\&\&1 );}
+\DoxyCodeLine{\Hypertarget{lcd__16x2_8c_source_l00098}00098     \mbox{\hyperlink{gpio_8h_aa86a255e26c42b0abdcf8fda9d883d34}{GPIO\_Write}}(\mbox{\hyperlink{lcd__16x2_8h_a077def6ebb43bf9aee4e7cad468ed726}{LCD\_DATA\_PORT}},LCD\_D7\_PIN, (0x08 \& data)\&\&1 );}
+\DoxyCodeLine{\Hypertarget{lcd__16x2_8c_source_l00099}00099 }
+\DoxyCodeLine{\Hypertarget{lcd__16x2_8c_source_l00100}00100     \mbox{\hyperlink{delay_8h_a0e816b30894e177b44f464a4065cd0cd}{Delay\_us}}(1);}
+\DoxyCodeLine{\Hypertarget{lcd__16x2_8c_source_l00101}00101     \mbox{\hyperlink{gpio_8h_aa86a255e26c42b0abdcf8fda9d883d34}{GPIO\_Write}}(LCD\_ENABLE\_PORT, LCD\_ENABLE\_PIN, 1);}
+\DoxyCodeLine{\Hypertarget{lcd__16x2_8c_source_l00102}00102     \mbox{\hyperlink{delay_8h_a0e816b30894e177b44f464a4065cd0cd}{Delay\_us}}(1);}
+\DoxyCodeLine{\Hypertarget{lcd__16x2_8c_source_l00103}00103     \mbox{\hyperlink{gpio_8h_aa86a255e26c42b0abdcf8fda9d883d34}{GPIO\_Write}}(LCD\_ENABLE\_PORT, LCD\_ENABLE\_PIN, 0);}
+\DoxyCodeLine{\Hypertarget{lcd__16x2_8c_source_l00104}00104  }
+\DoxyCodeLine{\Hypertarget{lcd__16x2_8c_source_l00105}00105     \mbox{\hyperlink{delay_8h_a0e816b30894e177b44f464a4065cd0cd}{Delay\_us}}(100);\textcolor{comment}{//delay before starting new cycle}}
+\DoxyCodeLine{\Hypertarget{lcd__16x2_8c_source_l00106}00106 }
+\DoxyCodeLine{\Hypertarget{lcd__16x2_8c_source_l00107}00107 \}}
+\DoxyCodeLine{\Hypertarget{lcd__16x2_8c_source_l00108}00108 }
+\DoxyCodeLine{\Hypertarget{lcd__16x2_8c_source_l00109}\mbox{\hyperlink{lcd__16x2_8h_a9bc20b8dfcfb8fc143da8dff095f80b0}{00109}} uint8\_t \mbox{\hyperlink{lcd__16x2_8c_a9bc20b8dfcfb8fc143da8dff095f80b0}{LCD\_Print\_Line}}(\textcolor{keywordtype}{char} * str)  \textcolor{comment}{// returns number of printed}}
+\DoxyCodeLine{\Hypertarget{lcd__16x2_8c_source_l00110}00110 \{}
+\DoxyCodeLine{\Hypertarget{lcd__16x2_8c_source_l00111}00111     uint8\_t i = 0;}
+\DoxyCodeLine{\Hypertarget{lcd__16x2_8c_source_l00112}00112     \textcolor{keywordflow}{while}(str[i] != \textcolor{charliteral}{'\(\backslash\)0'})\{}
+\DoxyCodeLine{\Hypertarget{lcd__16x2_8c_source_l00113}00113         }
+\DoxyCodeLine{\Hypertarget{lcd__16x2_8c_source_l00114}00114         \textcolor{keywordflow}{if}(i==16)}
+\DoxyCodeLine{\Hypertarget{lcd__16x2_8c_source_l00115}00115             \mbox{\hyperlink{lcd__16x2_8c_a42ab60773a45e1fbf57115a2acccedd2}{LCD\_Setcursor}}(1,2);}
+\DoxyCodeLine{\Hypertarget{lcd__16x2_8c_source_l00116}00116 }
+\DoxyCodeLine{\Hypertarget{lcd__16x2_8c_source_l00117}00117         \mbox{\hyperlink{lcd__16x2_8c_a58b2986f539a45c50e2f99649ad2dd86}{LCD\_Data}}(str[i++]);}
+\DoxyCodeLine{\Hypertarget{lcd__16x2_8c_source_l00118}00118     \}}
+\DoxyCodeLine{\Hypertarget{lcd__16x2_8c_source_l00119}00119   }
+\DoxyCodeLine{\Hypertarget{lcd__16x2_8c_source_l00120}00120     i-\/-\/;}
+\DoxyCodeLine{\Hypertarget{lcd__16x2_8c_source_l00121}00121     \textcolor{keywordflow}{return} i;}
+\DoxyCodeLine{\Hypertarget{lcd__16x2_8c_source_l00122}00122 \}}
+\DoxyCodeLine{\Hypertarget{lcd__16x2_8c_source_l00123}00123 }
+\DoxyCodeLine{\Hypertarget{lcd__16x2_8c_source_l00124}\mbox{\hyperlink{lcd__16x2_8h_a42ab60773a45e1fbf57115a2acccedd2}{00124}} \textcolor{keywordtype}{void} \mbox{\hyperlink{lcd__16x2_8c_a42ab60773a45e1fbf57115a2acccedd2}{LCD\_Setcursor}}(uint8\_t x , uint8\_t y)}
+\DoxyCodeLine{\Hypertarget{lcd__16x2_8c_source_l00125}00125 \{}
+\DoxyCodeLine{\Hypertarget{lcd__16x2_8c_source_l00126}00126     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} firstcharadd[] = \{ 0x80, 0xC0, 0x94, 0xD4\};}
+\DoxyCodeLine{\Hypertarget{lcd__16x2_8c_source_l00127}00127     \mbox{\hyperlink{lcd__16x2_8c_acc9b108b9752b7c842aa23eb3a963582}{LCD\_Instruction}}(firstcharadd[y-\/1] + x -\/1);}
+\DoxyCodeLine{\Hypertarget{lcd__16x2_8c_source_l00128}00128     \mbox{\hyperlink{delay_8h_a1d3146414c54513a72a7596c2f884c07}{Delay\_ms}}(1);}
+\DoxyCodeLine{\Hypertarget{lcd__16x2_8c_source_l00129}00129 \}}
+\DoxyCodeLine{\Hypertarget{lcd__16x2_8c_source_l00130}00130 }
+\DoxyCodeLine{\Hypertarget{lcd__16x2_8c_source_l00131}\mbox{\hyperlink{lcd__16x2_8h_ae60d0b62d7eb3fa31266c095d7b3c245}{00131}} \textcolor{keywordtype}{void} \mbox{\hyperlink{lcd__16x2_8c_ae60d0b62d7eb3fa31266c095d7b3c245}{LCD\_Clear}}(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{\Hypertarget{lcd__16x2_8c_source_l00132}00132 \{}
+\DoxyCodeLine{\Hypertarget{lcd__16x2_8c_source_l00133}00133      \mbox{\hyperlink{lcd__16x2_8c_acc9b108b9752b7c842aa23eb3a963582}{LCD\_Instruction}}(0x01); \textcolor{comment}{// clear LCD}}
+\DoxyCodeLine{\Hypertarget{lcd__16x2_8c_source_l00134}00134     }
+\DoxyCodeLine{\Hypertarget{lcd__16x2_8c_source_l00135}00135      \mbox{\hyperlink{lcd__16x2_8c_a42ab60773a45e1fbf57115a2acccedd2}{LCD\_Setcursor}}(1,1);}
+\DoxyCodeLine{\Hypertarget{lcd__16x2_8c_source_l00136}00136 \}}
+
+\end{DoxyCode}

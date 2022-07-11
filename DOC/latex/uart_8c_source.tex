@@ -1,0 +1,112 @@
+\hypertarget{uart_8c_source}{}\doxysection{uart.\+c}
+\label{uart_8c_source}\index{BLUE\_LIB/src/uart.c@{BLUE\_LIB/src/uart.c}}
+\mbox{\hyperlink{uart_8c}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{uart_8c_source_l00001}00001 }
+\DoxyCodeLine{\Hypertarget{uart_8c_source_l00013}00013 \textcolor{preprocessor}{\#include <stdint.h>}}
+\DoxyCodeLine{\Hypertarget{uart_8c_source_l00014}00014 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{stm32f10x_8h}{stm32f10x.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{uart_8c_source_l00015}00015 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{gpio_8h}{gpio.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{uart_8c_source_l00016}00016 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{uart_8h}{uart.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{uart_8c_source_l00017}00017 }
+\DoxyCodeLine{\Hypertarget{uart_8c_source_l00018}00018 }
+\DoxyCodeLine{\Hypertarget{uart_8c_source_l00019}\mbox{\hyperlink{uart_8h_a7910dd6ba7b26654da277458cfc2a241}{00019}}  \textcolor{keywordtype}{void} \mbox{\hyperlink{uart_8c_a7910dd6ba7b26654da277458cfc2a241}{UART\_Init}}(\mbox{\hyperlink{structUSART__TypeDef}{USART\_TypeDef}} *UARTx ,uint8\_t word\_length , uint8\_t stop\_bit,uint32\_t buadrate)\{}
+\DoxyCodeLine{\Hypertarget{uart_8c_source_l00020}00020 }
+\DoxyCodeLine{\Hypertarget{uart_8c_source_l00021}00021          \textcolor{comment}{/* Enable clock for Alternate function IO */}}
+\DoxyCodeLine{\Hypertarget{uart_8c_source_l00022}00022 }
+\DoxyCodeLine{\Hypertarget{uart_8c_source_l00023}00023          RCC-\/>APB2ENR |=  \mbox{\hyperlink{group__Peripheral__Registers__Bits__Definition_gaf67d9fc402ce254dd914525bee7361a6}{RCC\_APB2ENR\_AFIOEN}};}
+\DoxyCodeLine{\Hypertarget{uart_8c_source_l00024}00024 }
+\DoxyCodeLine{\Hypertarget{uart_8c_source_l00025}00025 }
+\DoxyCodeLine{\Hypertarget{uart_8c_source_l00026}00026          \textcolor{keywordflow}{if}(UARTx == USART1)\{}
+\DoxyCodeLine{\Hypertarget{uart_8c_source_l00027}00027             RCC-\/>APB2ENR |= \mbox{\hyperlink{group__Peripheral__Registers__Bits__Definition_ga4666bb90842e8134b32e6a34a0f165f3}{RCC\_APB2ENR\_USART1EN}};   \textcolor{comment}{// enable APB2 clock(max = 72MHz) for USART1}}
+\DoxyCodeLine{\Hypertarget{uart_8c_source_l00028}00028 }
+\DoxyCodeLine{\Hypertarget{uart_8c_source_l00029}00029             \mbox{\hyperlink{gpio_8h_a7cad1c2a86a985e18d1224fd980b504c}{GPIO\_Init}}(GPIOA,9,OUTPUT,AF\_PUSHPULL);  \textcolor{comment}{// TX1 pin -\/ A9 }}
+\DoxyCodeLine{\Hypertarget{uart_8c_source_l00030}00030             \mbox{\hyperlink{gpio_8h_a7cad1c2a86a985e18d1224fd980b504c}{GPIO\_Init}}(GPIOA,10,INPUT,PULL\_UP);      \textcolor{comment}{// RX1 pin -\/ A10}}
+\DoxyCodeLine{\Hypertarget{uart_8c_source_l00031}00031 }
+\DoxyCodeLine{\Hypertarget{uart_8c_source_l00032}00032          \}\textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(UARTx == USART2)\{}
+\DoxyCodeLine{\Hypertarget{uart_8c_source_l00033}00033 }
+\DoxyCodeLine{\Hypertarget{uart_8c_source_l00034}00034              RCC-\/>APB1ENR |= \mbox{\hyperlink{group__Peripheral__Registers__Bits__Definition_gab840af4f735ec36419d61c7db3cfa00d}{RCC\_APB1ENR\_USART2EN}};   \textcolor{comment}{// enable APB1 clock(max = 36MHz) for USART2}}
+\DoxyCodeLine{\Hypertarget{uart_8c_source_l00035}00035 }
+\DoxyCodeLine{\Hypertarget{uart_8c_source_l00036}00036              \mbox{\hyperlink{gpio_8h_a7cad1c2a86a985e18d1224fd980b504c}{GPIO\_Init}}(GPIOA,2,OUTPUT,AF\_PUSHPULL);   \textcolor{comment}{// TX1 pin -\/ A2}}
+\DoxyCodeLine{\Hypertarget{uart_8c_source_l00037}00037              \mbox{\hyperlink{gpio_8h_a7cad1c2a86a985e18d1224fd980b504c}{GPIO\_Init}}(GPIOA,3,INPUT,PULL\_UP);        \textcolor{comment}{// RX1 pin -\/ A3}}
+\DoxyCodeLine{\Hypertarget{uart_8c_source_l00038}00038 }
+\DoxyCodeLine{\Hypertarget{uart_8c_source_l00039}00039          \}\textcolor{keywordflow}{else}\{}
+\DoxyCodeLine{\Hypertarget{uart_8c_source_l00040}00040             RCC-\/>APB1ENR |= \mbox{\hyperlink{group__Peripheral__Registers__Bits__Definition_ga8033e0312aea02ae7eb2d57da13e8298}{RCC\_APB1ENR\_USART3EN}};   \textcolor{comment}{// enable APB1 clock(max = 36MHz) for USART3}}
+\DoxyCodeLine{\Hypertarget{uart_8c_source_l00041}00041 }
+\DoxyCodeLine{\Hypertarget{uart_8c_source_l00042}00042             \mbox{\hyperlink{gpio_8h_a7cad1c2a86a985e18d1224fd980b504c}{GPIO\_Init}}(GPIOB,10,OUTPUT,AF\_PUSHPULL);  \textcolor{comment}{// TX1 pin -\/ B10}}
+\DoxyCodeLine{\Hypertarget{uart_8c_source_l00043}00043             \mbox{\hyperlink{gpio_8h_a7cad1c2a86a985e18d1224fd980b504c}{GPIO\_Init}}(GPIOB,11,INPUT,PULL\_UP);       \textcolor{comment}{// RX1 pin -\/ B11}}
+\DoxyCodeLine{\Hypertarget{uart_8c_source_l00044}00044          \}}
+\DoxyCodeLine{\Hypertarget{uart_8c_source_l00045}00045 }
+\DoxyCodeLine{\Hypertarget{uart_8c_source_l00046}00046          }
+\DoxyCodeLine{\Hypertarget{uart_8c_source_l00047}00047          UARTx-\/>CR1 |= \mbox{\hyperlink{group__Peripheral__Registers__Bits__Definition_ga2bb650676aaae4a5203f372d497d5947}{USART\_CR1\_UE}} ; \textcolor{comment}{// (1<<13) -\/ uart enable}}
+\DoxyCodeLine{\Hypertarget{uart_8c_source_l00048}00048 }
+\DoxyCodeLine{\Hypertarget{uart_8c_source_l00049}00049          \textcolor{keywordflow}{if}(word\_length == 7)\{}
+\DoxyCodeLine{\Hypertarget{uart_8c_source_l00050}00050             UARTx-\/>CR1 \&= \string~(\mbox{\hyperlink{group__Peripheral__Registers__Bits__Definition_ga95f0288b9c6aaeca7cb6550a2e6833e2}{USART\_CR1\_M}});  \textcolor{comment}{//1 Start bit, 8 Data bits(7data + 1 paraity), n Stop bit}}
+\DoxyCodeLine{\Hypertarget{uart_8c_source_l00051}00051          \}\textcolor{keywordflow}{else}\{}
+\DoxyCodeLine{\Hypertarget{uart_8c_source_l00052}00052             UARTx-\/>CR1 |= \mbox{\hyperlink{group__Peripheral__Registers__Bits__Definition_ga95f0288b9c6aaeca7cb6550a2e6833e2}{USART\_CR1\_M}};    \textcolor{comment}{//  1 Start bit, 9 Data bits(8 data + 1 parity), n Stop bit}}
+\DoxyCodeLine{\Hypertarget{uart_8c_source_l00053}00053          \}}
+\DoxyCodeLine{\Hypertarget{uart_8c_source_l00054}00054 }
+\DoxyCodeLine{\Hypertarget{uart_8c_source_l00055}00055          UARTx-\/>CR1 |= \mbox{\hyperlink{group__Peripheral__Registers__Bits__Definition_ga60f8fcf084f9a8514efafb617c70b074}{USART\_CR1\_PCE}}; \textcolor{comment}{// Parity control enable -\/ even parity}}
+\DoxyCodeLine{\Hypertarget{uart_8c_source_l00056}00056 }
+\DoxyCodeLine{\Hypertarget{uart_8c_source_l00057}00057     }
+\DoxyCodeLine{\Hypertarget{uart_8c_source_l00058}00058          }
+\DoxyCodeLine{\Hypertarget{uart_8c_source_l00059}00059          \textcolor{keywordflow}{if}(stop\_bit == 2)\{}
+\DoxyCodeLine{\Hypertarget{uart_8c_source_l00060}00060             UARTx-\/>CR2 |= \mbox{\hyperlink{group__Peripheral__Registers__Bits__Definition_ga2b24d14f0e5d1c76c878b08aad44d02b}{USART\_CR2\_STOP\_1}};  \textcolor{comment}{// stop bits -\/ 2 ( default -\/ 1)}}
+\DoxyCodeLine{\Hypertarget{uart_8c_source_l00061}00061          \}}
+\DoxyCodeLine{\Hypertarget{uart_8c_source_l00062}00062 }
+\DoxyCodeLine{\Hypertarget{uart_8c_source_l00063}00063          UARTx-\/>CR3 = 0;}
+\DoxyCodeLine{\Hypertarget{uart_8c_source_l00064}00064          UARTx-\/>GTPR = 0;}
+\DoxyCodeLine{\Hypertarget{uart_8c_source_l00065}00065 }
+\DoxyCodeLine{\Hypertarget{uart_8c_source_l00066}00066          \textcolor{comment}{// buad rate}}
+\DoxyCodeLine{\Hypertarget{uart_8c_source_l00067}00067 }
+\DoxyCodeLine{\Hypertarget{uart_8c_source_l00068}00068          \textcolor{keywordflow}{if}(UARTx == USART1)\{}
+\DoxyCodeLine{\Hypertarget{uart_8c_source_l00069}00069             }
+\DoxyCodeLine{\Hypertarget{uart_8c_source_l00070}00070             UARTx-\/>BRR = PCLK2/buadrate;   \textcolor{comment}{// PCLK2 = 72000000U}}
+\DoxyCodeLine{\Hypertarget{uart_8c_source_l00071}00071          \}\textcolor{keywordflow}{else}\{}
+\DoxyCodeLine{\Hypertarget{uart_8c_source_l00072}00072 }
+\DoxyCodeLine{\Hypertarget{uart_8c_source_l00073}00073             UARTx-\/>BRR = PCLK1/buadrate;   \textcolor{comment}{// PCLK1 = 36000000U}}
+\DoxyCodeLine{\Hypertarget{uart_8c_source_l00074}00074          \}}
+\DoxyCodeLine{\Hypertarget{uart_8c_source_l00075}00075 }
+\DoxyCodeLine{\Hypertarget{uart_8c_source_l00076}00076          \textcolor{comment}{/* uart transmitter and reciever enable*/}}
+\DoxyCodeLine{\Hypertarget{uart_8c_source_l00077}00077          UARTx-\/>CR1 |= \mbox{\hyperlink{group__Peripheral__Registers__Bits__Definition_gada0d5d407a22264de847bc1b40a17aeb}{USART\_CR1\_RE}};}
+\DoxyCodeLine{\Hypertarget{uart_8c_source_l00078}00078          UARTx-\/>CR1 |= \mbox{\hyperlink{group__Peripheral__Registers__Bits__Definition_gade7f090b04fd78b755b43357ecaa9622}{USART\_CR1\_TE}};}
+\DoxyCodeLine{\Hypertarget{uart_8c_source_l00079}00079  \}}
+\DoxyCodeLine{\Hypertarget{uart_8c_source_l00080}00080 }
+\DoxyCodeLine{\Hypertarget{uart_8c_source_l00081}\mbox{\hyperlink{uart_8h_a4e7a38bca9e4fe3472027061d668fdbc}{00081}} \textcolor{keywordtype}{void} \mbox{\hyperlink{uart_8c_a4e7a38bca9e4fe3472027061d668fdbc}{UART\_SendByte}}(\mbox{\hyperlink{structUSART__TypeDef}{USART\_TypeDef}} * UARTx ,uint8\_t value)\{}
+\DoxyCodeLine{\Hypertarget{uart_8c_source_l00082}00082 }
+\DoxyCodeLine{\Hypertarget{uart_8c_source_l00083}00083    \textcolor{keywordflow}{while}(!(UARTx-\/>SR \& \mbox{\hyperlink{group__Peripheral__Registers__Bits__Definition_ga65e9cddf0890113d405342f1d8b5b980}{USART\_SR\_TXE}} )); \textcolor{comment}{// wait till Transmit data register become empty}}
+\DoxyCodeLine{\Hypertarget{uart_8c_source_l00084}00084 }
+\DoxyCodeLine{\Hypertarget{uart_8c_source_l00085}00085    UARTx-\/>DR = value;}
+\DoxyCodeLine{\Hypertarget{uart_8c_source_l00086}00086 }
+\DoxyCodeLine{\Hypertarget{uart_8c_source_l00087}00087 \}}
+\DoxyCodeLine{\Hypertarget{uart_8c_source_l00088}00088 }
+\DoxyCodeLine{\Hypertarget{uart_8c_source_l00089}\mbox{\hyperlink{uart_8h_a393113b5d93548dd3f128078a9b38811}{00089}} \textcolor{keywordtype}{void} \mbox{\hyperlink{uart_8c_a393113b5d93548dd3f128078a9b38811}{UART\_SendString}}(\mbox{\hyperlink{structUSART__TypeDef}{USART\_TypeDef}} * UARTx , \textcolor{keywordtype}{char} *str)\{}
+\DoxyCodeLine{\Hypertarget{uart_8c_source_l00090}00090 }
+\DoxyCodeLine{\Hypertarget{uart_8c_source_l00091}00091    \textcolor{keywordflow}{while}(*str != \textcolor{charliteral}{'\(\backslash\)0'})\{}
+\DoxyCodeLine{\Hypertarget{uart_8c_source_l00092}00092       \mbox{\hyperlink{uart_8c_a4e7a38bca9e4fe3472027061d668fdbc}{UART\_SendByte}}(UARTx,*str);}
+\DoxyCodeLine{\Hypertarget{uart_8c_source_l00093}00093       str++;}
+\DoxyCodeLine{\Hypertarget{uart_8c_source_l00094}00094    \}}
+\DoxyCodeLine{\Hypertarget{uart_8c_source_l00095}00095 }
+\DoxyCodeLine{\Hypertarget{uart_8c_source_l00096}00096    \textcolor{keywordflow}{while}(!(UARTx-\/>SR \& \mbox{\hyperlink{group__Peripheral__Registers__Bits__Definition_ga76229b05ac37a5a688e6ba45851a29f1}{USART\_SR\_TC}}));  \textcolor{comment}{// wait till Transmission completes}}
+\DoxyCodeLine{\Hypertarget{uart_8c_source_l00097}00097 \}}
+\DoxyCodeLine{\Hypertarget{uart_8c_source_l00098}00098 }
+\DoxyCodeLine{\Hypertarget{uart_8c_source_l00099}\mbox{\hyperlink{uart_8h_abe2abc2ceb2806175ad15a806a9fdb08}{00099}} uint8\_t \mbox{\hyperlink{uart_8c_abe2abc2ceb2806175ad15a806a9fdb08}{UART\_ReceiveByte}}(\mbox{\hyperlink{structUSART__TypeDef}{USART\_TypeDef}} *UARTx)\{}
+\DoxyCodeLine{\Hypertarget{uart_8c_source_l00100}00100 }
+\DoxyCodeLine{\Hypertarget{uart_8c_source_l00101}00101    \textcolor{keywordflow}{while}(!(UARTx-\/>SR \& \mbox{\hyperlink{group__Peripheral__Registers__Bits__Definition_gaa0c99e2bb265b3d58a91aca7a93f7836}{USART\_SR\_RXNE}}));  \textcolor{comment}{// wait till  Read data register not empty}}
+\DoxyCodeLine{\Hypertarget{uart_8c_source_l00102}00102 }
+\DoxyCodeLine{\Hypertarget{uart_8c_source_l00103}00103       \textcolor{keywordflow}{return} UARTx-\/>DR;}
+\DoxyCodeLine{\Hypertarget{uart_8c_source_l00104}00104 \}}
+\DoxyCodeLine{\Hypertarget{uart_8c_source_l00105}00105 }
+\DoxyCodeLine{\Hypertarget{uart_8c_source_l00106}\mbox{\hyperlink{uart_8h_a3a4e29adb2f7b2521c1df412585c04d9}{00106}} \textcolor{keywordtype}{void} \mbox{\hyperlink{uart_8c_a3a4e29adb2f7b2521c1df412585c04d9}{UART\_ReceiveString}}(\mbox{\hyperlink{structUSART__TypeDef}{USART\_TypeDef}} *UARTx , \textcolor{keywordtype}{char} * rx\_str , uint32\_t len)\{}
+\DoxyCodeLine{\Hypertarget{uart_8c_source_l00107}00107 }
+\DoxyCodeLine{\Hypertarget{uart_8c_source_l00108}00108    uint32\_t i =0;}
+\DoxyCodeLine{\Hypertarget{uart_8c_source_l00109}00109 }
+\DoxyCodeLine{\Hypertarget{uart_8c_source_l00110}00110    \textcolor{keywordflow}{for}(i = 0;i<len;i++)\{}
+\DoxyCodeLine{\Hypertarget{uart_8c_source_l00111}00111       *rx\_str = \mbox{\hyperlink{uart_8c_abe2abc2ceb2806175ad15a806a9fdb08}{UART\_ReceiveByte}}(UARTx);}
+\DoxyCodeLine{\Hypertarget{uart_8c_source_l00112}00112       rx\_str++;}
+\DoxyCodeLine{\Hypertarget{uart_8c_source_l00113}00113    \}}
+\DoxyCodeLine{\Hypertarget{uart_8c_source_l00114}00114 }
+\DoxyCodeLine{\Hypertarget{uart_8c_source_l00115}00115    *rx\_str = \textcolor{charliteral}{'\(\backslash\)0'};}
+\DoxyCodeLine{\Hypertarget{uart_8c_source_l00116}00116    rx\_str = rx\_str -\/ len;}
+\DoxyCodeLine{\Hypertarget{uart_8c_source_l00117}00117 \}}
+
+\end{DoxyCode}

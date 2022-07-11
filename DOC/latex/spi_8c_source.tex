@@ -1,0 +1,152 @@
+\hypertarget{spi_8c_source}{}\doxysection{spi.\+c}
+\label{spi_8c_source}\index{BLUE\_LIB/src/spi.c@{BLUE\_LIB/src/spi.c}}
+\mbox{\hyperlink{spi_8c}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{spi_8c_source_l00001}00001 }
+\DoxyCodeLine{\Hypertarget{spi_8c_source_l00013}00013 \textcolor{preprocessor}{\#include <stdint.h>}}
+\DoxyCodeLine{\Hypertarget{spi_8c_source_l00014}00014 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{spi_8h}{spi.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{spi_8c_source_l00015}00015 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{stm32f10x_8h}{stm32f10x.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{spi_8c_source_l00016}00016 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{gpio_8h}{gpio.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{spi_8c_source_l00017}00017 }
+\DoxyCodeLine{\Hypertarget{spi_8c_source_l00018}00018 }
+\DoxyCodeLine{\Hypertarget{spi_8c_source_l00019}\mbox{\hyperlink{spi_8h_a303b3e50ffd8777f40325d2dd1720622}{00019}} \textcolor{keywordtype}{void} \mbox{\hyperlink{spi_8c_a303b3e50ffd8777f40325d2dd1720622}{SPI\_Init}}(\mbox{\hyperlink{structSPI__TypeDef}{SPI\_TypeDef}} *SPIx , uint8\_t mode , uint8\_t c\_pol , uint8\_t c\_phase, uint8\_t first\_tr\_bit,uint8\_t size\_data)\{}
+\DoxyCodeLine{\Hypertarget{spi_8c_source_l00020}00020 }
+\DoxyCodeLine{\Hypertarget{spi_8c_source_l00021}00021     \textcolor{keywordflow}{if}(SPIx == SPI1)\{}
+\DoxyCodeLine{\Hypertarget{spi_8c_source_l00022}00022       }
+\DoxyCodeLine{\Hypertarget{spi_8c_source_l00024}00024          RCC-\/>APB2ENR |= (\mbox{\hyperlink{group__Peripheral__Registers__Bits__Definition_gae08a3510371b9234eb96369c91d3552f}{RCC\_APB2ENR\_SPI1EN}} | \mbox{\hyperlink{group__Peripheral__Registers__Bits__Definition_gaf67d9fc402ce254dd914525bee7361a6}{RCC\_APB2ENR\_AFIOEN}});}
+\DoxyCodeLine{\Hypertarget{spi_8c_source_l00025}00025          }
+\DoxyCodeLine{\Hypertarget{spi_8c_source_l00027}00027          \mbox{\hyperlink{gpio_8h_a7cad1c2a86a985e18d1224fd980b504c}{GPIO\_Init}}(GPIOA, 4, OUTPUT, PUSHPULL) ;    }
+\DoxyCodeLine{\Hypertarget{spi_8c_source_l00028}00028          \mbox{\hyperlink{gpio_8h_a514d27b265cd6a37452a2a56d118c590}{GPIO\_Set}}(GPIOA,4);}
+\DoxyCodeLine{\Hypertarget{spi_8c_source_l00029}00029          \mbox{\hyperlink{gpio_8h_a7cad1c2a86a985e18d1224fd980b504c}{GPIO\_Init}}(GPIOA, 5, OUTPUT, AF\_PUSHPULL);  }
+\DoxyCodeLine{\Hypertarget{spi_8c_source_l00030}00030          \mbox{\hyperlink{gpio_8h_a7cad1c2a86a985e18d1224fd980b504c}{GPIO\_Init}}(GPIOA, 6, INPUT, PULL\_UP);       }
+\DoxyCodeLine{\Hypertarget{spi_8c_source_l00031}00031          \mbox{\hyperlink{gpio_8h_a7cad1c2a86a985e18d1224fd980b504c}{GPIO\_Init}}(GPIOA, 7, OUTPUT, AF\_PUSHPULL);  }
+\DoxyCodeLine{\Hypertarget{spi_8c_source_l00032}00032 }
+\DoxyCodeLine{\Hypertarget{spi_8c_source_l00033}00033     \}\textcolor{keywordflow}{else}\{}
+\DoxyCodeLine{\Hypertarget{spi_8c_source_l00034}00034 }
+\DoxyCodeLine{\Hypertarget{spi_8c_source_l00035}00035          \textcolor{comment}{// Enable clock for SPI2 and Alternate function IO }}
+\DoxyCodeLine{\Hypertarget{spi_8c_source_l00036}00036          RCC-\/>APB2ENR |= (\mbox{\hyperlink{group__Peripheral__Registers__Bits__Definition_gaf67d9fc402ce254dd914525bee7361a6}{RCC\_APB2ENR\_AFIOEN}});}
+\DoxyCodeLine{\Hypertarget{spi_8c_source_l00037}00037          RCC-\/>APB1ENR |= (\mbox{\hyperlink{group__Peripheral__Registers__Bits__Definition_gafdce64692c44bf95efbf2fed054e59be}{RCC\_APB1ENR\_SPI2EN}});}
+\DoxyCodeLine{\Hypertarget{spi_8c_source_l00038}00038 }
+\DoxyCodeLine{\Hypertarget{spi_8c_source_l00039}00039           \textcolor{comment}{// GPIO-\/Pin initialization for SPI1}}
+\DoxyCodeLine{\Hypertarget{spi_8c_source_l00040}00040          \mbox{\hyperlink{gpio_8h_a7cad1c2a86a985e18d1224fd980b504c}{GPIO\_Init}}(GPIOB, 12, OUTPUT, PUSHPULL) ;    \textcolor{comment}{// NSS2 pin -\/ B12-\/ (Chip select)}}
+\DoxyCodeLine{\Hypertarget{spi_8c_source_l00041}00041          \mbox{\hyperlink{gpio_8h_a514d27b265cd6a37452a2a56d118c590}{GPIO\_Set}}(GPIOB,12);}
+\DoxyCodeLine{\Hypertarget{spi_8c_source_l00042}00042          \mbox{\hyperlink{gpio_8h_a7cad1c2a86a985e18d1224fd980b504c}{GPIO\_Init}}(GPIOB, 13, OUTPUT, AF\_PUSHPULL);  \textcolor{comment}{// SCK2 pin -\/ B13 -\/ (seriel clk output)}}
+\DoxyCodeLine{\Hypertarget{spi_8c_source_l00043}00043          \mbox{\hyperlink{gpio_8h_a7cad1c2a86a985e18d1224fd980b504c}{GPIO\_Init}}(GPIOB, 14, INPUT, PULL\_UP);       \textcolor{comment}{// MISO pin -\/ B14 -\/ (Master in slave out)}}
+\DoxyCodeLine{\Hypertarget{spi_8c_source_l00044}00044          \mbox{\hyperlink{gpio_8h_a7cad1c2a86a985e18d1224fd980b504c}{GPIO\_Init}}(GPIOB, 15, OUTPUT, AF\_PUSHPULL);  \textcolor{comment}{// MOSI pin -\/ B15 -\/ (Master out slave in)}}
+\DoxyCodeLine{\Hypertarget{spi_8c_source_l00045}00045      \}}
+\DoxyCodeLine{\Hypertarget{spi_8c_source_l00046}00046 }
+\DoxyCodeLine{\Hypertarget{spi_8c_source_l00047}00047      \textcolor{keywordflow}{if}(mode == MASTER)        \textcolor{comment}{// master configuration enable}}
+\DoxyCodeLine{\Hypertarget{spi_8c_source_l00048}00048         SPIx-\/>CR1 |= (1<<2);}
+\DoxyCodeLine{\Hypertarget{spi_8c_source_l00049}00049      \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{spi_8c_source_l00050}00050         SPIx-\/>CR1 \&= \string~(1<<2);}
+\DoxyCodeLine{\Hypertarget{spi_8c_source_l00051}00051 }
+\DoxyCodeLine{\Hypertarget{spi_8c_source_l00052}00052      SPIx-\/>CR1 |= (7<<3);    \textcolor{comment}{// seriel clk baudrate configuration -\/ fPCLK/256 (default)}}
+\DoxyCodeLine{\Hypertarget{spi_8c_source_l00053}00053 }
+\DoxyCodeLine{\Hypertarget{spi_8c_source_l00054}00054 }
+\DoxyCodeLine{\Hypertarget{spi_8c_source_l00055}00055      SPIx-\/>CR1 |= \mbox{\hyperlink{group__Peripheral__Registers__Bits__Definition_ga0e236047e05106cf1ba7929766311382}{SPI\_CR1\_SSM}} ;   \textcolor{comment}{// software slave management enable}}
+\DoxyCodeLine{\Hypertarget{spi_8c_source_l00056}00056      SPIx-\/>CR1 |= \mbox{\hyperlink{group__Peripheral__Registers__Bits__Definition_ga5f154374b58c0234f82ea326cb303a1e}{SPI\_CR1\_SSI}};    \textcolor{comment}{// Internal slave select}}
+\DoxyCodeLine{\Hypertarget{spi_8c_source_l00057}00057 }
+\DoxyCodeLine{\Hypertarget{spi_8c_source_l00058}00058      SPIx-\/>CR1 |= \mbox{\hyperlink{group__Peripheral__Registers__Bits__Definition_gac5a646d978d3b98eb7c6a5d95d75c3f9}{SPI\_CR1\_SPE}};    \textcolor{comment}{// SPI peripheral enable;}}
+\DoxyCodeLine{\Hypertarget{spi_8c_source_l00059}00059      }
+\DoxyCodeLine{\Hypertarget{spi_8c_source_l00060}00060 }
+\DoxyCodeLine{\Hypertarget{spi_8c_source_l00061}00061      }
+\DoxyCodeLine{\Hypertarget{spi_8c_source_l00062}00062      \textcolor{keywordflow}{if}((c\_pol == 0) \&\& (c\_phase == 0))\{}
+\DoxyCodeLine{\Hypertarget{spi_8c_source_l00063}00063         SPIx-\/>CR1 \&= \string~(1<<0);  \textcolor{comment}{// clk\_phase = 0}}
+\DoxyCodeLine{\Hypertarget{spi_8c_source_l00064}00064         SPIx-\/>CR1 \&= \string~(1<<1);  \textcolor{comment}{// clk\_pol = 0}}
+\DoxyCodeLine{\Hypertarget{spi_8c_source_l00065}00065 }
+\DoxyCodeLine{\Hypertarget{spi_8c_source_l00066}00066      \}\textcolor{keywordflow}{else} \textcolor{keywordflow}{if}((c\_pol == 0) \&\& (c\_phase == 1))\{}
+\DoxyCodeLine{\Hypertarget{spi_8c_source_l00067}00067         SPIx-\/>CR1 |=  (1<<0);  \textcolor{comment}{// clk\_phase = 1}}
+\DoxyCodeLine{\Hypertarget{spi_8c_source_l00068}00068         SPIx-\/>CR1 \&= \string~(1<<1);  \textcolor{comment}{// clk\_pol = 0}}
+\DoxyCodeLine{\Hypertarget{spi_8c_source_l00069}00069 }
+\DoxyCodeLine{\Hypertarget{spi_8c_source_l00070}00070      \}\textcolor{keywordflow}{else} \textcolor{keywordflow}{if}((c\_pol == 1) \&\& (c\_phase == 0))\{}
+\DoxyCodeLine{\Hypertarget{spi_8c_source_l00071}00071         SPIx-\/>CR1 \&= \string~(1<<0);  \textcolor{comment}{// clk\_phase = 0}}
+\DoxyCodeLine{\Hypertarget{spi_8c_source_l00072}00072         SPIx-\/>CR1 |= (1<<1);  \textcolor{comment}{// clk\_pol = 1}}
+\DoxyCodeLine{\Hypertarget{spi_8c_source_l00073}00073 }
+\DoxyCodeLine{\Hypertarget{spi_8c_source_l00074}00074      \}\textcolor{keywordflow}{else}\{}
+\DoxyCodeLine{\Hypertarget{spi_8c_source_l00075}00075         SPIx-\/>CR1 |= (1<<0);  \textcolor{comment}{// clk\_phase = 1}}
+\DoxyCodeLine{\Hypertarget{spi_8c_source_l00076}00076         SPIx-\/>CR1 |= (1<<1);  \textcolor{comment}{// clk\_pol = 1}}
+\DoxyCodeLine{\Hypertarget{spi_8c_source_l00077}00077 }
+\DoxyCodeLine{\Hypertarget{spi_8c_source_l00078}00078      \}}
+\DoxyCodeLine{\Hypertarget{spi_8c_source_l00079}00079 }
+\DoxyCodeLine{\Hypertarget{spi_8c_source_l00080}00080      }
+\DoxyCodeLine{\Hypertarget{spi_8c_source_l00081}00081 }
+\DoxyCodeLine{\Hypertarget{spi_8c_source_l00082}00082      \textcolor{keywordflow}{if}(size\_data == 16)       \textcolor{comment}{// data frame format }}
+\DoxyCodeLine{\Hypertarget{spi_8c_source_l00083}00083         SPIx-\/>CR1 |= (1<<11);}
+\DoxyCodeLine{\Hypertarget{spi_8c_source_l00084}00084      \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{spi_8c_source_l00085}00085         SPIx-\/>CR1 \&= \string~(1<<11);}
+\DoxyCodeLine{\Hypertarget{spi_8c_source_l00086}00086 }
+\DoxyCodeLine{\Hypertarget{spi_8c_source_l00087}00087      \textcolor{keywordflow}{if}(first\_tr\_bit == MSB) }
+\DoxyCodeLine{\Hypertarget{spi_8c_source_l00088}00088         SPIx-\/>CR1 \&= \string~(1<<7); \textcolor{comment}{// MSB transmitted first}}
+\DoxyCodeLine{\Hypertarget{spi_8c_source_l00089}00089      \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{spi_8c_source_l00090}00090         SPIx-\/>CR1 |= (1<<7);  \textcolor{comment}{//LSB transmitted first}}
+\DoxyCodeLine{\Hypertarget{spi_8c_source_l00091}00091 }
+\DoxyCodeLine{\Hypertarget{spi_8c_source_l00092}00092 }
+\DoxyCodeLine{\Hypertarget{spi_8c_source_l00093}00093      SPIx-\/>CR2 = 0x0000 ;  \textcolor{comment}{// no interrupt or DMA used}}
+\DoxyCodeLine{\Hypertarget{spi_8c_source_l00094}00094 \}}
+\DoxyCodeLine{\Hypertarget{spi_8c_source_l00095}00095 }
+\DoxyCodeLine{\Hypertarget{spi_8c_source_l00096}\mbox{\hyperlink{spi_8h_a57bf47f4b56ecf48278a6ed1417c05a3}{00096}} \textcolor{keywordtype}{void} \mbox{\hyperlink{spi_8c_a57bf47f4b56ecf48278a6ed1417c05a3}{SPI\_Set\_Clk\_Prescaler}}(\mbox{\hyperlink{structSPI__TypeDef}{SPI\_TypeDef}} *SPIx,uint32\_t prescaler)}
+\DoxyCodeLine{\Hypertarget{spi_8c_source_l00097}00097 \{}
+\DoxyCodeLine{\Hypertarget{spi_8c_source_l00098}00098    \textcolor{keywordflow}{if}(prescaler == 2)\{}
+\DoxyCodeLine{\Hypertarget{spi_8c_source_l00099}00099       SPIx-\/>CR1 \&= \string~(7<<3);             \textcolor{comment}{// sclk speed = Pclk/2 = 72 MHz / 2 = 36 MHz}}
+\DoxyCodeLine{\Hypertarget{spi_8c_source_l00100}00100 }
+\DoxyCodeLine{\Hypertarget{spi_8c_source_l00101}00101    \}\textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(prescaler == 4)\{}
+\DoxyCodeLine{\Hypertarget{spi_8c_source_l00102}00102       SPIx-\/>CR1 \&= \string~(6<<3);            }
+\DoxyCodeLine{\Hypertarget{spi_8c_source_l00103}00103       SPIx-\/>CR1 |= (1<<3);}
+\DoxyCodeLine{\Hypertarget{spi_8c_source_l00104}00104 }
+\DoxyCodeLine{\Hypertarget{spi_8c_source_l00105}00105    \}\textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(prescaler == 8)\{}
+\DoxyCodeLine{\Hypertarget{spi_8c_source_l00106}00106       SPIx-\/>CR1 \&= \string~(5<<3);}
+\DoxyCodeLine{\Hypertarget{spi_8c_source_l00107}00107       SPIx-\/>CR1 |= (2<<3);}
+\DoxyCodeLine{\Hypertarget{spi_8c_source_l00108}00108 }
+\DoxyCodeLine{\Hypertarget{spi_8c_source_l00109}00109    \}\textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(prescaler == 16)\{}
+\DoxyCodeLine{\Hypertarget{spi_8c_source_l00110}00110       SPIx-\/>CR1 \&= \string~(4<<3);}
+\DoxyCodeLine{\Hypertarget{spi_8c_source_l00111}00111       SPIx-\/>CR1 |= (3<<3);}
+\DoxyCodeLine{\Hypertarget{spi_8c_source_l00112}00112 }
+\DoxyCodeLine{\Hypertarget{spi_8c_source_l00113}00113    \}\textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(prescaler == 32)\{}
+\DoxyCodeLine{\Hypertarget{spi_8c_source_l00114}00114       SPIx-\/>CR1 \&= \string~(3<<3);}
+\DoxyCodeLine{\Hypertarget{spi_8c_source_l00115}00115       SPIx-\/>CR1 |= (4<<3);}
+\DoxyCodeLine{\Hypertarget{spi_8c_source_l00116}00116 }
+\DoxyCodeLine{\Hypertarget{spi_8c_source_l00117}00117    \}\textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(prescaler == 64)\{}
+\DoxyCodeLine{\Hypertarget{spi_8c_source_l00118}00118       SPIx-\/>CR1 \&= \string~(2<<3);}
+\DoxyCodeLine{\Hypertarget{spi_8c_source_l00119}00119       SPIx-\/>CR1 |= (5<<3);}
+\DoxyCodeLine{\Hypertarget{spi_8c_source_l00120}00120 }
+\DoxyCodeLine{\Hypertarget{spi_8c_source_l00121}00121    \}\textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(prescaler == 128)\{}
+\DoxyCodeLine{\Hypertarget{spi_8c_source_l00122}00122       SPIx-\/>CR1 \&= \string~(1<<3);}
+\DoxyCodeLine{\Hypertarget{spi_8c_source_l00123}00123       SPIx-\/>CR1 |= (6<<3);}
+\DoxyCodeLine{\Hypertarget{spi_8c_source_l00124}00124 }
+\DoxyCodeLine{\Hypertarget{spi_8c_source_l00125}00125    \}\textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(prescaler == 256)\{   \textcolor{comment}{// by default in initialization function}}
+\DoxyCodeLine{\Hypertarget{spi_8c_source_l00126}00126       SPIx-\/>CR1 |= (7<<3);}
+\DoxyCodeLine{\Hypertarget{spi_8c_source_l00127}00127 }
+\DoxyCodeLine{\Hypertarget{spi_8c_source_l00128}00128    \}}
+\DoxyCodeLine{\Hypertarget{spi_8c_source_l00129}00129    }
+\DoxyCodeLine{\Hypertarget{spi_8c_source_l00130}00130 \}}
+\DoxyCodeLine{\Hypertarget{spi_8c_source_l00131}00131 }
+\DoxyCodeLine{\Hypertarget{spi_8c_source_l00132}00132 }
+\DoxyCodeLine{\Hypertarget{spi_8c_source_l00133}\mbox{\hyperlink{spi_8h_a7efc18f6772eb2a8628c34f8b9d5d44c}{00133}} uint16\_t \mbox{\hyperlink{spi_8c_a7efc18f6772eb2a8628c34f8b9d5d44c}{SPI\_SendByte}}(\mbox{\hyperlink{structSPI__TypeDef}{SPI\_TypeDef}} *SPIx , uint16\_t data)\{}
+\DoxyCodeLine{\Hypertarget{spi_8c_source_l00134}00134 }
+\DoxyCodeLine{\Hypertarget{spi_8c_source_l00135}00135    \textcolor{keywordflow}{while}(!(SPIx-\/>SR \& (1<<1)));     \textcolor{comment}{// wait till Tx buffer is empty}}
+\DoxyCodeLine{\Hypertarget{spi_8c_source_l00136}00136       SPIx-\/>DR = data;}
+\DoxyCodeLine{\Hypertarget{spi_8c_source_l00137}00137 }
+\DoxyCodeLine{\Hypertarget{spi_8c_source_l00138}00138    \textcolor{keywordflow}{while}(!(SPIx-\/>SR \& (1<<0)));  \textcolor{comment}{// wait till Rx buffer gets full}}
+\DoxyCodeLine{\Hypertarget{spi_8c_source_l00139}00139       \textcolor{keywordflow}{return} SPIx-\/>DR;}
+\DoxyCodeLine{\Hypertarget{spi_8c_source_l00140}00140 \}}
+\DoxyCodeLine{\Hypertarget{spi_8c_source_l00141}00141 }
+\DoxyCodeLine{\Hypertarget{spi_8c_source_l00142}00142 }
+\DoxyCodeLine{\Hypertarget{spi_8c_source_l00143}\mbox{\hyperlink{spi_8h_aa310dbda1260e34e36232a99e1981b59}{00143}} \textcolor{keywordtype}{void} \mbox{\hyperlink{spi_8c_aa310dbda1260e34e36232a99e1981b59}{SPI\_WriteReg}}(\mbox{\hyperlink{structSPI__TypeDef}{SPI\_TypeDef}} *SPIx,uint16\_t address , uint16\_t value)\{}
+\DoxyCodeLine{\Hypertarget{spi_8c_source_l00144}00144    SPI\_NSS\_ON(SPIx);             }
+\DoxyCodeLine{\Hypertarget{spi_8c_source_l00145}00145    \mbox{\hyperlink{spi_8c_a7efc18f6772eb2a8628c34f8b9d5d44c}{SPI\_SendByte}}(SPIx,address);}
+\DoxyCodeLine{\Hypertarget{spi_8c_source_l00146}00146    \mbox{\hyperlink{spi_8c_a7efc18f6772eb2a8628c34f8b9d5d44c}{SPI\_SendByte}}(SPIx,value);}
+\DoxyCodeLine{\Hypertarget{spi_8c_source_l00147}00147    SPI\_NSS\_OFF(SPIx);}
+\DoxyCodeLine{\Hypertarget{spi_8c_source_l00148}00148 \}}
+\DoxyCodeLine{\Hypertarget{spi_8c_source_l00149}00149 }
+\DoxyCodeLine{\Hypertarget{spi_8c_source_l00150}\mbox{\hyperlink{spi_8h_ab75a177e7293c4f241058aa64153b17d}{00150}} uint16\_t \mbox{\hyperlink{spi_8c_ab75a177e7293c4f241058aa64153b17d}{SPI\_ReadReg}}(\mbox{\hyperlink{structSPI__TypeDef}{SPI\_TypeDef}}* SPIx,uint16\_t address)\{}
+\DoxyCodeLine{\Hypertarget{spi_8c_source_l00151}00151 }
+\DoxyCodeLine{\Hypertarget{spi_8c_source_l00152}00152    uint16\_t value;}
+\DoxyCodeLine{\Hypertarget{spi_8c_source_l00153}00153    SPI\_NSS\_ON(SPIx);}
+\DoxyCodeLine{\Hypertarget{spi_8c_source_l00154}00154    \mbox{\hyperlink{spi_8c_a7efc18f6772eb2a8628c34f8b9d5d44c}{SPI\_SendByte}}(SPIx,address);}
+\DoxyCodeLine{\Hypertarget{spi_8c_source_l00155}00155    value = \mbox{\hyperlink{spi_8c_a7efc18f6772eb2a8628c34f8b9d5d44c}{SPI\_SendByte}}(SPIx,0x00);}
+\DoxyCodeLine{\Hypertarget{spi_8c_source_l00156}00156    SPI\_NSS\_OFF(SPIx);}
+\DoxyCodeLine{\Hypertarget{spi_8c_source_l00157}00157 }
+\DoxyCodeLine{\Hypertarget{spi_8c_source_l00158}00158    \textcolor{keywordflow}{return} value;}
+\DoxyCodeLine{\Hypertarget{spi_8c_source_l00159}00159 \}}
+
+\end{DoxyCode}

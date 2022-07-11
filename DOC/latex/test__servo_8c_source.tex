@@ -1,0 +1,33 @@
+\hypertarget{test__servo_8c_source}{}\doxysection{test\+\_\+servo.\+c}
+\label{test__servo_8c_source}\index{BLUE\_LIB/test/test\_servo.c@{BLUE\_LIB/test/test\_servo.c}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{test__servo_8c_source_l00001}00001 }
+\DoxyCodeLine{\Hypertarget{test__servo_8c_source_l00002}00002 }
+\DoxyCodeLine{\Hypertarget{test__servo_8c_source_l00003}00003 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{stm32f10x_8h}{stm32f10x.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{test__servo_8c_source_l00004}00004 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{gpio_8h}{gpio.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{test__servo_8c_source_l00005}00005 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{delay_8h}{delay.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{test__servo_8c_source_l00006}00006 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{pwm_8h}{pwm.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{test__servo_8c_source_l00007}00007 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{servo__motor_8h}{servo\_motor.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{test__servo_8c_source_l00008}00008 }
+\DoxyCodeLine{\Hypertarget{test__servo_8c_source_l00009}00009 \textcolor{keywordtype}{int} main()\{}
+\DoxyCodeLine{\Hypertarget{test__servo_8c_source_l00010}00010 }
+\DoxyCodeLine{\Hypertarget{test__servo_8c_source_l00011}00011     \mbox{\hyperlink{servo__motor_8h_a795753996e4d4f9dcf62f59f5f9efec1}{Servo\_Init}}(GPIOB,6);}
+\DoxyCodeLine{\Hypertarget{test__servo_8c_source_l00012}00012 }
+\DoxyCodeLine{\Hypertarget{test__servo_8c_source_l00013}00013     \textcolor{keywordflow}{while}(1)\{}
+\DoxyCodeLine{\Hypertarget{test__servo_8c_source_l00014}00014 }
+\DoxyCodeLine{\Hypertarget{test__servo_8c_source_l00015}00015         \mbox{\hyperlink{servo__motor_8h_a57498449eba647878b2f088f68a39bf3}{Servo\_Angle}}(GPIOB,6,0);}
+\DoxyCodeLine{\Hypertarget{test__servo_8c_source_l00016}00016         \mbox{\hyperlink{delay_8h_a1d3146414c54513a72a7596c2f884c07}{Delay\_ms}}(2000);}
+\DoxyCodeLine{\Hypertarget{test__servo_8c_source_l00017}00017         \mbox{\hyperlink{servo__motor_8h_a57498449eba647878b2f088f68a39bf3}{Servo\_Angle}}(GPIOB,6,45);}
+\DoxyCodeLine{\Hypertarget{test__servo_8c_source_l00018}00018         \mbox{\hyperlink{delay_8h_a1d3146414c54513a72a7596c2f884c07}{Delay\_ms}}(2000);}
+\DoxyCodeLine{\Hypertarget{test__servo_8c_source_l00019}00019         \mbox{\hyperlink{servo__motor_8h_a57498449eba647878b2f088f68a39bf3}{Servo\_Angle}}(GPIOB,6,90);}
+\DoxyCodeLine{\Hypertarget{test__servo_8c_source_l00020}00020         \mbox{\hyperlink{delay_8h_a1d3146414c54513a72a7596c2f884c07}{Delay\_ms}}(2000);}
+\DoxyCodeLine{\Hypertarget{test__servo_8c_source_l00021}00021         \mbox{\hyperlink{servo__motor_8h_a57498449eba647878b2f088f68a39bf3}{Servo\_Angle}}(GPIOB,6,135);}
+\DoxyCodeLine{\Hypertarget{test__servo_8c_source_l00022}00022         \mbox{\hyperlink{delay_8h_a1d3146414c54513a72a7596c2f884c07}{Delay\_ms}}(2000);}
+\DoxyCodeLine{\Hypertarget{test__servo_8c_source_l00023}00023         \mbox{\hyperlink{servo__motor_8h_a57498449eba647878b2f088f68a39bf3}{Servo\_Angle}}(GPIOB,6,180);}
+\DoxyCodeLine{\Hypertarget{test__servo_8c_source_l00024}00024         \mbox{\hyperlink{delay_8h_a1d3146414c54513a72a7596c2f884c07}{Delay\_ms}}(2000);}
+\DoxyCodeLine{\Hypertarget{test__servo_8c_source_l00025}00025     \}}
+\DoxyCodeLine{\Hypertarget{test__servo_8c_source_l00026}00026 }
+\DoxyCodeLine{\Hypertarget{test__servo_8c_source_l00027}00027 \}}
+
+\end{DoxyCode}

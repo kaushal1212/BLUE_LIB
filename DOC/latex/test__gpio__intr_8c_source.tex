@@ -1,0 +1,36 @@
+\hypertarget{test__gpio__intr_8c_source}{}\doxysection{test\+\_\+gpio\+\_\+intr.\+c}
+\label{test__gpio__intr_8c_source}\index{BLUE\_LIB/test/test\_gpio\_intr.c@{BLUE\_LIB/test/test\_gpio\_intr.c}}
+\mbox{\hyperlink{test__gpio__intr_8c}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{test__gpio__intr_8c_source_l00001}00001 }
+\DoxyCodeLine{\Hypertarget{test__gpio__intr_8c_source_l00011}00011 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{stm32f10x_8h}{stm32f10x.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{test__gpio__intr_8c_source_l00012}00012 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{gpio_8h}{gpio.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{test__gpio__intr_8c_source_l00013}00013 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{delay_8h}{delay.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{test__gpio__intr_8c_source_l00014}00014  }
+\DoxyCodeLine{\Hypertarget{test__gpio__intr_8c_source_l00015}00015  \textcolor{keywordtype}{void} EXTI15\_10\_IRQHandler( \textcolor{keywordtype}{void})\{}
+\DoxyCodeLine{\Hypertarget{test__gpio__intr_8c_source_l00016}00016   }
+\DoxyCodeLine{\Hypertarget{test__gpio__intr_8c_source_l00017}00017   \textcolor{keywordflow}{if}(EXTI-\/>PR \&\& \mbox{\hyperlink{group__Peripheral__Registers__Bits__Definition_ga149f9d9d6c1aab867734b59db1117c41}{EXTI\_PR\_PR15}})\{}
+\DoxyCodeLine{\Hypertarget{test__gpio__intr_8c_source_l00018}00018         EXTI-\/>PR |= \mbox{\hyperlink{group__Peripheral__Registers__Bits__Definition_ga149f9d9d6c1aab867734b59db1117c41}{EXTI\_PR\_PR15}};}
+\DoxyCodeLine{\Hypertarget{test__gpio__intr_8c_source_l00019}00019         \mbox{\hyperlink{gpio_8h_a8d37acdbd62ca8c259b8861208e007df}{GPIO\_Toggle}}(GPIOA,5);}
+\DoxyCodeLine{\Hypertarget{test__gpio__intr_8c_source_l00020}00020   \}}
+\DoxyCodeLine{\Hypertarget{test__gpio__intr_8c_source_l00021}00021  }
+\DoxyCodeLine{\Hypertarget{test__gpio__intr_8c_source_l00022}00022  \}}
+\DoxyCodeLine{\Hypertarget{test__gpio__intr_8c_source_l00023}00023 }
+\DoxyCodeLine{\Hypertarget{test__gpio__intr_8c_source_l00024}\mbox{\hyperlink{test__gpio__intr_8c_ae66f6b31b5ad750f1fe042a706a4e3d4}{00024}} \textcolor{keywordtype}{int} \mbox{\hyperlink{test__gpio__intr_8c_ae66f6b31b5ad750f1fe042a706a4e3d4}{main}}()\{}
+\DoxyCodeLine{\Hypertarget{test__gpio__intr_8c_source_l00025}00025 }
+\DoxyCodeLine{\Hypertarget{test__gpio__intr_8c_source_l00026}00026     \mbox{\hyperlink{gpio_8h_a7cad1c2a86a985e18d1224fd980b504c}{GPIO\_Init}}(GPIOA,5,OUTPUT,PUSHPULL);}
+\DoxyCodeLine{\Hypertarget{test__gpio__intr_8c_source_l00027}00027     }
+\DoxyCodeLine{\Hypertarget{test__gpio__intr_8c_source_l00028}00028 }
+\DoxyCodeLine{\Hypertarget{test__gpio__intr_8c_source_l00029}00029     \mbox{\hyperlink{gpio_8h_a514d27b265cd6a37452a2a56d118c590}{GPIO\_Set}}(GPIOA,5);}
+\DoxyCodeLine{\Hypertarget{test__gpio__intr_8c_source_l00030}00030 }
+\DoxyCodeLine{\Hypertarget{test__gpio__intr_8c_source_l00031}00031     GPIO\_EXTI\_Init(GPIOC,15);}
+\DoxyCodeLine{\Hypertarget{test__gpio__intr_8c_source_l00032}00032 }
+\DoxyCodeLine{\Hypertarget{test__gpio__intr_8c_source_l00033}00033     }
+\DoxyCodeLine{\Hypertarget{test__gpio__intr_8c_source_l00034}00034     \textcolor{keywordflow}{while}(1);}
+\DoxyCodeLine{\Hypertarget{test__gpio__intr_8c_source_l00035}00035 }
+\DoxyCodeLine{\Hypertarget{test__gpio__intr_8c_source_l00036}00036 }
+\DoxyCodeLine{\Hypertarget{test__gpio__intr_8c_source_l00037}00037 }
+\DoxyCodeLine{\Hypertarget{test__gpio__intr_8c_source_l00038}00038     \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{\Hypertarget{test__gpio__intr_8c_source_l00039}00039 \}}
+
+\end{DoxyCode}

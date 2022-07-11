@@ -1,0 +1,158 @@
+\hypertarget{i2c_8c_source}{}\doxysection{i2c.\+c}
+\label{i2c_8c_source}\index{BLUE\_LIB/src/i2c.c@{BLUE\_LIB/src/i2c.c}}
+\mbox{\hyperlink{i2c_8c}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{i2c_8c_source_l00001}00001 }
+\DoxyCodeLine{\Hypertarget{i2c_8c_source_l00017}00017 \textcolor{preprocessor}{\#include <stdint.h>}}
+\DoxyCodeLine{\Hypertarget{i2c_8c_source_l00018}00018 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{stm32f10x_8h}{stm32f10x.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{i2c_8c_source_l00019}00019 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{gpio_8h}{gpio.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{i2c_8c_source_l00020}00020 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{i2c_8h}{i2c.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{i2c_8c_source_l00021}00021 }
+\DoxyCodeLine{\Hypertarget{i2c_8c_source_l00022}00022 }
+\DoxyCodeLine{\Hypertarget{i2c_8c_source_l00023}\mbox{\hyperlink{i2c_8h_ac212a92c15bb897f66d95720a851a414}{00023}} \textcolor{keywordtype}{void} \mbox{\hyperlink{i2c_8c_ac212a92c15bb897f66d95720a851a414}{I2C\_Init}}(\mbox{\hyperlink{structI2C__TypeDef}{I2C\_TypeDef}} *I2Cx , uint8\_t speed\_mode)\{}
+\DoxyCodeLine{\Hypertarget{i2c_8c_source_l00024}00024 }
+\DoxyCodeLine{\Hypertarget{i2c_8c_source_l00025}00025     \textcolor{comment}{//Enable clock for Alternate function IO }}
+\DoxyCodeLine{\Hypertarget{i2c_8c_source_l00026}00026     RCC-\/>APB2ENR |= (\mbox{\hyperlink{group__Peripheral__Registers__Bits__Definition_gaf67d9fc402ce254dd914525bee7361a6}{RCC\_APB2ENR\_AFIOEN}});}
+\DoxyCodeLine{\Hypertarget{i2c_8c_source_l00027}00027 }
+\DoxyCodeLine{\Hypertarget{i2c_8c_source_l00028}00028     \textcolor{keywordflow}{if}(I2Cx == I2C1)\{}
+\DoxyCodeLine{\Hypertarget{i2c_8c_source_l00029}00029 }
+\DoxyCodeLine{\Hypertarget{i2c_8c_source_l00030}00030         \textcolor{comment}{// Enable clock for I2C1 }}
+\DoxyCodeLine{\Hypertarget{i2c_8c_source_l00031}00031         RCC-\/>APB1ENR |= (\mbox{\hyperlink{group__Peripheral__Registers__Bits__Definition_ga5ca3afe0c517702b2d1366b692c8db0e}{RCC\_APB1ENR\_I2C1EN}});}
+\DoxyCodeLine{\Hypertarget{i2c_8c_source_l00032}00032 }
+\DoxyCodeLine{\Hypertarget{i2c_8c_source_l00033}00033         \textcolor{comment}{// GPIO-\/Pin initialization for I2C1}}
+\DoxyCodeLine{\Hypertarget{i2c_8c_source_l00034}00034         \mbox{\hyperlink{gpio_8h_a7cad1c2a86a985e18d1224fd980b504c}{GPIO\_Init}}(GPIOB,6,OUTPUT\_50,AF\_OPENDRAIN); \textcolor{comment}{// SCL1 pin -\/ B6 -\/ (Serial Clock) }}
+\DoxyCodeLine{\Hypertarget{i2c_8c_source_l00035}00035         \mbox{\hyperlink{gpio_8h_a7cad1c2a86a985e18d1224fd980b504c}{GPIO\_Init}}(GPIOB,7,OUTPUT\_50,AF\_OPENDRAIN); \textcolor{comment}{// SDA1 pin -\/ B7 -\/ (Serial Data)}}
+\DoxyCodeLine{\Hypertarget{i2c_8c_source_l00036}00036 }
+\DoxyCodeLine{\Hypertarget{i2c_8c_source_l00037}00037     \}}
+\DoxyCodeLine{\Hypertarget{i2c_8c_source_l00038}00038     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(I2Cx == I2C2)\{}
+\DoxyCodeLine{\Hypertarget{i2c_8c_source_l00039}00039         }
+\DoxyCodeLine{\Hypertarget{i2c_8c_source_l00040}00040         \textcolor{comment}{// Enable clock for I2C2 }}
+\DoxyCodeLine{\Hypertarget{i2c_8c_source_l00041}00041         RCC-\/>APB1ENR |= (\mbox{\hyperlink{group__Peripheral__Registers__Bits__Definition_gafd7d1c3c7dbe20aea87a694ae15840f6}{RCC\_APB1ENR\_I2C2EN}});}
+\DoxyCodeLine{\Hypertarget{i2c_8c_source_l00042}00042 }
+\DoxyCodeLine{\Hypertarget{i2c_8c_source_l00043}00043         \textcolor{comment}{// GPIO-\/Pin initialization for I2C1}}
+\DoxyCodeLine{\Hypertarget{i2c_8c_source_l00044}00044         \mbox{\hyperlink{gpio_8h_a7cad1c2a86a985e18d1224fd980b504c}{GPIO\_Init}}(GPIOB,10,OUTPUT\_50,AF\_OPENDRAIN); \textcolor{comment}{// SCL2 pin -\/ B10 -\/ (Serial Clock) }}
+\DoxyCodeLine{\Hypertarget{i2c_8c_source_l00045}00045         \mbox{\hyperlink{gpio_8h_a7cad1c2a86a985e18d1224fd980b504c}{GPIO\_Init}}(GPIOB,11,OUTPUT\_50,AF\_OPENDRAIN); \textcolor{comment}{// SDA2 pin -\/ B11 -\/ (Serial Data)}}
+\DoxyCodeLine{\Hypertarget{i2c_8c_source_l00046}00046     \}}
+\DoxyCodeLine{\Hypertarget{i2c_8c_source_l00047}00047 }
+\DoxyCodeLine{\Hypertarget{i2c_8c_source_l00048}00048     \textcolor{comment}{// Reset the I2C}}
+\DoxyCodeLine{\Hypertarget{i2c_8c_source_l00049}00049 }
+\DoxyCodeLine{\Hypertarget{i2c_8c_source_l00050}00050     I2Cx-\/>CR1 |= (\mbox{\hyperlink{group__Peripheral__Registers__Bits__Definition_ga8dc661ef13da02e5bcb943f2003d576d}{I2C\_CR1\_SWRST}});}
+\DoxyCodeLine{\Hypertarget{i2c_8c_source_l00051}00051     I2Cx-\/>CR1 \&= \string~(\mbox{\hyperlink{group__Peripheral__Registers__Bits__Definition_ga8dc661ef13da02e5bcb943f2003d576d}{I2C\_CR1\_SWRST}});}
+\DoxyCodeLine{\Hypertarget{i2c_8c_source_l00052}00052 }
+\DoxyCodeLine{\Hypertarget{i2c_8c_source_l00053}00053     \textcolor{comment}{//Set the I2C clock}}
+\DoxyCodeLine{\Hypertarget{i2c_8c_source_l00054}00054 }
+\DoxyCodeLine{\Hypertarget{i2c_8c_source_l00055}00055     I2Cx-\/>CR2 |= (36<<0); \textcolor{comment}{// 36 MHz -\/> PCLK1 Frequency }}
+\DoxyCodeLine{\Hypertarget{i2c_8c_source_l00056}00056 }
+\DoxyCodeLine{\Hypertarget{i2c_8c_source_l00057}00057     \textcolor{keywordflow}{if}(speed\_mode == I2C\_SM)\{  \textcolor{comment}{// Standard Mode}}
+\DoxyCodeLine{\Hypertarget{i2c_8c_source_l00058}00058 }
+\DoxyCodeLine{\Hypertarget{i2c_8c_source_l00059}00059         I2Cx-\/>CCR |= (0xB4<<0);}
+\DoxyCodeLine{\Hypertarget{i2c_8c_source_l00060}00060         I2Cx-\/>TRISE |= 36 + 1; \textcolor{comment}{// TRISE = Tr(SCL)/Tpclk1 + 1}}
+\DoxyCodeLine{\Hypertarget{i2c_8c_source_l00061}00061     \}}
+\DoxyCodeLine{\Hypertarget{i2c_8c_source_l00062}00062     \textcolor{keywordflow}{else}\{                      \textcolor{comment}{// Fast Mode}}
+\DoxyCodeLine{\Hypertarget{i2c_8c_source_l00063}00063 }
+\DoxyCodeLine{\Hypertarget{i2c_8c_source_l00064}00064         I2Cx-\/>CCR |= (0x21<<0);}
+\DoxyCodeLine{\Hypertarget{i2c_8c_source_l00065}00065         I2Cx-\/>CCR |= (\mbox{\hyperlink{group__Peripheral__Registers__Bits__Definition_gaea64e5d7eba609ac9a84964bc0bc2def}{I2C\_CCR\_FS}});}
+\DoxyCodeLine{\Hypertarget{i2c_8c_source_l00066}00066         I2Cx-\/>TRISE |= 11 + 1; \textcolor{comment}{// // TRISE = Tr(SCL)/Tpclk1 + 1}}
+\DoxyCodeLine{\Hypertarget{i2c_8c_source_l00067}00067     \}}
+\DoxyCodeLine{\Hypertarget{i2c_8c_source_l00068}00068 }
+\DoxyCodeLine{\Hypertarget{i2c_8c_source_l00069}00069     \textcolor{comment}{// Enable i2c peripheral}}
+\DoxyCodeLine{\Hypertarget{i2c_8c_source_l00070}00070 }
+\DoxyCodeLine{\Hypertarget{i2c_8c_source_l00071}00071     I2Cx-\/>CR1 |= (\mbox{\hyperlink{group__Peripheral__Registers__Bits__Definition_ga953b0d38414808db79da116842ed3262}{I2C\_CR1\_PE}});}
+\DoxyCodeLine{\Hypertarget{i2c_8c_source_l00072}00072     }
+\DoxyCodeLine{\Hypertarget{i2c_8c_source_l00073}00073 \}}
+\DoxyCodeLine{\Hypertarget{i2c_8c_source_l00074}00074 }
+\DoxyCodeLine{\Hypertarget{i2c_8c_source_l00075}00075 }
+\DoxyCodeLine{\Hypertarget{i2c_8c_source_l00076}\mbox{\hyperlink{i2c_8h_afb1fd2c4f948fc05ee3def5d3be290a5}{00076}} \textcolor{keywordtype}{void} \mbox{\hyperlink{i2c_8c_afb1fd2c4f948fc05ee3def5d3be290a5}{I2C\_Start}}(\mbox{\hyperlink{structI2C__TypeDef}{I2C\_TypeDef}} *I2Cx)\{}
+\DoxyCodeLine{\Hypertarget{i2c_8c_source_l00077}00077 }
+\DoxyCodeLine{\Hypertarget{i2c_8c_source_l00078}00078     I2Cx-\/>CR1 |= (\mbox{\hyperlink{group__Peripheral__Registers__Bits__Definition_gaf933b105259a4bc46a957576adb8d96d}{I2C\_CR1\_ACK}}); \textcolor{comment}{// Enable Acknowledgement bit}}
+\DoxyCodeLine{\Hypertarget{i2c_8c_source_l00079}00079     I2Cx-\/>CR1 |= (\mbox{\hyperlink{group__Peripheral__Registers__Bits__Definition_ga2ca7f18dd5bc1130dbefae4ff8736143}{I2C\_CR1\_START}}); \textcolor{comment}{// send start condition}}
+\DoxyCodeLine{\Hypertarget{i2c_8c_source_l00080}00080 }
+\DoxyCodeLine{\Hypertarget{i2c_8c_source_l00081}00081     \textcolor{keywordflow}{while}(!(I2Cx-\/>SR1 \& \mbox{\hyperlink{group__Peripheral__Registers__Bits__Definition_ga6935c920da59d755d0cf834548a70ec4}{I2C\_SR1\_SB}})); \textcolor{comment}{// wait for start condition to get generated}}
+\DoxyCodeLine{\Hypertarget{i2c_8c_source_l00082}00082 \}}
+\DoxyCodeLine{\Hypertarget{i2c_8c_source_l00083}00083 }
+\DoxyCodeLine{\Hypertarget{i2c_8c_source_l00084}\mbox{\hyperlink{i2c_8h_a36d4a2b114b3676c6280f1ec6562efe1}{00084}} \textcolor{keywordtype}{void} \mbox{\hyperlink{i2c_8c_a36d4a2b114b3676c6280f1ec6562efe1}{I2C\_Stop}}(\mbox{\hyperlink{structI2C__TypeDef}{I2C\_TypeDef}} *I2Cx)\{}
+\DoxyCodeLine{\Hypertarget{i2c_8c_source_l00085}00085 }
+\DoxyCodeLine{\Hypertarget{i2c_8c_source_l00086}00086     I2Cx-\/>CR1 |= (\mbox{\hyperlink{group__Peripheral__Registers__Bits__Definition_gace70293f3dfa24d448b600fc58e45223}{I2C\_CR1\_STOP}});}
+\DoxyCodeLine{\Hypertarget{i2c_8c_source_l00087}00087 }
+\DoxyCodeLine{\Hypertarget{i2c_8c_source_l00088}00088 \}}
+\DoxyCodeLine{\Hypertarget{i2c_8c_source_l00089}00089 }
+\DoxyCodeLine{\Hypertarget{i2c_8c_source_l00090}\mbox{\hyperlink{i2c_8h_ab73c17b2184b5b8f0a08ec585b87ed94}{00090}} \textcolor{keywordtype}{void} \mbox{\hyperlink{i2c_8c_ab73c17b2184b5b8f0a08ec585b87ed94}{I2C\_SendAddress}}(\mbox{\hyperlink{structI2C__TypeDef}{I2C\_TypeDef}} *I2Cx ,uint8\_t address)\{}
+\DoxyCodeLine{\Hypertarget{i2c_8c_source_l00091}00091 }
+\DoxyCodeLine{\Hypertarget{i2c_8c_source_l00092}00092     I2Cx-\/>DR = address;  \textcolor{comment}{// send address to data register}}
+\DoxyCodeLine{\Hypertarget{i2c_8c_source_l00093}00093     }
+\DoxyCodeLine{\Hypertarget{i2c_8c_source_l00094}00094     \textcolor{keywordflow}{while}(!(I2Cx-\/>SR1 \& \mbox{\hyperlink{group__Peripheral__Registers__Bits__Definition_ga3db361a4d9dd84b187085a11d933b45d}{I2C\_SR1\_ADDR}})); \textcolor{comment}{// wait for End of Address transmission }}
+\DoxyCodeLine{\Hypertarget{i2c_8c_source_l00095}00095    }
+\DoxyCodeLine{\Hypertarget{i2c_8c_source_l00096}00096     uint8\_t tmp = I2Cx-\/>SR1; \textcolor{comment}{// read both status register to clear ADDR bit}}
+\DoxyCodeLine{\Hypertarget{i2c_8c_source_l00097}00097     tmp = I2Cx-\/>SR2;}
+\DoxyCodeLine{\Hypertarget{i2c_8c_source_l00098}00098 \}}
+\DoxyCodeLine{\Hypertarget{i2c_8c_source_l00099}00099 }
+\DoxyCodeLine{\Hypertarget{i2c_8c_source_l00100}00100 \textcolor{keywordtype}{void} I2C\_Write(\mbox{\hyperlink{structI2C__TypeDef}{I2C\_TypeDef}} *I2Cx,uint8\_t data)\{}
+\DoxyCodeLine{\Hypertarget{i2c_8c_source_l00101}00101 }
+\DoxyCodeLine{\Hypertarget{i2c_8c_source_l00102}00102     \textcolor{keywordflow}{while}(!(I2Cx-\/>SR1 \& \mbox{\hyperlink{group__Peripheral__Registers__Bits__Definition_gafdc4da49c163910203255e384591b6f7}{I2C\_SR1\_TXE}}));}
+\DoxyCodeLine{\Hypertarget{i2c_8c_source_l00103}00103 }
+\DoxyCodeLine{\Hypertarget{i2c_8c_source_l00104}00104     I2Cx-\/>DR = data;}
+\DoxyCodeLine{\Hypertarget{i2c_8c_source_l00105}00105 }
+\DoxyCodeLine{\Hypertarget{i2c_8c_source_l00106}00106     \textcolor{keywordflow}{while}(!(I2Cx-\/>SR1 \& \mbox{\hyperlink{group__Peripheral__Registers__Bits__Definition_gafb279f85d78cfe5abd3eeb0b40a65ab1}{I2C\_SR1\_BTF}}));}
+\DoxyCodeLine{\Hypertarget{i2c_8c_source_l00107}00107 }
+\DoxyCodeLine{\Hypertarget{i2c_8c_source_l00108}00108 \}}
+\DoxyCodeLine{\Hypertarget{i2c_8c_source_l00109}00109 }
+\DoxyCodeLine{\Hypertarget{i2c_8c_source_l00110}00110 \textcolor{keywordtype}{void} I2C\_SendString(\mbox{\hyperlink{structI2C__TypeDef}{I2C\_TypeDef}} *I2Cx,\textcolor{keywordtype}{char} *str,uint8\_t size)\{}
+\DoxyCodeLine{\Hypertarget{i2c_8c_source_l00111}00111 }
+\DoxyCodeLine{\Hypertarget{i2c_8c_source_l00112}00112     \textcolor{keywordflow}{while}(!(I2Cx-\/>SR1 \& \mbox{\hyperlink{group__Peripheral__Registers__Bits__Definition_gafdc4da49c163910203255e384591b6f7}{I2C\_SR1\_TXE}}));}
+\DoxyCodeLine{\Hypertarget{i2c_8c_source_l00113}00113 }
+\DoxyCodeLine{\Hypertarget{i2c_8c_source_l00114}00114     \textcolor{keywordflow}{while}(size-\/-\/)\{}
+\DoxyCodeLine{\Hypertarget{i2c_8c_source_l00115}00115         }
+\DoxyCodeLine{\Hypertarget{i2c_8c_source_l00116}00116         I2C\_Write(I2Cx,(uint8\_t)*str);}
+\DoxyCodeLine{\Hypertarget{i2c_8c_source_l00117}00117         str++;}
+\DoxyCodeLine{\Hypertarget{i2c_8c_source_l00118}00118     \}}
+\DoxyCodeLine{\Hypertarget{i2c_8c_source_l00119}00119 }
+\DoxyCodeLine{\Hypertarget{i2c_8c_source_l00120}00120 \}}
+\DoxyCodeLine{\Hypertarget{i2c_8c_source_l00121}00121 }
+\DoxyCodeLine{\Hypertarget{i2c_8c_source_l00122}00122 \textcolor{keywordtype}{void} I2C\_Read(\mbox{\hyperlink{structI2C__TypeDef}{I2C\_TypeDef}} *I2Cx,uint8\_t reg\_addr,\textcolor{keywordtype}{char} *buff , uint8\_t size)\{}
+\DoxyCodeLine{\Hypertarget{i2c_8c_source_l00123}00123 }
+\DoxyCodeLine{\Hypertarget{i2c_8c_source_l00124}00124     uint8\_t received  = 0;}
+\DoxyCodeLine{\Hypertarget{i2c_8c_source_l00125}00125 }
+\DoxyCodeLine{\Hypertarget{i2c_8c_source_l00126}00126     \textcolor{keywordflow}{if}(size == 1)\{}
+\DoxyCodeLine{\Hypertarget{i2c_8c_source_l00127}00127 }
+\DoxyCodeLine{\Hypertarget{i2c_8c_source_l00128}00128         I2Cx-\/>DR = reg\_addr;}
+\DoxyCodeLine{\Hypertarget{i2c_8c_source_l00129}00129         \textcolor{keywordflow}{while}(!(I2Cx-\/>SR1 \& \mbox{\hyperlink{group__Peripheral__Registers__Bits__Definition_ga3db361a4d9dd84b187085a11d933b45d}{I2C\_SR1\_ADDR}}));}
+\DoxyCodeLine{\Hypertarget{i2c_8c_source_l00130}00130 }
+\DoxyCodeLine{\Hypertarget{i2c_8c_source_l00131}00131         I2Cx-\/>CR1 \&= \string~(\mbox{\hyperlink{group__Peripheral__Registers__Bits__Definition_gaf933b105259a4bc46a957576adb8d96d}{I2C\_CR1\_ACK}}); \textcolor{comment}{//clear ACK bit}}
+\DoxyCodeLine{\Hypertarget{i2c_8c_source_l00132}00132         int8\_t temp = I2Cx-\/>SR1 | I2Cx-\/>SR2; \textcolor{comment}{// read both status register to clear ADDR bit}}
+\DoxyCodeLine{\Hypertarget{i2c_8c_source_l00133}00133 }
+\DoxyCodeLine{\Hypertarget{i2c_8c_source_l00134}00134         I2Cx-\/>CR1 |= (\mbox{\hyperlink{group__Peripheral__Registers__Bits__Definition_gace70293f3dfa24d448b600fc58e45223}{I2C\_CR1\_STOP}});}
+\DoxyCodeLine{\Hypertarget{i2c_8c_source_l00135}00135 }
+\DoxyCodeLine{\Hypertarget{i2c_8c_source_l00136}00136         \textcolor{keywordflow}{while}(!(I2Cx-\/>SR1 \& \mbox{\hyperlink{group__Peripheral__Registers__Bits__Definition_gaf6ebe33c992611bc2e25bbb01c1441a5}{I2C\_SR1\_RXNE}}));}
+\DoxyCodeLine{\Hypertarget{i2c_8c_source_l00137}00137         buff[0] = I2Cx-\/>DR;}
+\DoxyCodeLine{\Hypertarget{i2c_8c_source_l00138}00138     \}}
+\DoxyCodeLine{\Hypertarget{i2c_8c_source_l00139}00139     \textcolor{keywordflow}{else}\{}
+\DoxyCodeLine{\Hypertarget{i2c_8c_source_l00140}00140 }
+\DoxyCodeLine{\Hypertarget{i2c_8c_source_l00141}00141         I2Cx-\/>DR = reg\_addr;}
+\DoxyCodeLine{\Hypertarget{i2c_8c_source_l00142}00142         \textcolor{keywordflow}{while}(!(I2Cx-\/>SR1 \& \mbox{\hyperlink{group__Peripheral__Registers__Bits__Definition_ga3db361a4d9dd84b187085a11d933b45d}{I2C\_SR1\_ADDR}}));}
+\DoxyCodeLine{\Hypertarget{i2c_8c_source_l00143}00143         int8\_t temp = I2Cx-\/>SR1 | I2Cx-\/>SR2; \textcolor{comment}{// read both status register to clear ADDR bit}}
+\DoxyCodeLine{\Hypertarget{i2c_8c_source_l00144}00144 }
+\DoxyCodeLine{\Hypertarget{i2c_8c_source_l00145}00145         \textcolor{keywordflow}{while}(received < size-\/2)\{}
+\DoxyCodeLine{\Hypertarget{i2c_8c_source_l00146}00146 }
+\DoxyCodeLine{\Hypertarget{i2c_8c_source_l00147}00147             \textcolor{keywordflow}{while}(!(I2Cx-\/>SR1 \& \mbox{\hyperlink{group__Peripheral__Registers__Bits__Definition_gaf6ebe33c992611bc2e25bbb01c1441a5}{I2C\_SR1\_RXNE}}));}
+\DoxyCodeLine{\Hypertarget{i2c_8c_source_l00148}00148             buff[received++] = I2Cx-\/>DR;}
+\DoxyCodeLine{\Hypertarget{i2c_8c_source_l00149}00149 }
+\DoxyCodeLine{\Hypertarget{i2c_8c_source_l00150}00150             I2Cx-\/>CR1 |= (\mbox{\hyperlink{group__Peripheral__Registers__Bits__Definition_gaf933b105259a4bc46a957576adb8d96d}{I2C\_CR1\_ACK}}); \textcolor{comment}{//send the acknowledge bit}}
+\DoxyCodeLine{\Hypertarget{i2c_8c_source_l00151}00151 }
+\DoxyCodeLine{\Hypertarget{i2c_8c_source_l00152}00152         \}}
+\DoxyCodeLine{\Hypertarget{i2c_8c_source_l00153}00153 }
+\DoxyCodeLine{\Hypertarget{i2c_8c_source_l00154}00154         \textcolor{keywordflow}{while}(!(I2Cx-\/>SR1 \& \mbox{\hyperlink{group__Peripheral__Registers__Bits__Definition_gaf6ebe33c992611bc2e25bbb01c1441a5}{I2C\_SR1\_RXNE}})); \textcolor{comment}{// wait till rx buffer is full}}
+\DoxyCodeLine{\Hypertarget{i2c_8c_source_l00155}00155 }
+\DoxyCodeLine{\Hypertarget{i2c_8c_source_l00156}00156         buff[received++] = I2Cx-\/>DR;}
+\DoxyCodeLine{\Hypertarget{i2c_8c_source_l00157}00157 }
+\DoxyCodeLine{\Hypertarget{i2c_8c_source_l00158}00158         I2Cx-\/>CR1 \&= \string~(\mbox{\hyperlink{group__Peripheral__Registers__Bits__Definition_gaf933b105259a4bc46a957576adb8d96d}{I2C\_CR1\_ACK}}); \textcolor{comment}{//clear ACK bit}}
+\DoxyCodeLine{\Hypertarget{i2c_8c_source_l00159}00159         I2Cx-\/>CR1 |= (\mbox{\hyperlink{group__Peripheral__Registers__Bits__Definition_gace70293f3dfa24d448b600fc58e45223}{I2C\_CR1\_STOP}});}
+\DoxyCodeLine{\Hypertarget{i2c_8c_source_l00160}00160 }
+\DoxyCodeLine{\Hypertarget{i2c_8c_source_l00161}00161         \textcolor{keywordflow}{while}(!(I2Cx-\/>SR1 \& \mbox{\hyperlink{group__Peripheral__Registers__Bits__Definition_gaf6ebe33c992611bc2e25bbb01c1441a5}{I2C\_SR1\_RXNE}}));}
+\DoxyCodeLine{\Hypertarget{i2c_8c_source_l00162}00162 }
+\DoxyCodeLine{\Hypertarget{i2c_8c_source_l00163}00163         buff[received] = I2Cx-\/>DR;}
+\DoxyCodeLine{\Hypertarget{i2c_8c_source_l00164}00164 }
+\DoxyCodeLine{\Hypertarget{i2c_8c_source_l00165}00165     \}}
+\DoxyCodeLine{\Hypertarget{i2c_8c_source_l00166}00166 \}}
+\DoxyCodeLine{\Hypertarget{i2c_8c_source_l00167}00167 }
+
+\end{DoxyCode}

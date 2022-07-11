@@ -1,0 +1,111 @@
+\hypertarget{servo__motor_8c}{}\doxysection{BLUE\+\_\+\+LIB/src/servo\+\_\+motor.c File Reference}
+\label{servo__motor_8c}\index{BLUE\_LIB/src/servo\_motor.c@{BLUE\_LIB/src/servo\_motor.c}}
+
+
+
+\begin{DoxyItemize}
+\item Abstraction of Servo Initialization, angle controlling , 
+\end{DoxyItemize} 
+
+
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+{\ttfamily \#include $<$stddef.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}gpio.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}stm32f10x.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}pwm.\+h\char`\"{}}\newline
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{servo__motor_8c_a120bda9ad90f946931e75596c67408e0}{ARR\+\_\+\+VAL}}~1000U
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{servo__motor_8c_a795753996e4d4f9dcf62f59f5f9efec1}{Servo\+\_\+\+Init}} (\mbox{\hyperlink{structGPIO__TypeDef}{GPIO\+\_\+\+Type\+Def}} $\ast$GPIOx, uint8\+\_\+t pin)
+\begin{DoxyCompactList}\small\item\em Function to Initialize servo and set at 0 angle. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{servo__motor_8c_a57498449eba647878b2f088f68a39bf3}{Servo\+\_\+\+Angle}} (\mbox{\hyperlink{structGPIO__TypeDef}{GPIO\+\_\+\+Type\+Def}} $\ast$GPIOx, uint8\+\_\+t pin, uint8\+\_\+t angle)
+\begin{DoxyCompactList}\small\item\em Function to set servo angle. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+\begin{DoxyItemize}
+\item Abstraction of Servo Initialization, angle controlling , 
+\end{DoxyItemize}
+
+\begin{DoxyAuthor}{Author}
+Kaushal Dekivadia (\href{mailto:dekivadiakaushal1212@gmail.com}{\texttt{ dekivadiakaushal1212@gmail.\+com}})
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+0.\+1 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2022-\/03-\/06
+\end{DoxyDate}
+\begin{DoxyCopyright}{Copyright}
+Copyright (c) 2022 
+\end{DoxyCopyright}
+
+
+Definition in file \mbox{\hyperlink{servo__motor_8c_source}{servo\+\_\+motor.\+c}}.
+
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{servo__motor_8c_a120bda9ad90f946931e75596c67408e0}\label{servo__motor_8c_a120bda9ad90f946931e75596c67408e0}} 
+\index{servo\_motor.c@{servo\_motor.c}!ARR\_VAL@{ARR\_VAL}}
+\index{ARR\_VAL@{ARR\_VAL}!servo\_motor.c@{servo\_motor.c}}
+\doxysubsubsection{\texorpdfstring{ARR\_VAL}{ARR\_VAL}}
+{\footnotesize\ttfamily \#define ARR\+\_\+\+VAL~1000U}
+
+
+
+Definition at line \mbox{\hyperlink{servo__motor_8c_source_l00020}{20}} of file \mbox{\hyperlink{servo__motor_8c_source}{servo\+\_\+motor.\+c}}.
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{servo__motor_8c_a57498449eba647878b2f088f68a39bf3}\label{servo__motor_8c_a57498449eba647878b2f088f68a39bf3}} 
+\index{servo\_motor.c@{servo\_motor.c}!Servo\_Angle@{Servo\_Angle}}
+\index{Servo\_Angle@{Servo\_Angle}!servo\_motor.c@{servo\_motor.c}}
+\doxysubsubsection{\texorpdfstring{Servo\_Angle()}{Servo\_Angle()}}
+{\footnotesize\ttfamily void Servo\+\_\+\+Angle (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structGPIO__TypeDef}{GPIO\+\_\+\+Type\+Def}} $\ast$}]{GPIOx,  }\item[{uint8\+\_\+t}]{pin,  }\item[{uint8\+\_\+t}]{angle }\end{DoxyParamCaption})}
+
+
+
+Function to set servo angle. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em GPIOx} & -\/ Port of GPIO \\
+\hline
+{\em pin} & -\/ Pin of GPIO \\
+\hline
+{\em angle} & -\/ angle of servo shaft \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{servo__motor_8c_source_l00038}{38}} of file \mbox{\hyperlink{servo__motor_8c_source}{servo\+\_\+motor.\+c}}.
+
+\mbox{\Hypertarget{servo__motor_8c_a795753996e4d4f9dcf62f59f5f9efec1}\label{servo__motor_8c_a795753996e4d4f9dcf62f59f5f9efec1}} 
+\index{servo\_motor.c@{servo\_motor.c}!Servo\_Init@{Servo\_Init}}
+\index{Servo\_Init@{Servo\_Init}!servo\_motor.c@{servo\_motor.c}}
+\doxysubsubsection{\texorpdfstring{Servo\_Init()}{Servo\_Init()}}
+{\footnotesize\ttfamily void Servo\+\_\+\+Init (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structGPIO__TypeDef}{GPIO\+\_\+\+Type\+Def}} $\ast$}]{GPIOx,  }\item[{uint8\+\_\+t}]{pin }\end{DoxyParamCaption})}
+
+
+
+Function to Initialize servo and set at 0 angle. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em GPIOx} & -\/ Port of GPIO \\
+\hline
+{\em pin} & -\/ Pin of GPIO \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{servo__motor_8c_source_l00022}{22}} of file \mbox{\hyperlink{servo__motor_8c_source}{servo\+\_\+motor.\+c}}.
+

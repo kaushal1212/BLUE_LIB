@@ -1,0 +1,32 @@
+\hypertarget{pwm_8h_source}{}\doxysection{pwm.\+h}
+\label{pwm_8h_source}\index{BLUE\_LIB/include/common/pwm.h@{BLUE\_LIB/include/common/pwm.h}}
+\mbox{\hyperlink{pwm_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{pwm_8h_source_l00001}00001 }
+\DoxyCodeLine{\Hypertarget{pwm_8h_source_l00015}00015 \textcolor{preprocessor}{\#ifndef \_\_PWM\_H}}
+\DoxyCodeLine{\Hypertarget{pwm_8h_source_l00016}00016 \textcolor{preprocessor}{\#define \_\_PWM\_H}}
+\DoxyCodeLine{\Hypertarget{pwm_8h_source_l00017}00017 }
+\DoxyCodeLine{\Hypertarget{pwm_8h_source_l00018}00018 \textcolor{preprocessor}{\#include <stdint.h>}}
+\DoxyCodeLine{\Hypertarget{pwm_8h_source_l00019}00019 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{stm32f10x_8h}{stm32f10x.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{pwm_8h_source_l00020}00020 }
+\DoxyCodeLine{\Hypertarget{pwm_8h_source_l00021}00021 }
+\DoxyCodeLine{\Hypertarget{pwm_8h_source_l00022}00022 \textcolor{preprocessor}{\#define PSC\_VAL 1440U }\textcolor{comment}{// prescaler value }}
+\DoxyCodeLine{\Hypertarget{pwm_8h_source_l00023}00023 }
+\DoxyCodeLine{\Hypertarget{pwm_8h_source_l00024}00024 }
+\DoxyCodeLine{\Hypertarget{pwm_8h_source_l00037}00037 \textcolor{keywordtype}{void} \mbox{\hyperlink{pwm_8h_aece0cd24e73712d28b111fa297dd6806}{PWM\_Init}}(\mbox{\hyperlink{structGPIO__TypeDef}{GPIO\_TypeDef}} *GPIOx ,uint8\_t pin);}
+\DoxyCodeLine{\Hypertarget{pwm_8h_source_l00038}00038 }
+\DoxyCodeLine{\Hypertarget{pwm_8h_source_l00039}00039 }
+\DoxyCodeLine{\Hypertarget{pwm_8h_source_l00048}00048 \textcolor{keywordtype}{void} \mbox{\hyperlink{pwm_8h_afa66a07752d25693b37ba16256404ac9}{GPIO\_PWM}}(\mbox{\hyperlink{structGPIO__TypeDef}{GPIO\_TypeDef}} *GPIOx ,uint8\_t pin,uint32\_t arr,uint32\_t ccr);}
+\DoxyCodeLine{\Hypertarget{pwm_8h_source_l00049}00049 }
+\DoxyCodeLine{\Hypertarget{pwm_8h_source_l00050}00050 }
+\DoxyCodeLine{\Hypertarget{pwm_8h_source_l00051}00051 }
+\DoxyCodeLine{\Hypertarget{pwm_8h_source_l00060}00060 \mbox{\hyperlink{structTIM__TypeDef}{TIM\_TypeDef}}* \mbox{\hyperlink{pwm_8h_abba5f959b9d2f0a5ec2cb30f245181d6}{Get\_TIM}}(\mbox{\hyperlink{structGPIO__TypeDef}{GPIO\_TypeDef}} *GPIOx , uint8\_t pin);}
+\DoxyCodeLine{\Hypertarget{pwm_8h_source_l00061}00061 }
+\DoxyCodeLine{\Hypertarget{pwm_8h_source_l00062}00062 }
+\DoxyCodeLine{\Hypertarget{pwm_8h_source_l00063}00063 }
+\DoxyCodeLine{\Hypertarget{pwm_8h_source_l00073}00073 uint8\_t \mbox{\hyperlink{pwm_8h_a292edb53a1c2e78c9638cf69d7068e85}{Get\_TIM\_Channel}}(\mbox{\hyperlink{structGPIO__TypeDef}{GPIO\_TypeDef}} *GPIOx , uint8\_t pin);}
+\DoxyCodeLine{\Hypertarget{pwm_8h_source_l00074}00074 }
+\DoxyCodeLine{\Hypertarget{pwm_8h_source_l00075}00075 }
+\DoxyCodeLine{\Hypertarget{pwm_8h_source_l00076}00076 \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

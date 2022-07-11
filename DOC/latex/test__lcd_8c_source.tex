@@ -1,0 +1,42 @@
+\hypertarget{test__lcd_8c_source}{}\doxysection{test\+\_\+lcd.\+c}
+\label{test__lcd_8c_source}\index{BLUE\_LIB/test/test\_lcd.c@{BLUE\_LIB/test/test\_lcd.c}}
+\mbox{\hyperlink{test__lcd_8c}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{test__lcd_8c_source_l00001}00001 }
+\DoxyCodeLine{\Hypertarget{test__lcd_8c_source_l00012}00012 \textcolor{preprocessor}{\#include <stdio.h>}}
+\DoxyCodeLine{\Hypertarget{test__lcd_8c_source_l00013}00013 }
+\DoxyCodeLine{\Hypertarget{test__lcd_8c_source_l00014}00014 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{stm32f10x_8h}{stm32f10x.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{test__lcd_8c_source_l00015}00015 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{gpio_8h}{gpio.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{test__lcd_8c_source_l00016}00016 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{delay_8h}{delay.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{test__lcd_8c_source_l00017}00017 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{lcd__16x2_8h}{lcd\_16x2.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{test__lcd_8c_source_l00018}00018 }
+\DoxyCodeLine{\Hypertarget{test__lcd_8c_source_l00019}00019 }
+\DoxyCodeLine{\Hypertarget{test__lcd_8c_source_l00020}\mbox{\hyperlink{test__lcd_8c_ae66f6b31b5ad750f1fe042a706a4e3d4}{00020}} \textcolor{keywordtype}{int} \mbox{\hyperlink{test__lcd_8c_ae66f6b31b5ad750f1fe042a706a4e3d4}{main}}()\{}
+\DoxyCodeLine{\Hypertarget{test__lcd_8c_source_l00021}00021 }
+\DoxyCodeLine{\Hypertarget{test__lcd_8c_source_l00022}00022     \mbox{\hyperlink{lcd__16x2_8h_ad484cc22a9a6bec640097f26d9b35722}{LCD\_Init}}();}
+\DoxyCodeLine{\Hypertarget{test__lcd_8c_source_l00023}00023 }
+\DoxyCodeLine{\Hypertarget{test__lcd_8c_source_l00024}00024     }
+\DoxyCodeLine{\Hypertarget{test__lcd_8c_source_l00025}00025      }
+\DoxyCodeLine{\Hypertarget{test__lcd_8c_source_l00026}00026     \textcolor{keywordflow}{while}(1)\{}
+\DoxyCodeLine{\Hypertarget{test__lcd_8c_source_l00027}00027 }
+\DoxyCodeLine{\Hypertarget{test__lcd_8c_source_l00028}00028             \mbox{\hyperlink{lcd__16x2_8h_ae60d0b62d7eb3fa31266c095d7b3c245}{LCD\_Clear}}();}
+\DoxyCodeLine{\Hypertarget{test__lcd_8c_source_l00029}00029             LCD\_Print\_Line(\textcolor{stringliteral}{"{}SUBJECT :4EL31"{}});}
+\DoxyCodeLine{\Hypertarget{test__lcd_8c_source_l00030}00030             \mbox{\hyperlink{delay_8h_a1d3146414c54513a72a7596c2f884c07}{Delay\_ms}}(3000);}
+\DoxyCodeLine{\Hypertarget{test__lcd_8c_source_l00031}00031 }
+\DoxyCodeLine{\Hypertarget{test__lcd_8c_source_l00032}00032             \mbox{\hyperlink{lcd__16x2_8h_ae60d0b62d7eb3fa31266c095d7b3c245}{LCD\_Clear}}();}
+\DoxyCodeLine{\Hypertarget{test__lcd_8c_source_l00033}00033             LCD\_Print\_Line(\textcolor{stringliteral}{"{}PROJECT TITLE :"{}});}
+\DoxyCodeLine{\Hypertarget{test__lcd_8c_source_l00034}00034             \mbox{\hyperlink{lcd__16x2_8h_a42ab60773a45e1fbf57115a2acccedd2}{LCD\_Setcursor}}(1,2);}
+\DoxyCodeLine{\Hypertarget{test__lcd_8c_source_l00035}00035             LCD\_Print\_Line(\textcolor{stringliteral}{"{}BLUE-\/LIB"{}});}
+\DoxyCodeLine{\Hypertarget{test__lcd_8c_source_l00036}00036             \mbox{\hyperlink{delay_8h_a1d3146414c54513a72a7596c2f884c07}{Delay\_ms}}(3000);}
+\DoxyCodeLine{\Hypertarget{test__lcd_8c_source_l00037}00037 }
+\DoxyCodeLine{\Hypertarget{test__lcd_8c_source_l00038}00038             \mbox{\hyperlink{lcd__16x2_8h_ae60d0b62d7eb3fa31266c095d7b3c245}{LCD\_Clear}}();}
+\DoxyCodeLine{\Hypertarget{test__lcd_8c_source_l00039}00039             LCD\_Print\_Line(\textcolor{stringliteral}{"{}TEST:           LCD APIs"{}});}
+\DoxyCodeLine{\Hypertarget{test__lcd_8c_source_l00040}00040             \mbox{\hyperlink{delay_8h_a1d3146414c54513a72a7596c2f884c07}{Delay\_ms}}(3000);}
+\DoxyCodeLine{\Hypertarget{test__lcd_8c_source_l00041}00041     \}}
+\DoxyCodeLine{\Hypertarget{test__lcd_8c_source_l00042}00042 }
+\DoxyCodeLine{\Hypertarget{test__lcd_8c_source_l00043}00043     \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{\Hypertarget{test__lcd_8c_source_l00044}00044 \}}
+\DoxyCodeLine{\Hypertarget{test__lcd_8c_source_l00045}00045 }
+\DoxyCodeLine{\Hypertarget{test__lcd_8c_source_l00046}00046 }
+
+\end{DoxyCode}

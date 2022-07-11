@@ -1,0 +1,164 @@
+\hypertarget{pwm_8h}{}\doxysection{BLUE\+\_\+\+LIB/include/common/pwm.h File Reference}
+\label{pwm_8h}\index{BLUE\_LIB/include/common/pwm.h@{BLUE\_LIB/include/common/pwm.h}}
+
+
+header file for declaration \& Documentation of functions and MACROs of \mbox{\hyperlink{pwm_8c}{pwm.\+c}}  
+
+
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}stm32f10x.\+h\char`\"{}}\newline
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{pwm_8h_a05063ca322efd3ab838f63ae9e9a3a65}{PSC\+\_\+\+VAL}}~1440U
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{pwm_8h_aece0cd24e73712d28b111fa297dd6806}{PWM\+\_\+\+Init}} (\mbox{\hyperlink{structGPIO__TypeDef}{GPIO\+\_\+\+Type\+Def}} $\ast$GPIOx, uint8\+\_\+t pin)
+\begin{DoxyCompactList}\small\item\em Function to initialize PWM. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{pwm_8h_afa66a07752d25693b37ba16256404ac9}{GPIO\+\_\+\+PWM}} (\mbox{\hyperlink{structGPIO__TypeDef}{GPIO\+\_\+\+Type\+Def}} $\ast$GPIOx, uint8\+\_\+t pin, uint32\+\_\+t arr, uint32\+\_\+t ccr)
+\begin{DoxyCompactList}\small\item\em Function to configure PWM. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structTIM__TypeDef}{TIM\+\_\+\+Type\+Def}} $\ast$ \mbox{\hyperlink{pwm_8h_abba5f959b9d2f0a5ec2cb30f245181d6}{Get\+\_\+\+TIM}} (\mbox{\hyperlink{structGPIO__TypeDef}{GPIO\+\_\+\+Type\+Def}} $\ast$GPIOx, uint8\+\_\+t pin)
+\begin{DoxyCompactList}\small\item\em Function to get TIM peripheral number for specified gpio. \end{DoxyCompactList}\item 
+uint8\+\_\+t \mbox{\hyperlink{pwm_8h_a292edb53a1c2e78c9638cf69d7068e85}{Get\+\_\+\+TIM\+\_\+\+Channel}} (\mbox{\hyperlink{structGPIO__TypeDef}{GPIO\+\_\+\+Type\+Def}} $\ast$GPIOx, uint8\+\_\+t pin)
+\begin{DoxyCompactList}\small\item\em Function to get TIM channel number for specified gpio. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+header file for declaration \& Documentation of functions and MACROs of \mbox{\hyperlink{pwm_8c}{pwm.\+c}} 
+
+\begin{DoxyAuthor}{Author}
+Kaushal Dekivadia (\href{mailto:dekivadiakaushal1212@gmail.com}{\texttt{ dekivadiakaushal1212@gmail.\+com}})
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+0.\+1 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2022-\/03-\/06
+\end{DoxyDate}
+\begin{DoxyCopyright}{Copyright}
+Copyright (c) 2022 
+\end{DoxyCopyright}
+
+
+Definition in file \mbox{\hyperlink{pwm_8h_source}{pwm.\+h}}.
+
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{pwm_8h_a05063ca322efd3ab838f63ae9e9a3a65}\label{pwm_8h_a05063ca322efd3ab838f63ae9e9a3a65}} 
+\index{pwm.h@{pwm.h}!PSC\_VAL@{PSC\_VAL}}
+\index{PSC\_VAL@{PSC\_VAL}!pwm.h@{pwm.h}}
+\doxysubsubsection{\texorpdfstring{PSC\_VAL}{PSC\_VAL}}
+{\footnotesize\ttfamily \#define PSC\+\_\+\+VAL~1440U}
+
+
+
+Definition at line \mbox{\hyperlink{pwm_8h_source_l00022}{22}} of file \mbox{\hyperlink{pwm_8h_source}{pwm.\+h}}.
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{pwm_8h_abba5f959b9d2f0a5ec2cb30f245181d6}\label{pwm_8h_abba5f959b9d2f0a5ec2cb30f245181d6}} 
+\index{pwm.h@{pwm.h}!Get\_TIM@{Get\_TIM}}
+\index{Get\_TIM@{Get\_TIM}!pwm.h@{pwm.h}}
+\doxysubsubsection{\texorpdfstring{Get\_TIM()}{Get\_TIM()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structTIM__TypeDef}{TIM\+\_\+\+Type\+Def}} $\ast$ Get\+\_\+\+TIM (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structGPIO__TypeDef}{GPIO\+\_\+\+Type\+Def}} $\ast$}]{GPIOx,  }\item[{uint8\+\_\+t}]{pin }\end{DoxyParamCaption})}
+
+
+
+Function to get TIM peripheral number for specified gpio. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em GPIOx} & -\/ Port of GPIO \\
+\hline
+{\em pin} & -\/ Pin of GPIO\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+TIM\+\_\+\+Type\+Def$\ast$ -\/ pointer to TIM peripheral reg strucure ~\newline
+ 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{pwm_8c_source_l00105}{105}} of file \mbox{\hyperlink{pwm_8c_source}{pwm.\+c}}.
+
+\mbox{\Hypertarget{pwm_8h_a292edb53a1c2e78c9638cf69d7068e85}\label{pwm_8h_a292edb53a1c2e78c9638cf69d7068e85}} 
+\index{pwm.h@{pwm.h}!Get\_TIM\_Channel@{Get\_TIM\_Channel}}
+\index{Get\_TIM\_Channel@{Get\_TIM\_Channel}!pwm.h@{pwm.h}}
+\doxysubsubsection{\texorpdfstring{Get\_TIM\_Channel()}{Get\_TIM\_Channel()}}
+{\footnotesize\ttfamily uint8\+\_\+t Get\+\_\+\+TIM\+\_\+\+Channel (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structGPIO__TypeDef}{GPIO\+\_\+\+Type\+Def}} $\ast$}]{GPIOx,  }\item[{uint8\+\_\+t}]{pin }\end{DoxyParamCaption})}
+
+
+
+Function to get TIM channel number for specified gpio. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em GPIOx} & -\/ Port of GPIO \\
+\hline
+{\em pin} & -\/ Pin of GPIO\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+uint8\+\_\+t -\/ channel number ~\newline
+ 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{pwm_8c_source_l00131}{131}} of file \mbox{\hyperlink{pwm_8c_source}{pwm.\+c}}.
+
+\mbox{\Hypertarget{pwm_8h_afa66a07752d25693b37ba16256404ac9}\label{pwm_8h_afa66a07752d25693b37ba16256404ac9}} 
+\index{pwm.h@{pwm.h}!GPIO\_PWM@{GPIO\_PWM}}
+\index{GPIO\_PWM@{GPIO\_PWM}!pwm.h@{pwm.h}}
+\doxysubsubsection{\texorpdfstring{GPIO\_PWM()}{GPIO\_PWM()}}
+{\footnotesize\ttfamily void GPIO\+\_\+\+PWM (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structGPIO__TypeDef}{GPIO\+\_\+\+Type\+Def}} $\ast$}]{GPIOx,  }\item[{uint8\+\_\+t}]{pin,  }\item[{uint32\+\_\+t}]{arr,  }\item[{uint32\+\_\+t}]{ccr }\end{DoxyParamCaption})}
+
+
+
+Function to configure PWM. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em GPIOx} & -\/ Port of GPIO \\
+\hline
+{\em pin} & -\/ Pin of GPIO \\
+\hline
+{\em arr} & -\/ Auto reload reg value \\
+\hline
+{\em ccr} & -\/ Compare reload reg value \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{pwm_8c_source_l00083}{83}} of file \mbox{\hyperlink{pwm_8c_source}{pwm.\+c}}.
+
+\mbox{\Hypertarget{pwm_8h_aece0cd24e73712d28b111fa297dd6806}\label{pwm_8h_aece0cd24e73712d28b111fa297dd6806}} 
+\index{pwm.h@{pwm.h}!PWM\_Init@{PWM\_Init}}
+\index{PWM\_Init@{PWM\_Init}!pwm.h@{pwm.h}}
+\doxysubsubsection{\texorpdfstring{PWM\_Init()}{PWM\_Init()}}
+{\footnotesize\ttfamily void PWM\+\_\+\+Init (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structGPIO__TypeDef}{GPIO\+\_\+\+Type\+Def}} $\ast$}]{GPIOx,  }\item[{uint8\+\_\+t}]{pin }\end{DoxyParamCaption})}
+
+
+
+Function to initialize PWM. 
+
+\begin{DoxyVerb}  pins that can be configured as PWM
+  ->  A0 - A3
+  ->  A6 - A10
+  ->  B0 - B1
+  ->  B6 - B9
+\end{DoxyVerb}
+ 
+\begin{DoxyParams}{Parameters}
+{\em GPIOx} & -\/ Port of GPIO \\
+\hline
+{\em pin} & -\/ Pin of GPIO \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{pwm_8c_source_l00022}{22}} of file \mbox{\hyperlink{pwm_8c_source}{pwm.\+c}}.
+

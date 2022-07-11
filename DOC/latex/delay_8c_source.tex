@@ -1,0 +1,48 @@
+\hypertarget{delay_8c_source}{}\doxysection{delay.\+c}
+\label{delay_8c_source}\index{BLUE\_LIB/src/delay.c@{BLUE\_LIB/src/delay.c}}
+\mbox{\hyperlink{delay_8c}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{delay_8c_source_l00001}00001 }
+\DoxyCodeLine{\Hypertarget{delay_8c_source_l00012}00012 \textcolor{preprocessor}{\#include <stdint.h>}}
+\DoxyCodeLine{\Hypertarget{delay_8c_source_l00013}00013 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{delay_8h}{delay.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{delay_8c_source_l00014}00014 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{delay_8h}{delay.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{delay_8c_source_l00015}00015 }
+\DoxyCodeLine{\Hypertarget{delay_8c_source_l00016}00016 \textcolor{comment}{// For store tick counts in us}}
+\DoxyCodeLine{\Hypertarget{delay_8c_source_l00017}00017 \textcolor{keyword}{static} \mbox{\hyperlink{core__cm3_8h_aec43007d9998a0a0e01faede4133d6be}{\_\_IO}} uint32\_t usTicks;}
+\DoxyCodeLine{\Hypertarget{delay_8c_source_l00018}00018 }
+\DoxyCodeLine{\Hypertarget{delay_8c_source_l00019}00019 \textcolor{comment}{// SysTick\_Handler function will be called every 1 us}}
+\DoxyCodeLine{\Hypertarget{delay_8c_source_l00020}00020 \textcolor{keywordtype}{void} SysTick\_Handler()}
+\DoxyCodeLine{\Hypertarget{delay_8c_source_l00021}00021 \{}
+\DoxyCodeLine{\Hypertarget{delay_8c_source_l00022}00022     \textcolor{keywordflow}{if} (usTicks != 0)}
+\DoxyCodeLine{\Hypertarget{delay_8c_source_l00023}00023     \{}
+\DoxyCodeLine{\Hypertarget{delay_8c_source_l00024}00024         usTicks-\/-\/;}
+\DoxyCodeLine{\Hypertarget{delay_8c_source_l00025}00025     \}}
+\DoxyCodeLine{\Hypertarget{delay_8c_source_l00026}00026 \}}
+\DoxyCodeLine{\Hypertarget{delay_8c_source_l00027}00027 }
+\DoxyCodeLine{\Hypertarget{delay_8c_source_l00028}\mbox{\hyperlink{delay_8h_a77828a2535be7e55685300de6a0ace8d}{00028}} \textcolor{keywordtype}{void} \mbox{\hyperlink{delay_8c_a5cad1f5fb290adb5389331041a29ca18}{Delay\_Init}}()}
+\DoxyCodeLine{\Hypertarget{delay_8c_source_l00029}00029 \{}
+\DoxyCodeLine{\Hypertarget{delay_8c_source_l00030}00030     \textcolor{comment}{// Update SystemCoreClock value}}
+\DoxyCodeLine{\Hypertarget{delay_8c_source_l00031}00031     \mbox{\hyperlink{group__STM32F10x__System__Exported__Functions_gae0c36a9591fe6e9c45ecb21a794f0f0f}{SystemCoreClockUpdate}}();}
+\DoxyCodeLine{\Hypertarget{delay_8c_source_l00032}00032     \textcolor{comment}{// Configure the SysTick timer to overflow every 1 us}}
+\DoxyCodeLine{\Hypertarget{delay_8c_source_l00033}00033     \mbox{\hyperlink{group__CMSIS__Core__SysTickFunctions_gae4e8f0238527c69f522029b93c8e5b78}{SysTick\_Config}}(\mbox{\hyperlink{group__STM32F10x__System__Exported__types_gaa3cd3e43291e81e795d642b79b6088e6}{SystemCoreClock}} / 1000000);}
+\DoxyCodeLine{\Hypertarget{delay_8c_source_l00034}00034 \}}
+\DoxyCodeLine{\Hypertarget{delay_8c_source_l00035}00035 }
+\DoxyCodeLine{\Hypertarget{delay_8c_source_l00036}\mbox{\hyperlink{delay_8h_a0e816b30894e177b44f464a4065cd0cd}{00036}} \textcolor{keywordtype}{void} \mbox{\hyperlink{delay_8c_a0e816b30894e177b44f464a4065cd0cd}{Delay\_us}}(uint32\_t us)}
+\DoxyCodeLine{\Hypertarget{delay_8c_source_l00037}00037 \{}
+\DoxyCodeLine{\Hypertarget{delay_8c_source_l00038}00038     \textcolor{comment}{// Reload us value}}
+\DoxyCodeLine{\Hypertarget{delay_8c_source_l00039}00039     usTicks = us;}
+\DoxyCodeLine{\Hypertarget{delay_8c_source_l00040}00040     \textcolor{comment}{// Wait until usTick reach zero}}
+\DoxyCodeLine{\Hypertarget{delay_8c_source_l00041}00041     \textcolor{keywordflow}{while} (usTicks);}
+\DoxyCodeLine{\Hypertarget{delay_8c_source_l00042}00042 \}}
+\DoxyCodeLine{\Hypertarget{delay_8c_source_l00043}00043 }
+\DoxyCodeLine{\Hypertarget{delay_8c_source_l00044}\mbox{\hyperlink{delay_8h_a1d3146414c54513a72a7596c2f884c07}{00044}} \textcolor{keywordtype}{void} \mbox{\hyperlink{delay_8c_a1d3146414c54513a72a7596c2f884c07}{Delay\_ms}}(uint32\_t ms)}
+\DoxyCodeLine{\Hypertarget{delay_8c_source_l00045}00045 \{}
+\DoxyCodeLine{\Hypertarget{delay_8c_source_l00046}00046     \textcolor{comment}{// Wait until ms reach zero}}
+\DoxyCodeLine{\Hypertarget{delay_8c_source_l00047}00047     \textcolor{keywordflow}{while} (ms-\/-\/)}
+\DoxyCodeLine{\Hypertarget{delay_8c_source_l00048}00048     \{}
+\DoxyCodeLine{\Hypertarget{delay_8c_source_l00049}00049         \textcolor{comment}{// Delay 1ms}}
+\DoxyCodeLine{\Hypertarget{delay_8c_source_l00050}00050         \mbox{\hyperlink{delay_8c_a0e816b30894e177b44f464a4065cd0cd}{Delay\_us}}(1000);}
+\DoxyCodeLine{\Hypertarget{delay_8c_source_l00051}00051     \}}
+\DoxyCodeLine{\Hypertarget{delay_8c_source_l00052}00052 \}}
+
+\end{DoxyCode}

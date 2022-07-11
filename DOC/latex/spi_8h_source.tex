@@ -1,0 +1,47 @@
+\hypertarget{spi_8h_source}{}\doxysection{spi.\+h}
+\label{spi_8h_source}\index{BLUE\_LIB/include/common/spi.h@{BLUE\_LIB/include/common/spi.h}}
+\mbox{\hyperlink{spi_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{spi_8h_source_l00001}00001 }
+\DoxyCodeLine{\Hypertarget{spi_8h_source_l00013}00013 \textcolor{preprocessor}{\#ifndef \_\_SPI\_H}}
+\DoxyCodeLine{\Hypertarget{spi_8h_source_l00014}00014 \textcolor{preprocessor}{\#define \_\_SPI\_H}}
+\DoxyCodeLine{\Hypertarget{spi_8h_source_l00015}00015 }
+\DoxyCodeLine{\Hypertarget{spi_8h_source_l00016}00016 \textcolor{preprocessor}{\#include <stdint.h>}}
+\DoxyCodeLine{\Hypertarget{spi_8h_source_l00017}00017 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{stm32f10x_8h}{stm32f10x.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{spi_8h_source_l00018}00018 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{gpio_8h}{gpio.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{spi_8h_source_l00019}00019 }
+\DoxyCodeLine{\Hypertarget{spi_8h_source_l00020}00020 \textcolor{preprocessor}{\#define MASTER 0U}}
+\DoxyCodeLine{\Hypertarget{spi_8h_source_l00021}00021 \textcolor{preprocessor}{\#define SLAVE 1U}}
+\DoxyCodeLine{\Hypertarget{spi_8h_source_l00022}00022 }
+\DoxyCodeLine{\Hypertarget{spi_8h_source_l00023}00023 \textcolor{preprocessor}{\#define MSB 2U}}
+\DoxyCodeLine{\Hypertarget{spi_8h_source_l00024}00024 \textcolor{preprocessor}{\#define LSB 3U}}
+\DoxyCodeLine{\Hypertarget{spi_8h_source_l00025}00025 }
+\DoxyCodeLine{\Hypertarget{spi_8h_source_l00026}00026 }
+\DoxyCodeLine{\Hypertarget{spi_8h_source_l00027}00027 \textcolor{preprocessor}{\#define SPI\_NSS\_ON(SPIx) ( (SPIx == SPI1) ? (GPIO\_Reset(GPIOA,4)) : (GPIO\_Reset(GPIOB,12))) }\textcolor{comment}{// NSS pin control MACRO functions }}
+\DoxyCodeLine{\Hypertarget{spi_8h_source_l00028}00028 }
+\DoxyCodeLine{\Hypertarget{spi_8h_source_l00029}00029 \textcolor{preprocessor}{\#define SPI\_NSS\_OFF(SPIx) ( (SPIx == SPI1) ? (GPIO\_Set(GPIOA,4)) : (GPIO\_Set(GPIOB,12))) }}
+\DoxyCodeLine{\Hypertarget{spi_8h_source_l00030}00030 }
+\DoxyCodeLine{\Hypertarget{spi_8h_source_l00031}00031 }
+\DoxyCodeLine{\Hypertarget{spi_8h_source_l00032}00032 }
+\DoxyCodeLine{\Hypertarget{spi_8h_source_l00033}00033 }
+\DoxyCodeLine{\Hypertarget{spi_8h_source_l00050}00050 \textcolor{keyword}{extern} \textcolor{keywordtype}{void} \mbox{\hyperlink{spi_8h_a303b3e50ffd8777f40325d2dd1720622}{SPI\_Init}}(\mbox{\hyperlink{structSPI__TypeDef}{SPI\_TypeDef}} *SPIx , uint8\_t mode , uint8\_t c\_pol , uint8\_t c\_phase, uint8\_t first\_tr\_bit,uint8\_t size\_data);}
+\DoxyCodeLine{\Hypertarget{spi_8h_source_l00051}00051 }
+\DoxyCodeLine{\Hypertarget{spi_8h_source_l00052}00052 }
+\DoxyCodeLine{\Hypertarget{spi_8h_source_l00061}00061 \textcolor{keyword}{extern} \textcolor{keywordtype}{void} \mbox{\hyperlink{spi_8h_a57bf47f4b56ecf48278a6ed1417c05a3}{SPI\_Set\_Clk\_Prescaler}}(\mbox{\hyperlink{structSPI__TypeDef}{SPI\_TypeDef}} *SPIx,uint32\_t prescaler);}
+\DoxyCodeLine{\Hypertarget{spi_8h_source_l00062}00062 }
+\DoxyCodeLine{\Hypertarget{spi_8h_source_l00063}00063 }
+\DoxyCodeLine{\Hypertarget{spi_8h_source_l00073}00073 \textcolor{keyword}{extern} uint16\_t \mbox{\hyperlink{spi_8h_a7efc18f6772eb2a8628c34f8b9d5d44c}{SPI\_SendByte}}(\mbox{\hyperlink{structSPI__TypeDef}{SPI\_TypeDef}} *SPIx , uint16\_t data);}
+\DoxyCodeLine{\Hypertarget{spi_8h_source_l00074}00074 }
+\DoxyCodeLine{\Hypertarget{spi_8h_source_l00075}00075 }
+\DoxyCodeLine{\Hypertarget{spi_8h_source_l00076}00076 }
+\DoxyCodeLine{\Hypertarget{spi_8h_source_l00087}00087 \textcolor{keyword}{extern} \textcolor{keywordtype}{void} \mbox{\hyperlink{spi_8h_aa310dbda1260e34e36232a99e1981b59}{SPI\_WriteReg}}(\mbox{\hyperlink{structSPI__TypeDef}{SPI\_TypeDef}} *SPIx,uint16\_t address , uint16\_t value);}
+\DoxyCodeLine{\Hypertarget{spi_8h_source_l00088}00088 }
+\DoxyCodeLine{\Hypertarget{spi_8h_source_l00089}00089 }
+\DoxyCodeLine{\Hypertarget{spi_8h_source_l00090}00090 }
+\DoxyCodeLine{\Hypertarget{spi_8h_source_l00100}00100 \textcolor{keyword}{extern} uint16\_t \mbox{\hyperlink{spi_8h_ab75a177e7293c4f241058aa64153b17d}{SPI\_ReadReg}}(\mbox{\hyperlink{structSPI__TypeDef}{SPI\_TypeDef}}* SPIx,uint16\_t address);}
+\DoxyCodeLine{\Hypertarget{spi_8h_source_l00101}00101 }
+\DoxyCodeLine{\Hypertarget{spi_8h_source_l00102}00102 }
+\DoxyCodeLine{\Hypertarget{spi_8h_source_l00103}00103 }
+\DoxyCodeLine{\Hypertarget{spi_8h_source_l00104}00104 \textcolor{preprocessor}{ \#endif}}
+
+\end{DoxyCode}
